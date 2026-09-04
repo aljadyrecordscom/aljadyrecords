@@ -822,6 +822,7 @@ section {
   transition: border-color 0.3s, color 0.3s;
 }
 .btn-like:hover { border-color: var(--gold); color: var(--gold-hi); }
+.btn-like.liked { background: var(--gold); color: var(--black); border-color: var(--gold); }
 .disco-patamu {
   font-family: var(--font-mono);
   font-size: 0.5rem;
@@ -1596,9 +1597,6 @@ footer {
           <div class="disco-subtitle">Chiamami ora, o ti brucio per sempre</div>
           <div class="disco-genre">DARK POP · 125–160 BPM · SINGLE PRINCIPAL</div>
         </div>
-        <div class="disco-badges">
-          <span class="lang-badge">IT</span><span class="lang-badge">EN</span><span class="lang-badge">FR</span><span class="lang-badge">ES</span>
-        </div>
         <div class="disco-arrow">▼</div>
       </div>
       <div class="disco-panel">
@@ -1608,7 +1606,7 @@ footer {
               <button class="btn-buy-cs">🛒 BUY!</button>
               <div class="coming-soon-bubble">✦ COMING SOON ✦</div>
             </div>
-            <button class="btn-like">♡ LIKE</button>
+            <button class="btn-like" data-song="Ghost_Me" onclick="toggleLike(this)">♡ LIKE</button>
             <div class="flag-btns">
               <button class="flag-btn" data-song="Ghost_Me" data-lang="IT" onclick="playPreview(this)"><span class="flag-emoji">🇮🇹</span>IT<span class="flag-coming">🎵 COMING SOON</span></button>
               <button class="flag-btn" data-song="Ghost_Me" data-lang="EN" onclick="playPreview(this)"><span class="flag-emoji">🇬🇧</span>EN<span class="flag-coming">🎵 COMING SOON</span></button>
@@ -1634,7 +1632,6 @@ footer {
           <div class="disco-subtitle">Portrait d'une femme libre</div>
           <div class="disco-genre">POP EMOTIVO · 125–128 BPM</div>
         </div>
-        <div class="disco-badges"><span class="lang-badge">IT</span></div>
         <div class="disco-arrow">▼</div>
       </div>
       <div class="disco-panel">
@@ -1644,7 +1641,7 @@ footer {
               <button class="btn-buy-cs">🛒 BUY!</button>
               <div class="coming-soon-bubble">✦ COMING SOON ✦</div>
             </div>
-            <button class="btn-like">♡ LIKE</button>
+            <button class="btn-like" data-song="Sono_Perfetta" onclick="toggleLike(this)">♡ LIKE</button>
             <div class="flag-btns">
               <button class="flag-btn" data-song="Sono_Perfetta" data-lang="IT" onclick="playPreview(this)"><span class="flag-emoji">🇮🇹</span>IT<span class="flag-coming">🎵 COMING SOON</span></button>
               <button class="flag-btn" data-song="Sono_Perfetta" data-lang="EN" onclick="playPreview(this)"><span class="flag-emoji">🇬🇧</span>EN<span class="flag-coming">🎵 COMING SOON</span></button>
@@ -1670,7 +1667,6 @@ footer {
           <div class="disco-subtitle">Mamma mi manchi</div>
           <div class="disco-genre">POP-ROCK SINFONICO · BALLATA CINEMATOGRAFICA</div>
         </div>
-        <div class="disco-badges"><span class="lang-badge">IT</span><span class="lang-badge">EN</span><span class="lang-badge">FR</span><span class="lang-badge">ES</span></div>
         <div class="disco-arrow">▼</div>
       </div>
       <div class="disco-panel">
@@ -1680,7 +1676,7 @@ footer {
               <button class="btn-buy-cs">🛒 BUY!</button>
               <div class="coming-soon-bubble">✦ COMING SOON ✦</div>
             </div>
-            <button class="btn-like">♡ LIKE</button>
+            <button class="btn-like" data-song="La_Copertina" onclick="toggleLike(this)">♡ LIKE</button>
             <div class="flag-btns">
               <button class="flag-btn" data-song="La_Copertina" data-lang="IT" onclick="playPreview(this)"><span class="flag-emoji">🇮🇹</span>IT<span class="flag-coming">🎵 COMING SOON</span></button>
               <button class="flag-btn" data-song="La_Copertina" data-lang="EN" onclick="playPreview(this)"><span class="flag-emoji">🇬🇧</span>EN<span class="flag-coming">🎵 COMING SOON</span></button>
@@ -1706,7 +1702,6 @@ footer {
           <div class="disco-subtitle">Meglio no!</div>
           <div class="disco-genre">HIP-HOP ALT-POP · 90 BPM · RÉ MINEUR</div>
         </div>
-        <div class="disco-badges"><span class="lang-badge">IT</span><span class="lang-badge">EN</span><span class="lang-badge">FR</span><span class="lang-badge">ES</span></div>
         <div class="disco-arrow">▼</div>
       </div>
       <div class="disco-panel">
@@ -1716,7 +1711,7 @@ footer {
               <button class="btn-buy-cs">🛒 BUY!</button>
               <div class="coming-soon-bubble">✦ COMING SOON ✦</div>
             </div>
-            <button class="btn-like">♡ LIKE</button>
+            <button class="btn-like" data-song="Ma_Karma" onclick="toggleLike(this)">♡ LIKE</button>
             <div class="flag-btns">
               <button class="flag-btn" data-song="Ma_Karma" data-lang="IT" onclick="playPreview(this)"><span class="flag-emoji">🇮🇹</span>IT<span class="flag-coming">🎵 COMING SOON</span></button>
               <button class="flag-btn" data-song="Ma_Karma" data-lang="EN" onclick="playPreview(this)"><span class="flag-emoji">🇬🇧</span>EN<span class="flag-coming">🎵 COMING SOON</span></button>
@@ -1742,7 +1737,6 @@ footer {
           <div class="disco-subtitle">Non ci sono elementi?!</div>
           <div class="disco-genre">TRIP-HOP · DARK INDIE POP</div>
         </div>
-        <div class="disco-badges"><span class="lang-badge">IT</span></div>
         <div class="disco-arrow">▼</div>
       </div>
       <div class="disco-panel">
@@ -1752,7 +1746,7 @@ footer {
               <button class="btn-buy-cs">🛒 BUY!</button>
               <div class="coming-soon-bubble">✦ COMING SOON ✦</div>
             </div>
-            <button class="btn-like">♡ LIKE</button>
+            <button class="btn-like" data-song="Acqua_e_Fuoco" onclick="toggleLike(this)">♡ LIKE</button>
             <div class="flag-btns">
               <button class="flag-btn" data-song="Acqua_e_Fuoco" data-lang="IT" onclick="playPreview(this)"><span class="flag-emoji">🇮🇹</span>IT<span class="flag-coming">🎵 COMING SOON</span></button>
               <button class="flag-btn" data-song="Acqua_e_Fuoco" data-lang="EN" onclick="playPreview(this)"><span class="flag-emoji">🇬🇧</span>EN<span class="flag-coming">🎵 COMING SOON</span></button>
@@ -1777,7 +1771,6 @@ footer {
           <div class="disco-subtitle">Che hai fatto figlio mio!</div>
           <div class="disco-genre">ORCHESTRAL ROCK · CINEMATIC POP SOUL</div>
         </div>
-        <div class="disco-badges"><span class="lang-badge">IT</span><span class="lang-badge">EN</span><span class="lang-badge">FR</span><span class="lang-badge">ES</span></div>
         <div class="disco-arrow">▼</div>
       </div>
       <div class="disco-panel">
@@ -1787,7 +1780,7 @@ footer {
               <button class="btn-buy-cs">🛒 BUY!</button>
               <div class="coming-soon-bubble">✦ COMING SOON ✦</div>
             </div>
-            <button class="btn-like">♡ LIKE</button>
+            <button class="btn-like" data-song="The_Last_Day" onclick="toggleLike(this)">♡ LIKE</button>
             <div class="flag-btns">
               <button class="flag-btn" data-song="The_Last_Day" data-lang="IT" onclick="playPreview(this)"><span class="flag-emoji">🇮🇹</span>IT<span class="flag-coming">🎵 COMING SOON</span></button>
               <button class="flag-btn" data-song="The_Last_Day" data-lang="EN" onclick="playPreview(this)"><span class="flag-emoji">🇬🇧</span>EN<span class="flag-coming">🎵 COMING SOON</span></button>
@@ -1812,7 +1805,6 @@ footer {
           <div class="disco-subtitle">Niente è vero!</div>
           <div class="disco-genre">ELECTRO POP · ALTERNATIVE</div>
         </div>
-        <div class="disco-badges"><span class="lang-badge">IT</span></div>
         <div class="disco-arrow">▼</div>
       </div>
       <div class="disco-panel">
@@ -1822,7 +1814,7 @@ footer {
               <button class="btn-buy-cs">🛒 BUY!</button>
               <div class="coming-soon-bubble">✦ COMING SOON ✦</div>
             </div>
-            <button class="btn-like">♡ LIKE</button>
+            <button class="btn-like" data-song="UFO_Dedica_Mela" onclick="toggleLike(this)">♡ LIKE</button>
             <div class="flag-btns">
               <button class="flag-btn" data-song="UFO_Dedica_Mela" data-lang="IT" onclick="playPreview(this)"><span class="flag-emoji">🇮🇹</span>IT<span class="flag-coming">🎵 COMING SOON</span></button>
               <button class="flag-btn" data-song="UFO_Dedica_Mela" data-lang="EN" onclick="playPreview(this)"><span class="flag-emoji">🇬🇧</span>EN<span class="flag-coming">🎵 COMING SOON</span></button>
@@ -1847,7 +1839,6 @@ footer {
           <div class="disco-subtitle">En Production</div>
           <div class="disco-genre">IN PRODUZIONE</div>
         </div>
-        <div class="disco-badges"><span class="lang-badge">IT</span></div>
         <div class="disco-arrow">▼</div>
       </div>
       <div class="disco-panel">
@@ -1856,7 +1847,7 @@ footer {
             <div class="btn-buy-wrap">
               <button class="btn-buy-cs" style="opacity:0.5;cursor:default;">EN PRODUCTION</button>
             </div>
-            <button class="btn-like">♡ LIKE</button>
+            <button class="btn-like" data-song="Magic_Night" onclick="toggleLike(this)">♡ LIKE</button>
             <div class="flag-btns">
               <button class="flag-btn" data-song="Magic_Night" data-lang="IT" onclick="playPreview(this)"><span class="flag-emoji">🇮🇹</span>IT<span class="flag-coming">🎵 COMING SOON</span></button>
               <button class="flag-btn" data-song="Magic_Night" data-lang="EN" onclick="playPreview(this)"><span class="flag-emoji">🇬🇧</span>EN<span class="flag-coming">🎵 COMING SOON</span></button>
@@ -1881,7 +1872,6 @@ footer {
           <div class="disco-subtitle">En Production</div>
           <div class="disco-genre">IN PRODUZIONE</div>
         </div>
-        <div class="disco-badges"><span class="lang-badge">—</span></div>
         <div class="disco-arrow">▼</div>
       </div>
       <div class="disco-panel">
@@ -1890,7 +1880,7 @@ footer {
             <div class="btn-buy-wrap">
               <button class="btn-buy-cs" style="opacity:0.5;cursor:default;">EN PRODUCTION</button>
             </div>
-            <button class="btn-like">♡ LIKE</button>
+            <button class="btn-like" data-song="No_Fool" onclick="toggleLike(this)">♡ LIKE</button>
             <div class="flag-btns">
               <button class="flag-btn" data-song="No_Fool" data-lang="IT" onclick="playPreview(this)"><span class="flag-emoji">🇮🇹</span>IT<span class="flag-coming">🎵 COMING SOON</span></button>
               <button class="flag-btn" data-song="No_Fool" data-lang="EN" onclick="playPreview(this)"><span class="flag-emoji">🇬🇧</span>EN<span class="flag-coming">🎵 COMING SOON</span></button>
@@ -1912,7 +1902,6 @@ footer {
           <div class="disco-subtitle">Bionda o Bruno?</div>
           <div class="disco-genre">FUNK DISCO R&B · 122–126 BPM · LA MINEUR</div>
         </div>
-        <div class="disco-badges"><span class="lang-badge">IT</span><span class="lang-badge">EN</span></div>
         <div class="disco-arrow">▼</div>
       </div>
       <div class="disco-panel">
@@ -1922,7 +1911,7 @@ footer {
               <button class="btn-buy-cs">🛒 BUY!</button>
               <div class="coming-soon-bubble">✦ COMING SOON ✦</div>
             </div>
-            <button class="btn-like">♡ LIKE</button>
+            <button class="btn-like" data-song="Serata_da_Leoni" onclick="toggleLike(this)">♡ LIKE</button>
             <div class="flag-btns">
               <button class="flag-btn" data-song="Serata_da_Leoni" data-lang="IT" onclick="playPreview(this)"><span class="flag-emoji">🇮🇹</span>IT<span class="flag-coming">🎵 COMING SOON</span></button>
               <button class="flag-btn" data-song="Serata_da_Leoni" data-lang="EN" onclick="playPreview(this)"><span class="flag-emoji">🇬🇧</span>EN<span class="flag-coming">🎵 COMING SOON</span></button>
@@ -1949,7 +1938,6 @@ footer {
           <div class="disco-subtitle">En Production</div>
           <div class="disco-genre">IN PRODUZIONE</div>
         </div>
-        <div class="disco-badges"><span class="lang-badge">—</span></div>
         <div class="disco-arrow">▼</div>
       </div>
       <div class="disco-panel">
@@ -1958,7 +1946,7 @@ footer {
             <div class="btn-buy-wrap">
               <button class="btn-buy-cs" style="opacity:0.5;cursor:default;">EN PRODUCTION</button>
             </div>
-            <button class="btn-like">♡ LIKE</button>
+            <button class="btn-like" data-song="I_Will_Do_It" onclick="toggleLike(this)">♡ LIKE</button>
             <div class="flag-btns">
               <button class="flag-btn" data-song="I_Will_Do_It" data-lang="IT" onclick="playPreview(this)"><span class="flag-emoji">🇮🇹</span>IT<span class="flag-coming">🎵 COMING SOON</span></button>
               <button class="flag-btn" data-song="I_Will_Do_It" data-lang="EN" onclick="playPreview(this)"><span class="flag-emoji">🇬🇧</span>EN<span class="flag-coming">🎵 COMING SOON</span></button>
@@ -1980,7 +1968,6 @@ footer {
           <div class="disco-subtitle">En Production</div>
           <div class="disco-genre">IN PRODUZIONE</div>
         </div>
-        <div class="disco-badges"><span class="lang-badge">IT</span></div>
         <div class="disco-arrow">▼</div>
       </div>
       <div class="disco-panel">
@@ -1989,7 +1976,7 @@ footer {
             <div class="btn-buy-wrap">
               <button class="btn-buy-cs" style="opacity:0.5;cursor:default;">EN PRODUCTION</button>
             </div>
-            <button class="btn-like">♡ LIKE</button>
+            <button class="btn-like" data-song="Dubai" onclick="toggleLike(this)">♡ LIKE</button>
             <div class="flag-btns">
               <button class="flag-btn" data-song="Dubai" data-lang="IT" onclick="playPreview(this)"><span class="flag-emoji">🇮🇹</span>IT<span class="flag-coming">🎵 COMING SOON</span></button>
               <button class="flag-btn" data-song="Dubai" data-lang="EN" onclick="playPreview(this)"><span class="flag-emoji">🇬🇧</span>EN<span class="flag-coming">🎵 COMING SOON</span></button>
@@ -2013,7 +2000,6 @@ footer {
           <div class="disco-subtitle">don't forget you have to set an example</div>
           <div class="disco-genre">DISCO HOUSE · WORLD TRIBAL · 124 BPM · 6:30+</div>
         </div>
-        <div class="disco-badges"><span class="lang-badge">IT</span><span class="lang-badge">EN</span></div>
         <div class="disco-arrow">▼</div>
       </div>
       <div class="disco-panel">
@@ -2023,7 +2009,7 @@ footer {
               <button class="btn-buy-cs">🛒 BUY!</button>
               <div class="coming-soon-bubble">✦ COMING SOON ✦</div>
             </div>
-            <button class="btn-like">♡ LIKE</button>
+            <button class="btn-like" data-song="Dignita_Mantra" onclick="toggleLike(this)">♡ LIKE</button>
             <div class="flag-btns">
               <button class="flag-btn" data-song="Dignita_Mantra" data-lang="IT" onclick="playPreview(this)"><span class="flag-emoji">🇮🇹</span>IT<span class="flag-coming">🎵 COMING SOON</span></button>
               <button class="flag-btn" data-song="Dignita_Mantra" data-lang="EN" onclick="playPreview(this)"><span class="flag-emoji">🇬🇧</span>EN<span class="flag-coming">🎵 COMING SOON</span></button>
@@ -2049,7 +2035,6 @@ footer {
           <div class="disco-subtitle">Forse ha senso?</div>
           <div class="disco-genre">SOUL · NEO SOUL · R&B · 84 BPM</div>
         </div>
-        <div class="disco-badges"><span class="lang-badge">IT</span><span class="lang-badge">EN</span><span class="lang-badge">FR</span></div>
         <div class="disco-arrow">▼</div>
       </div>
       <div class="disco-panel">
@@ -2059,7 +2044,7 @@ footer {
               <button class="btn-buy-cs">🛒 BUY!</button>
               <div class="coming-soon-bubble">✦ COMING SOON ✦</div>
             </div>
-            <button class="btn-like">♡ LIKE</button>
+            <button class="btn-like" data-song="Sei_il_Mio_Segreto" onclick="toggleLike(this)">♡ LIKE</button>
             <div class="flag-btns">
               <button class="flag-btn" data-song="Sei_il_Mio_Segreto" data-lang="IT" onclick="playPreview(this)"><span class="flag-emoji">🇮🇹</span>IT<span class="flag-coming">🎵 COMING SOON</span></button>
               <button class="flag-btn" data-song="Sei_il_Mio_Segreto" data-lang="EN" onclick="playPreview(this)"><span class="flag-emoji">🇬🇧</span>EN<span class="flag-coming">🎵 COMING SOON</span></button>
@@ -2485,6 +2470,30 @@ function playPreview(btn) {
   currentBtn = btn;
 }
 
+// LIKE — persistant par visiteur (localStorage), pas de compteur partagé serveur
+function toggleLike(btn) {
+  const song = btn.dataset.song;
+  const liked = btn.classList.toggle('liked');
+  btn.textContent = liked ? '♥ LIKED' : '♡ LIKE';
+  try {
+    const likes = JSON.parse(localStorage.getItem('aljady_likes') || '{}');
+    likes[song] = liked;
+    localStorage.setItem('aljady_likes', JSON.stringify(likes));
+  } catch (e) { /* localStorage indisponible (navigation privée, etc.) — le clic reste visuel pour cette session */ }
+}
+
+// Restaure l'état des LIKE au chargement de la page
+(function restoreLikes() {
+  try {
+    const likes = JSON.parse(localStorage.getItem('aljady_likes') || '{}');
+    document.querySelectorAll('.btn-like[data-song]').forEach(btn => {
+      if (likes[btn.dataset.song]) {
+        btn.classList.add('liked');
+        btn.textContent = '♥ LIKED';
+      }
+    });
+  } catch (e) { /* rien à restaurer */ }
+})();
 </script>
 </body>
 </html>

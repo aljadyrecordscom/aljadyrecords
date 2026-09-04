@@ -2148,12 +2148,13 @@ footer {
         <span class="right-icon">🔒</span>
         <div class="right-title">Protection des Données (RGPD)</div>
         <p class="right-desc">
-          Ce site ne dépose aucun cookie, ne réalise aucun suivi publicitaire et ne collecte aucune donnée personnelle par formulaire.
+          Ce site ne dépose aucun cookie et ne collecte aucune donnée personnelle par formulaire.
           Les polices sont chargées depuis Google Fonts, susceptible de traiter l'adresse IP du visiteur selon sa propre politique de confidentialité.
+          Le compteur de visites et de « likes » par titre est traité par un service technique (Cloudflare Workers) qui voit brièvement l'adresse IP du visiteur, uniquement pour éviter les votes multiples ; cette donnée n'est conservée que 24 heures puis supprimée automatiquement, sans profil ni suivi individuel constitué.
           Toute information transmise volontairement par email n'est utilisée que pour répondre au message, sans transfert à des tiers.
           Responsable du traitement : ALJADY RECORDS LTD.
         </p>
-        <div class="right-duration">Aucun cookie · Aucun tracking — RGPD (UE) 2016/679</div>
+        <div class="right-duration">Aucun cookie · Aucun profilage — RGPD (UE) 2016/679</div>
       </div>
     </div>
 
@@ -2470,29 +2471,60 @@ function playPreview(btn) {
   currentBtn = btn;
 }
 
-// LIKE — persistant par visiteur (localStorage), pas de compteur partagé serveur
-function toggleLike(btn) {
-  const song = btn.dataset.song;
-  const liked = btn.classList.toggle('liked');
-  btn.textContent = liked ? '♥ LIKED' : '♡ LIKE';
-  try {
-    const likes = JSON.parse(localStorage.getItem('aljady_likes') || '{}');
-    likes[song] = liked;
-    localStorage.setItem('aljady_likes', JSON.stringify(likes));
-  } catch (e) { /* localStorage indisponible (navigation privée, etc.) — le clic reste visuel pour cette session */ }
+// LIKE & VISITES — compteurs réels partagés (Cloudflare Worker + KV)
+const ALJADY_COUNTER_API = 'https://aljady-counters.cold-tooth-767a.workers.dev';
+
+function setLikeButtonText(btn, count, liked) {
+  btn.textContent = (liked ? '♥ LIKED · ' : '♡ LIKE · ') + count;
 }
 
-// Restaure l'état des LIKE au chargement de la page
-(function restoreLikes() {
-  try {
-    const likes = JSON.parse(localStorage.getItem('aljady_likes') || '{}');
-    document.querySelectorAll('.btn-like[data-song]').forEach(btn => {
-      if (likes[btn.dataset.song]) {
-        btn.classList.add('liked');
-        btn.textContent = '♥ LIKED';
-      }
-    });
-  } catch (e) { /* rien à restaurer */ }
+function toggleLike(btn) {
+  const song = btn.dataset.song;
+  if (btn.dataset.sending === '1') return; // évite le double-clic pendant l'envoi
+  btn.dataset.sending = '1';
+
+  fetch(ALJADY_COUNTER_API + '/like', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ song }),
+  })
+    .then(r => r.json())
+    .then(data => {
+      btn.classList.add('liked');
+      setLikeButtonText(btn, data.count, true);
+      try {
+        const likes = JSON.parse(localStorage.getItem('aljady_likes') || '{}');
+        likes[song] = true;
+        localStorage.setItem('aljady_likes', JSON.stringify(likes));
+      } catch (e) { /* localStorage indisponible — l'état visuel ne survivra pas au rechargement */ }
+    })
+    .catch(() => {
+      // Worker injoignable (hors ligne, bloqueur de scripts...) — repli visuel local uniquement
+      const liked = btn.classList.toggle('liked');
+      btn.textContent = liked ? '♥ LIKED' : '♡ LIKE';
+    })
+    .finally(() => { btn.dataset.sending = '0'; });
+}
+
+// Au chargement : récupère les compteurs réels (visites + likes par chanson) et compte une visite
+(function initCounters() {
+  let likedByMe = {};
+  try { likedByMe = JSON.parse(localStorage.getItem('aljady_likes') || '{}'); } catch (e) {}
+
+  fetch(ALJADY_COUNTER_API + '/stats')
+    .then(r => r.json())
+    .then(data => {
+      document.querySelectorAll('.btn-like[data-song]').forEach(btn => {
+        const song = btn.dataset.song;
+        const count = (data.likes && data.likes[song]) || 0;
+        const liked = !!likedByMe[song];
+        if (liked) btn.classList.add('liked');
+        setLikeButtonText(btn, count, liked);
+      });
+    })
+    .catch(() => { /* stats indisponibles — les boutons gardent leur texte par défaut */ });
+
+  fetch(ALJADY_COUNTER_API + '/visit', { method: 'POST' }).catch(() => {});
 })();
 </script>
 </body>

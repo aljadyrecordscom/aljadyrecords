@@ -685,6 +685,14 @@ section {
 }
 .disco-row:hover { background: var(--panel); }
 .disco-row:hover::before { height: 100%; }
+#songCountBadge {
+  transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
+  cursor: default;
+}
+#songCountBadge:hover {
+  transform: scale(1.15);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.45), 0 0 18px rgba(201,168,76,0.75);
+}
 .disco-row.active { background: var(--panel); }
 .disco-row.active::before { height: 100%; }
 

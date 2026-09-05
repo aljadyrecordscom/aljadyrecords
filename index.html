@@ -819,6 +819,31 @@ section {
   text-overflow: ellipsis;
 }
 
+/* EVENTS */
+#events { background: var(--deep); }
+.event-card {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  border: 1px solid rgba(201,168,76,0.2);
+  background: var(--panel);
+  padding: 1.2rem;
+  align-items: center;
+  max-width: 700px;
+  margin-bottom: 1.2rem;
+}
+.event-card img { width: 240px; max-width: 100%; border-radius: 6px; display: block; flex-shrink: 0; cursor: pointer; }
+.event-info { flex: 1 1 260px; min-width: 220px; }
+.event-date {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+  margin-bottom: 0.4rem;
+}
+.event-title { font-size: 1.15rem; color: var(--white); margin-bottom: 0.4rem; }
+.event-desc { color: var(--light); font-size: 0.9rem; margin-bottom: 0.9rem; }
+
 /* THUMBNAIL */
 .disco-thumb {
   width: 70px;
@@ -1567,6 +1592,7 @@ footer {
       <li><a href="#about">Label</a></li>
       <li><a href="#artist">Artiste</a></li>
       <li><a href="#compilation">Compilation</a></li>
+      <li><a href="#events">Events</a></li>
       <li><a href="#boutique">Boutique</a></li>
       <li><a href="#droits">Droits</a></li>
       <li><a href="#collaboration">Collaboration</a></li>
@@ -2494,6 +2520,39 @@ footer {
   </div>
 </section>
 
+<!-- ═══ EVENTS ═══ -->
+<section id="events">
+  <div class="droits-inner">
+    <div class="reveal">
+      <div class="section-eyebrow">Actualité</div>
+      <h2 class="section-title">Events<br><em style="font-style:italic;color:var(--gold);font-size:0.6em;">Sorties &amp; Apparitions</em></h2>
+      <p style="color:var(--light);max-width:650px;margin-top:1rem;">
+        Les prochaines sorties musicales et les occasions de me rencontrer en public.
+      </p>
+    </div>
+
+    <div class="reveal" style="margin-top:2.5rem;">
+      <h3 style="color:var(--gold);font-size:1rem;font-family:var(--font-mono);letter-spacing:0.08em;margin-bottom:1rem;">PROCHAINES SORTIES</h3>
+      <div class="event-card">
+        <img src="/events/GHOST-ME-FR-ANNOUNCE.jpeg" alt="Ghost Me, I Ghost You — sortie version FR" onclick="openImageOverlay('/events/GHOST-ME-FR-ANNOUNCE.jpeg','Ghost Me, I Ghost You — sortie FR')">
+        <div class="event-info">
+          <div class="event-date">📅 11.09.2026</div>
+          <div class="event-title">Ghost Me, I Ghost You <span style="font-size:0.7em;color:var(--gold-dim);">— Version FR 🇫🇷</span></div>
+          <p class="event-desc">Les versions EN · ES · IT arriveront bientôt.</p>
+          <button class="btn-buy-cs" style="opacity:0.5;cursor:default;">PRE-SAVE — BIENTÔT</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal" style="margin-top:3rem;">
+      <h3 style="color:var(--gold);font-size:1rem;font-family:var(--font-mono);letter-spacing:0.08em;margin-bottom:1rem;">APPARITIONS PUBLIQUES</h3>
+      <p style="color:var(--light);max-width:650px;">
+        Aucune date confirmée pour le moment — revenez bientôt pour les prochaines apparitions (soirées, invitations, événements).
+      </p>
+    </div>
+  </div>
+</section>
+
 <!-- ═══ BOUTIQUE ═══ -->
 <section id="boutique">
   <div class="boutique-inner">
@@ -2806,6 +2865,7 @@ footer {
     <a href="#about">Label</a>
     <a href="#artist">Artiste</a>
     <a href="#compilation">Compilation</a>
+    <a href="#events">Events</a>
     <a href="#boutique">Boutique</a>
     <a href="#droits">Droits</a>
     <a href="#collaboration">Collaboration</a>

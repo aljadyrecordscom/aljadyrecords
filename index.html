@@ -78,6 +78,12 @@
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* Anti-"jelly" — coupe toutes les transitions/animations pendant un resize (pinch-zoom mobile inclus) */
+html.no-transition, html.no-transition * {
+  transition: none !important;
+  animation: none !important;
+}
+
 html { scroll-behavior: smooth; font-size: 16px; }
 
 body {
@@ -3233,7 +3239,17 @@ function toggleLike(btn) {
     .finally(() => { btn.dataset.sending = '0'; });
 }
 
-// Lightbox générique (réutilisé par la pastille conta-brani ET la boutique)
+// Anti-"jelly" — coupe les transitions/animations pendant un resize (pinch-zoom mobile inclus),
+// sinon le navigateur anime chaque reflow causé par le zoom (effet "eau dans un verre")
+(function killTransitionsDuringResize() {
+  let t;
+  window.addEventListener('resize', () => {
+    document.documentElement.classList.add('no-transition');
+    clearTimeout(t);
+    t = setTimeout(() => document.documentElement.classList.remove('no-transition'), 250);
+  }, { passive: true });
+})();
+
 // Menu mobile (hamburger) — visible seulement sous 600px, remplace .nav-links caché
 function toggleMobileNav() {
   const overlay = document.getElementById('mobileNavOverlay');
@@ -3243,6 +3259,7 @@ function toggleMobileNav() {
   btn.classList.toggle('active');
 }
 
+// Lightbox générique (réutilisé par la pastille conta-brani ET la boutique)
 function openImageOverlay(src, alt, watermark) {
   const overlay = document.getElementById('compilationCoverOverlay');
   if (!overlay) return;

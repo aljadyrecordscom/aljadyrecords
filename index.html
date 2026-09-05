@@ -766,7 +766,6 @@ section {
 }
 .buy-now-hint .dims-tooltip img { width: 100%; display: block; border-radius: 5px; }
 .buy-now-hint:hover .dims-tooltip { display: block; }
-.mail-protected { cursor: pointer; }
 .book-overlay {
   position: fixed; inset: 0; z-index: 999;
   background: rgba(6,6,8,0.92);
@@ -2488,7 +2487,7 @@ footer {
       <div style="max-width:650px;margin-top:1.2rem;padding:1rem 1.5rem;border:1px solid rgba(201,168,76,0.35);border-radius:6px;background:rgba(201,168,76,0.05);">
         <p style="color:var(--light);font-size:0.9rem;margin:0;">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1.8em" height="1.8em" style="vertical-align:-0.5em;margin-right:0.2em;" fill="var(--gold)"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12L8.1 13h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49A1.003 1.003 0 0 0 20 4H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
-          Ventes et préparatifs — <span class="buy-now-hint" style="color:var(--gold);font-weight:700;">Achetez maintenant<span class="dims-tooltip"><img src="/merch/DIMENSIONI-quadri.jpeg" alt="Dimensions disponibles pour les quadri"></span></span>, bientôt disponible. En attendant, pour toute demande (photos, t-shirts, casquettes, mugs) : <a href="#" class="mail-protected" data-subject="Demande Boutique ALJADY RECORDS" style="color:var(--gold);border-bottom:1px solid rgba(201,168,76,0.4);">···</a>
+          Ventes et préparatifs — <span class="buy-now-hint" style="color:var(--gold);font-weight:700;">Achetez maintenant<span class="dims-tooltip"><img src="/merch/DIMENSIONI-quadri.jpeg" alt="Dimensions disponibles pour les quadri"></span></span>, bientôt disponible. En attendant, pour toute demande (photos, t-shirts, casquettes, mugs) : <span class="email-reveal-widget" data-subject="Demande Boutique ALJADY RECORDS"><button class="btn-reveal-email btn-reveal-small" onclick="startEmailWidget(this.parentElement)">Révéler l'email</button></span>
         </p>
       </div>
     </div>
@@ -2530,7 +2529,7 @@ footer {
       </div>
       <div style="max-width:650px;margin-top:1.2rem;padding:1rem 1.5rem;border:1px solid rgba(201,168,76,0.35);border-radius:6px;background:rgba(201,168,76,0.05);">
         <p style="color:var(--light);font-size:0.9rem;margin:0;">
-          📚 Demande & précommande — <strong style="color:var(--gold);">Buy Now</strong> disponible bientôt : <a href="#" class="mail-protected" data-subject="Demande Livres ALJADY RECORDS" style="color:var(--gold);border-bottom:1px solid rgba(201,168,76,0.4);">···</a>
+          📚 Demande & précommande — <strong style="color:var(--gold);">Buy Now</strong> disponible bientôt : <span class="email-reveal-widget" data-subject="Demande Livres ALJADY RECORDS"><button class="btn-reveal-email btn-reveal-small" onclick="startEmailWidget(this.parentElement)">Révéler l'email</button></span>
         </p>
       </div>
     </div>
@@ -3010,17 +3009,43 @@ function hideCompilationCover() {
   const overlay = document.getElementById('compilationCoverOverlay');
   if (overlay) overlay.classList.remove('open');
 }
-// Protection anti-robot de l'email — reconstruite par calcul (offset), jamais écrite en clair dans le HTML/JS source
-(function protectEmails() {
-  const OFFSET = 7;
-  const codes = [105,110,102,111,64,97,108,106,97,100,121,114,101,99,111,114,100,115,46,99,111,109].map(c => c + OFFSET);
-  const email = codes.map(c => String.fromCharCode(c - OFFSET)).join('');
-  document.querySelectorAll('a.mail-protected').forEach(a => {
-    const subject = a.dataset.subject || '';
-    a.href = 'mailto:' + email + (subject ? ('?subject=' + encodeURIComponent(subject)) : '');
-    a.textContent = email;
-  });
-})();
+// Protection anti-robot de l'email — même principe que le CAPTCHA du bloc Contact :
+// vérification humaine par calcul mathématique avant de révéler l'adresse (Boutique + Livres)
+const _wEmailParts = ['inf','o','@','alj','ady','rec','ords','.','com'];
+
+function _wGenCaptcha() {
+  const a = Math.floor(Math.random()*9)+1, b = Math.floor(Math.random()*9)+1;
+  return { q: a+' + '+b+' = ?', answer: a+b };
+}
+
+function startEmailWidget(el) {
+  const cap = _wGenCaptcha();
+  el.dataset.answer = cap.answer;
+  el.innerHTML =
+    '<span class="captcha-label">Vérification — </span>' +
+    '<span class="captcha-math">'+cap.q+'</span>' +
+    '<input type="number" class="captcha-input" placeholder="?" onkeydown="if(event.key===\'Enter\')checkEmailWidget(this.parentElement)">' +
+    '<button class="btn-captcha-ok" onclick="checkEmailWidget(this.parentElement)">OK</button>' +
+    '<div class="captcha-error" style="display:none;">✗ Réponse incorrecte</div>';
+}
+
+function checkEmailWidget(el) {
+  const input = el.querySelector('input');
+  const val = parseInt(input.value, 10);
+  if (val === parseInt(el.dataset.answer, 10)) {
+    const email = _wEmailParts.join('');
+    const subject = el.dataset.subject || '';
+    const href = 'mailto:' + email + (subject ? ('?subject=' + encodeURIComponent(subject)) : '');
+    el.innerHTML = '<a href="'+href+'" class="email-revealed">'+email+'</a> <span class="captcha-ok-badge">✓ Vérifié</span>';
+  } else {
+    el.querySelector('.captcha-error').style.display = 'block';
+    input.value = '';
+    const cap = _wGenCaptcha();
+    el.dataset.answer = cap.answer;
+    el.querySelector('.captcha-math').textContent = cap.q;
+    input.focus();
+  }
+}
 
 // Clic sur la pastille conta-brani → 2e réaction : affiche la cover de la compilation
 function showCompilationCover() {

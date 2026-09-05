@@ -2406,7 +2406,24 @@ footer {
       </div>
     </div>
 
-    <div class="shop-grid" id="shopGrid"></div>
+    <div class="reveal" style="margin-top:2.5rem;">
+      <h3 style="color:var(--gold);font-size:1rem;font-family:var(--font-mono);letter-spacing:0.08em;margin-bottom:1rem;">APERÇU PRODUITS</h3>
+      <div class="shop-grid" style="grid-template-columns:repeat(auto-fill, minmax(180px, 1fr));max-width:500px;">
+        <div class="shop-item" onclick="openImageOverlay('/merch/CAP-GOTOGODS.png','Casquette — GOTOGODS')">
+          <div class="shop-thumb"><img src="/merch/CAP-GOTOGODS.png" alt="Casquette GOTOGODS — aperçu produit" loading="lazy"></div>
+          <div class="shop-label">Casquette GOTOGODS</div>
+        </div>
+        <div class="shop-item" onclick="openImageOverlay('/merch/MUG-ALJADY.jpeg','Tasse — ALJADY RECORDS')">
+          <div class="shop-thumb"><img src="/merch/MUG-ALJADY.jpeg" alt="Tasse ALJADY RECORDS — aperçu produit" loading="lazy"></div>
+          <div class="shop-label">Tasse ALJADY RECORDS</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal" style="margin-top:2.5rem;">
+      <h3 style="color:var(--gold);font-size:1rem;font-family:var(--font-mono);letter-spacing:0.08em;margin-bottom:1rem;">CHOISISSEZ VOTRE POCHETTE</h3>
+      <div class="shop-grid" id="shopGrid"></div>
+    </div>
 
     <div class="reveal" style="margin-top:4rem;">
       <div class="section-eyebrow">Littérature</div>

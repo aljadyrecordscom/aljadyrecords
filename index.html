@@ -767,6 +767,35 @@ section {
 .buy-now-hint .dims-tooltip img { width: 100%; display: block; border-radius: 5px; }
 .buy-now-hint:hover .dims-tooltip { display: block; }
 .mail-protected { cursor: pointer; }
+.book-overlay {
+  position: fixed; inset: 0; z-index: 999;
+  background: rgba(6,6,8,0.92);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.35s var(--ease-out);
+  padding: 2rem;
+}
+.book-overlay.open { opacity: 1; pointer-events: auto; }
+.book-overlay-inner {
+  position: relative;
+  display: flex; flex-wrap: wrap;
+  gap: 2rem;
+  max-width: 900px; max-height: 85vh;
+  overflow-y: auto;
+  transform: scale(0.94);
+  transition: transform 0.35s var(--ease-out);
+}
+.book-overlay.open .book-overlay-inner { transform: scale(1); }
+.book-overlay-cover { flex: 0 1 320px; max-width: 320px; }
+.book-overlay-cover img {
+  width: 100%; display: block; border-radius: 8px;
+  box-shadow: 0 0 60px rgba(201,168,76,0.35), 0 20px 60px rgba(0,0,0,0.6);
+}
+.book-overlay-info { flex: 1 1 320px; min-width: 260px; padding-top: 0.5rem; }
+.book-overlay-info h3 {
+  color: var(--gold); font-size: 1.6rem; margin: 0 0 1rem 0;
+  letter-spacing: 0.01em;
+}
 .shop-item .shop-label {
   padding: 0.6rem 0.7rem;
   font-family: var(--font-mono);
@@ -1489,6 +1518,25 @@ footer {
 <div class="compilation-cover-overlay" id="compilationCoverOverlay" onclick="hideCompilationCover()">
   <span class="cco-close" onclick="event.stopPropagation();hideCompilationCover();">✕</span>
   <img src="/covers/COMPILATION-DIGNITA-2026.png" alt="Cover — Compilation DIGNITÀ 2026">
+</div>
+
+<!-- Livres — overlay cover + infos (synopsis, langues, like, buy now) affiché au clic sur une couverture -->
+<div class="book-overlay" id="bookOverlay" onclick="hideBookOverlay()">
+  <div class="book-overlay-inner" onclick="event.stopPropagation()">
+    <span class="cco-close" onclick="hideBookOverlay()">✕</span>
+    <div class="book-overlay-cover"><img id="bookOverlayImg" src="" alt=""></div>
+    <div class="book-overlay-info">
+      <h3 id="bookOverlayTitle"></h3>
+      <p id="bookOverlaySynopsis" style="color:var(--light);font-size:0.95rem;line-height:1.6;"></p>
+      <div class="disco-panel-actions" style="margin-top:1rem;">
+        <div class="btn-buy-wrap">
+          <button class="btn-buy-cs" style="opacity:0.5;cursor:default;">EN PRODUCTION</button>
+        </div>
+        <button class="btn-like" id="bookOverlayLike" onclick="toggleLike(this)">♡ LIKE</button>
+        <div class="flag-btns" id="bookOverlayFlags"></div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- Cursor -->
@@ -2470,11 +2518,11 @@ footer {
         Deux ouvrages de l'auteur, LucaTaraz™ — détails complets et prix à venir prochainement.
       </p>
       <div id="booksGrid" class="shop-grid" style="margin-top:1.5rem;max-width:500px;">
-        <div class="shop-item" onclick="openImageOverlay('/books/REM-IL-PRINCIPIO-DELLA-MEMORIA.jpeg','REM — Il Principio della Memoria')">
+        <div class="shop-item" onclick="openBookOverlay('rem')">
           <div class="shop-thumb"><img src="/books/REM-IL-PRINCIPIO-DELLA-MEMORIA.jpeg" alt="REM — Il Principio della Memoria — couverture du livre" loading="lazy"></div>
           <div class="shop-label">REM — Il Principio della Memoria (IT/EN)</div>
         </div>
-        <div class="shop-item" onclick="openImageOverlay('/books/WHAT-THE-HELL.jpeg','What the HELL')">
+        <div class="shop-item" onclick="openBookOverlay('wth')">
           <div class="shop-thumb"><img src="/books/WHAT-THE-HELL.jpeg" alt="What the HELL — couverture du livre" loading="lazy"></div>
           <div class="shop-label">What the HELL (IT · EN à venir)</div>
         </div>
@@ -2976,6 +3024,59 @@ function hideCompilationCover() {
 // Clic sur la pastille conta-brani → 2e réaction : affiche la cover de la compilation
 function showCompilationCover() {
   openImageOverlay('/covers/COMPILATION-DIGNITA-2026.png', 'Cover — Compilation DIGNITÀ 2026');
+}
+
+// Livres — clic sur une couverture → ouvre cover + synopsis + langues + like/buy now à côté
+const bookData = {
+  rem: {
+    title: 'REM — Il Principio della Memoria',
+    cover: '/books/REM-IL-PRINCIPIO-DELLA-MEMORIA.jpeg',
+    synopsis: 'Synopsis à venir — l\'auteur travaille encore sur la présentation complète de cet ouvrage.',
+    langs: [ { code: 'IT', flag: '🇮🇹', ready: false }, { code: 'EN', flag: '🇬🇧', ready: false } ],
+  },
+  wth: {
+    title: 'What the HELL',
+    cover: '/books/WHAT-THE-HELL.jpeg',
+    synopsis: 'Synopsis à venir — l\'auteur travaille encore sur la présentation complète de cet ouvrage.',
+    langs: [ { code: 'IT', flag: '🇮🇹', ready: false }, { code: 'EN', flag: '🇬🇧', ready: false } ],
+  },
+};
+
+function openBookOverlay(key) {
+  const book = bookData[key];
+  if (!book) return;
+  document.getElementById('bookOverlayImg').src = book.cover;
+  document.getElementById('bookOverlayImg').alt = book.title + ' — couverture';
+  document.getElementById('bookOverlayTitle').textContent = book.title;
+  document.getElementById('bookOverlaySynopsis').textContent = book.synopsis;
+
+  const likeBtn = document.getElementById('bookOverlayLike');
+  likeBtn.dataset.song = 'Book_' + key;
+  setLikeButtonText(likeBtn, 0, false);
+  likeBtn.classList.remove('liked');
+  fetch(ALJADY_COUNTER_API + '/stats').then(r => r.json()).then(data => {
+    const count = (data.likes && data.likes['Book_' + key]) || 0;
+    let likedByMe = {};
+    try { likedByMe = JSON.parse(localStorage.getItem('aljady_likes') || '{}'); } catch (e) {}
+    setLikeButtonText(likeBtn, count, !!likedByMe['Book_' + key]);
+    if (likedByMe['Book_' + key]) likeBtn.classList.add('liked');
+  }).catch(() => {});
+
+  const flagsEl = document.getElementById('bookOverlayFlags');
+  flagsEl.innerHTML = '';
+  book.langs.forEach(l => {
+    const btn = document.createElement('div');
+    btn.className = 'flag-btn';
+    btn.style.cursor = 'default';
+    btn.innerHTML = '<span class="flag-emoji">' + l.flag + '</span>' + l.code +
+      (l.ready ? '' : '<span class="flag-coming" style="display:block;">📖 À VENIR</span>');
+    flagsEl.appendChild(btn);
+  });
+
+  document.getElementById('bookOverlay').classList.add('open');
+}
+function hideBookOverlay() {
+  document.getElementById('bookOverlay').classList.remove('open');
 }
 
 // Boutique — génère la grille des pochettes à partir des covers déjà utilisées dans la discographie

@@ -718,6 +718,50 @@ section {
 .disco-row.active { background: var(--panel); }
 .disco-row.active::before { height: 100%; }
 
+/* BOUTIQUE */
+#boutique { background: var(--black); }
+.boutique-inner { max-width: 1200px; margin: 0 auto; }
+.shop-grid {
+  margin-top: 2.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 1.2rem;
+}
+.shop-item {
+  cursor: pointer;
+  border: 1px solid rgba(201,168,76,0.2);
+  background: var(--deep);
+  transition: border-color 0.3s var(--ease-out), transform 0.3s var(--ease-out);
+  overflow: hidden;
+}
+.shop-item:hover {
+  border-color: var(--gold);
+  transform: translateY(-4px);
+}
+.shop-item .shop-thumb {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: var(--black);
+}
+.shop-item .shop-thumb img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s var(--ease-out);
+}
+.shop-item:hover .shop-thumb img { transform: scale(1.08); }
+.shop-item .shop-label {
+  padding: 0.6rem 0.7rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  color: var(--light);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 /* THUMBNAIL */
 .disco-thumb {
   width: 70px;
@@ -2346,6 +2390,40 @@ footer {
   </div>
 </section>
 
+<!-- ═══ BOUTIQUE ═══ -->
+<section id="boutique">
+  <div class="boutique-inner">
+    <div class="reveal">
+      <div class="section-eyebrow">Édition limitée</div>
+      <h2 class="section-title">Boutique<br><em style="font-style:italic;color:var(--gold);font-size:0.6em;">Quadri · Magliette · Cappellini · Tazzine</em></h2>
+      <p style="color:var(--light);max-width:650px;margin-top:1rem;">
+        Chaque pochette de la collection DIGNITÀ peut être imprimée sur toile (quadro), t-shirt, casquette ou tasse — pièces en édition limitée. Cliquez sur une pochette pour l'agrandir.
+      </p>
+      <div style="max-width:650px;margin-top:1.2rem;padding:1rem 1.5rem;border:1px solid rgba(201,168,76,0.35);border-radius:6px;background:rgba(201,168,76,0.05);">
+        <p style="color:var(--light);font-size:0.9rem;margin:0;">
+          🛒 Vente en préparation — <strong style="color:var(--gold);">Buy Now</strong> arrivera bientôt. En attendant, pour toute demande (quadro, t-shirt, casquette, tasse) : <a href="mailto:info@aljadyrecords.com?subject=Demande%20Boutique%20ALJADY%20RECORDS" style="color:var(--gold);border-bottom:1px solid rgba(201,168,76,0.4);">info@aljadyrecords.com</a>
+        </p>
+      </div>
+    </div>
+
+    <div class="shop-grid" id="shopGrid"></div>
+
+    <div class="reveal" style="margin-top:4rem;">
+      <div class="section-eyebrow">Littérature</div>
+      <h3 style="color:var(--gold);font-size:1.5rem;letter-spacing:0.02em;margin-bottom:0.8rem;">Les livres</h3>
+      <p style="color:var(--light);max-width:650px;">
+        Deux ouvrages de l'auteur sont en préparation — couvertures et détails à venir prochainement.
+      </p>
+      <div id="booksGrid" class="shop-grid" style="margin-top:1.5rem;max-width:500px;"></div>
+      <div style="max-width:650px;margin-top:1.2rem;padding:1rem 1.5rem;border:1px solid rgba(201,168,76,0.35);border-radius:6px;background:rgba(201,168,76,0.05);">
+        <p style="color:var(--light);font-size:0.9rem;margin:0;">
+          📚 Demande & précommande — <strong style="color:var(--gold);">Buy Now</strong> disponible bientôt : <a href="mailto:info@aljadyrecords.com?subject=Demande%20Livres%20ALJADY%20RECORDS" style="color:var(--gold);border-bottom:1px solid rgba(201,168,76,0.4);">info@aljadyrecords.com</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ═══ DROITS ═══ -->
 <section id="droits">
   <div class="droits-inner">
@@ -2807,15 +2885,62 @@ function toggleLike(btn) {
     .finally(() => { btn.dataset.sending = '0'; });
 }
 
-// Clic sur la pastille conta-brani → 2e réaction : affiche la cover de la compilation
-function showCompilationCover() {
+// Lightbox générique (réutilisé par la pastille conta-brani ET la boutique)
+function openImageOverlay(src, alt) {
   const overlay = document.getElementById('compilationCoverOverlay');
-  if (overlay) overlay.classList.add('open');
+  if (!overlay) return;
+  const img = overlay.querySelector('img');
+  if (img) { img.src = src; img.alt = alt || ''; }
+  overlay.classList.add('open');
 }
 function hideCompilationCover() {
   const overlay = document.getElementById('compilationCoverOverlay');
   if (overlay) overlay.classList.remove('open');
 }
+// Clic sur la pastille conta-brani → 2e réaction : affiche la cover de la compilation
+function showCompilationCover() {
+  openImageOverlay('/covers/COMPILATION-DIGNITA-2026.png', 'Cover — Compilation DIGNITÀ 2026');
+}
+
+// Boutique — génère la grille des pochettes à partir des covers déjà utilisées dans la discographie
+(function buildShopGrid() {
+  const grid = document.getElementById('shopGrid');
+  if (!grid) return;
+  const seen = new Set();
+  document.querySelectorAll('.disco-row').forEach(row => {
+    const img = row.querySelector('.disco-cover-img');
+    if (!img) return;
+    const src = img.getAttribute('src') || '';
+    if (!src || src.includes('TIKET-COVERS')) return; // pas de cover dédiée → pas encore de merch
+    const song = img.dataset.song || '';
+    if (seen.has(song)) return;
+    seen.add(song);
+
+    // Le titre propre vient de l'alt de l'image ("Titre — cover" / "Titre — cover provisoire")
+    let title = (img.getAttribute('alt') || song).replace(/\s*[—-]\s*cover.*$/i, '').trim();
+    if (!title) title = song;
+
+    const item = document.createElement('div');
+    item.className = 'shop-item';
+    item.onclick = () => openImageOverlay(src, title);
+
+    const thumb = document.createElement('div');
+    thumb.className = 'shop-thumb';
+    const thumbImg = document.createElement('img');
+    thumbImg.src = src;
+    thumbImg.alt = title + ' — cover';
+    thumbImg.loading = 'lazy';
+    thumb.appendChild(thumbImg);
+
+    const label = document.createElement('div');
+    label.className = 'shop-label';
+    label.textContent = title;
+
+    item.appendChild(thumb);
+    item.appendChild(label);
+    grid.appendChild(item);
+  });
+})();
 
 // Pastille "nombre de titres" à côté du ticket DIGNITÀ — toujours à jour, compte les lignes réelles
 (function updateSongCountBadge() {

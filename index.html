@@ -3031,7 +3031,7 @@ const bookData = {
   rem: {
     title: 'REM — Il Principio della Memoria',
     cover: '/books/REM-IL-PRINCIPIO-DELLA-MEMORIA.jpeg',
-    synopsis: 'Synopsis à venir — l\'auteur travaille encore sur la présentation complète de cet ouvrage.',
+    synopsis: 'Dans un futur où l\'empathie est un luxe et la justice une illusion, le juge Remedio perd tout ce qui lui est cher. La mort, pourtant, n\'est pas la fin, mais le commencement d\'une nouvelle existence, ténébreuse.<br><br>S\'éveillant dans une dimension inconnue – un entre-deux de souvenirs et d\'ombres –, il découvre qu\'il peut voyager là où aucune loi humaine ne s\'étend : la phase REM du sommeil. C\'est le seul lieu où le libre arbitre peut encore se manifester, le seul moment où un destin criminel peut être corrigé… avant qu\'il ne se réalise.<br><br>Sa mission est de devenir REM, le correcteur silencieux. Mais chaque intervention laisse une trace, et chaque acte de justice risque de générer un nouvel enfer imprévisible. Car le véritable ennemi n\'est ni l\'extraterrestre ni le démon : c\'est la froide perfection d\'un système qui a oublié ce que signifie aimer.<br><br>Parviendra-t-il à injecter le « virus » de l\'amour dans l\'algorithme cosmique ? Ou le salut réside-t-il dans le refus de tout jugement ?<br><br><strong style="color:var(--gold);">LES DIEUX REVIENNENT-ILS ?</strong>',
     langs: [ { code: 'IT', flag: '🇮🇹', ready: false }, { code: 'EN', flag: '🇬🇧', ready: false } ],
   },
   wth: {
@@ -3048,7 +3048,7 @@ function openBookOverlay(key) {
   document.getElementById('bookOverlayImg').src = book.cover;
   document.getElementById('bookOverlayImg').alt = book.title + ' — couverture';
   document.getElementById('bookOverlayTitle').textContent = book.title;
-  document.getElementById('bookOverlaySynopsis').textContent = book.synopsis;
+  document.getElementById('bookOverlaySynopsis').innerHTML = book.synopsis;
 
   const likeBtn = document.getElementById('bookOverlayLike');
   likeBtn.dataset.song = 'Book_' + key;

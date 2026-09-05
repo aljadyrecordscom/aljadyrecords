@@ -1526,7 +1526,8 @@ footer {
     <span class="cco-close" onclick="hideBookOverlay()">✕</span>
     <div class="book-overlay-cover"><img id="bookOverlayImg" src="" alt=""></div>
     <div class="book-overlay-info">
-      <h3 id="bookOverlayTitle"></h3>
+      <h3 id="bookOverlayTitle" style="margin-bottom:0;"></h3>
+      <div id="bookOverlaySubtitle" class="disco-subtitle" style="margin-bottom:0.8rem;"></div>
       <p id="bookOverlaySynopsis" style="color:var(--light);font-size:0.95rem;line-height:1.6;"></p>
       <div class="disco-panel-actions" style="margin-top:1rem;">
         <div class="btn-buy-wrap">
@@ -2524,7 +2525,7 @@ footer {
         </div>
         <div class="shop-item" onclick="openBookOverlay('wth')">
           <div class="shop-thumb"><img src="/books/WHAT-THE-HELL.jpeg" alt="What the HELL — couverture du livre" loading="lazy"></div>
-          <div class="shop-label">What the HELL (IT · EN à venir)</div>
+          <div class="shop-label">What the HELL — Le Jardin du Diable</div>
         </div>
       </div>
       <div style="max-width:650px;margin-top:1.2rem;padding:1rem 1.5rem;border:1px solid rgba(201,168,76,0.35);border-radius:6px;background:rgba(201,168,76,0.05);">
@@ -3036,8 +3037,9 @@ const bookData = {
   },
   wth: {
     title: 'What the HELL',
+    subtitle: 'Le Jardin du Diable',
     cover: '/books/WHAT-THE-HELL.jpeg',
-    synopsis: 'Synopsis à venir — l\'auteur travaille encore sur la présentation complète de cet ouvrage.',
+    synopsis: '<em style="color:var(--gold-dim);font-size:0.85rem;">02.06.2026</em><br><br>Le monde est devenu une serre hyperconnectée où les âmes sont cultivées pour engendrer vanité, envie et solitude. À l\'ère de la désolation numérique, la marque culte est « PARFUM DELUXE CHIC », une entreprise porteuse d\'espoir.<br><br>Son fondateur, Elias Piantagrana de « PDC », promet des fragrances idylliques et des élixirs de longévité. Méfiez-vous des jardins secrets : les fleurs parlent. Un étranger sournois venu de loin offre succès, pouvoir et plaisirs sans fin. Ce criminel a la main verte. Il laisse la plante du désir s\'épanouir en sa victime. Il ne conclut pas d\'accords, il sème. Puis, lorsque les fruits sont mûrs et que la nature est à son apogée, il coupe net.<br><br>C\'est là que les opportunités se présentent, dans les moments difficiles. Les vices sont des désirs.<br><br>Un maître parfumeur excentrique et inattendu apporte l\'espoir et offre un emploi – une juste récompense – à la famille Tarantino, victime d\'une énième séparation cruelle et forcée. Mais Gaia, la belle et jeune fille, sera la clé qui scellera à jamais les ténèbres du malheur et enterrera définitivement l\'enfer – ou plutôt le prétendu enfer – que vivent ces gens au quotidien. Car parfois, l\'innocence n\'est pas un manque de savoir. C\'est une arme.<br><br>Elles sentent la terre et le sable humide, laissant des traces vers un lieu secret où les plantes s\'enracinent non pas dans la terre, mais dans les âmes. Et au fond de ce lieu impossible se trouve le manuel qui révèle, à ceux qui savent lire seulement, les noms magnifiques qui ne devraient pas exister. Mais dans un monde qui nous pousse à toujours vouloir plus, comment ne pas s\'enraciner ?<br><br>Un conte gothique contemporain où chaque vice est une graine, chaque victime une terre fertile, et le seul salut réside dans la ruse silencieuse d\'une petite fille obstinée. Elle refuse de se plier aux règles du jardinier. Femme tenace qui porte en elle la graine de quelqu\'un qui en sait plus que le <strong style="color:var(--gold);">DIABLE</strong>.',
     langs: [ { code: 'IT', flag: '🇮🇹', ready: false }, { code: 'EN', flag: '🇬🇧', ready: false } ],
   },
 };
@@ -3048,6 +3050,9 @@ function openBookOverlay(key) {
   document.getElementById('bookOverlayImg').src = book.cover;
   document.getElementById('bookOverlayImg').alt = book.title + ' — couverture';
   document.getElementById('bookOverlayTitle').textContent = book.title;
+  const subEl = document.getElementById('bookOverlaySubtitle');
+  subEl.textContent = book.subtitle || '';
+  subEl.style.display = book.subtitle ? 'block' : 'none';
   document.getElementById('bookOverlaySynopsis').innerHTML = book.synopsis;
 
   const likeBtn = document.getElementById('bookOverlayLike');

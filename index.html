@@ -707,7 +707,20 @@ section {
   box-shadow: 0 0 60px rgba(201,168,76,0.35), 0 20px 60px rgba(0,0,0,0.6);
   transform: scale(0.92);
   transition: transform 0.35s var(--ease-out);
+  display: block;
 }
+.cco-img-wrap { position: relative; display: inline-block; }
+.cco-watermark {
+  position: absolute; inset: 0;
+  background-image: url('/assets/WATERMARK-ALJADY.png');
+  background-repeat: repeat;
+  background-size: 260px;
+  border-radius: 8px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+.compilation-cover-overlay.show-wm .cco-watermark { opacity: 0.85; }
 .compilation-cover-overlay.open img { transform: scale(1); }
 .compilation-cover-overlay .cco-close {
   position: absolute; top: 1.5rem; right: 2rem;
@@ -1516,7 +1529,10 @@ footer {
 <!-- Cover compilation DIGNITÀ — overlay affiché au clic sur la pastille conta-brani -->
 <div class="compilation-cover-overlay" id="compilationCoverOverlay" onclick="hideCompilationCover()">
   <span class="cco-close" onclick="event.stopPropagation();hideCompilationCover();">✕</span>
-  <img src="/covers/COMPILATION-DIGNITA-2026.png" alt="Cover — Compilation DIGNITÀ 2026">
+  <div class="cco-img-wrap">
+    <img src="/covers/COMPILATION-DIGNITA-2026.png" alt="Cover — Compilation DIGNITÀ 2026">
+    <div class="cco-watermark"></div>
+  </div>
 </div>
 
 <!-- Livres — overlay cover + infos (synopsis, langues, like, buy now) affiché au clic sur une couverture -->
@@ -2999,11 +3015,12 @@ function toggleLike(btn) {
 }
 
 // Lightbox générique (réutilisé par la pastille conta-brani ET la boutique)
-function openImageOverlay(src, alt) {
+function openImageOverlay(src, alt, watermark) {
   const overlay = document.getElementById('compilationCoverOverlay');
   if (!overlay) return;
   const img = overlay.querySelector('img');
   if (img) { img.src = src; img.alt = alt || ''; }
+  overlay.classList.toggle('show-wm', !!watermark);
   overlay.classList.add('open');
 }
 function hideCompilationCover() {
@@ -3130,7 +3147,7 @@ function hideBookOverlay() {
 
     const item = document.createElement('div');
     item.className = 'shop-item';
-    item.onclick = () => openImageOverlay(src, title);
+    item.onclick = () => openImageOverlay(src, title, true); // filigrane ALJADY RECORDS — anti-copie sur les pochettes vendables
 
     const thumb = document.createElement('div');
     thumb.className = 'shop-thumb';

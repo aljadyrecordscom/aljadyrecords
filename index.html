@@ -1677,7 +1677,6 @@ footer {
   border-top-color: var(--gold-dim);
 }
 .flag-btn:hover .flag-coming { display: block; }
-.flag-btn.show-coming .flag-coming { display: block; }
 
 
 /* ═══ ABOUT CARD CON LOGO ═══ */
@@ -3515,9 +3514,8 @@ function openBookOverlay(key) {
     if (l.ready && l.chapter) {
       btn.style.cursor = 'pointer';
       btn.onclick = () => openChapterOverlay(key, l.code);
-    } else if (!l.ready) {
-      btn.onclick = () => btn.classList.toggle('show-coming'); // sorvol (CSS :hover) OU clic
     }
+    // Sinon (langue pas encore prête) : le badge "À VENIR" apparaît uniquement au survol (CSS :hover), pas de clic — comme pour les drapeaux des chansons
     btn.innerHTML = '<span class="flag-emoji">' + l.flag + '</span>' + l.code +
       (l.ready ? '' : '<span class="flag-coming">📖 À VENIR</span>');
     flagsEl.appendChild(btn);

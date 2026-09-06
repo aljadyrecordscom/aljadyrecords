@@ -893,6 +893,71 @@ section {
   color: var(--gold); font-size: 1.6rem; margin: 0 0 1rem 0;
   letter-spacing: 0.01em;
 }
+
+/* Pop-up de lecture — chapitre gratuit */
+.chapter-overlay {
+  position: fixed; inset: 0; z-index: 999;
+  background: rgba(6,6,8,0.94);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.35s var(--ease-out);
+  padding: 2rem;
+}
+.chapter-overlay.open { opacity: 1; pointer-events: auto; }
+.chapter-overlay-inner {
+  position: relative;
+  max-width: 680px; width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  background: var(--deep);
+  border: 1px solid rgba(201,168,76,0.3);
+  border-radius: 8px;
+  padding: 2.5rem;
+  transform: scale(0.94);
+  transition: transform 0.35s var(--ease-out);
+  box-shadow: 0 0 60px rgba(201,168,76,0.25), 0 20px 60px rgba(0,0,0,0.6);
+}
+.chapter-overlay.open .chapter-overlay-inner { transform: scale(1); }
+.chapter-badge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  color: var(--black);
+  background: var(--gold);
+  padding: 0.3rem 0.8rem;
+  border-radius: 3px;
+  margin-bottom: 1rem;
+}
+#chapterBookTitle { color: var(--gold); font-size: 1.5rem; margin-bottom: 0.2rem; }
+.chapter-text {
+  color: var(--light);
+  font-size: 1rem;
+  line-height: 1.75;
+  margin: 1.5rem 0 2rem 0;
+  white-space: pre-wrap;
+}
+.chapter-buy-cta { text-align: center; }
+.chapter-buy-btn {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-decoration: none;
+  border: 1px solid var(--gold);
+  padding: 0.8rem 2rem;
+  border-radius: 4px;
+  transition: all 0.3s var(--ease-out);
+}
+.chapter-buy-btn:hover {
+  background: var(--gold);
+  color: var(--black);
+  font-weight: 700;
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(201,168,76,0.5);
+}
 .shop-item .shop-label {
   padding: 0.6rem 0.7rem;
   font-family: var(--font-mono);
@@ -1666,6 +1731,20 @@ footer {
         <button class="btn-like" id="bookOverlayLike" onclick="toggleLike(this)">♡ LIKE</button>
         <div class="flag-btns" id="bookOverlayFlags"></div>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- Lecture chapitre gratuit — pop-up déclenché par le clic sur une bandiera langue "prête" d'un livre -->
+<div class="chapter-overlay" id="chapterOverlay" onclick="hideChapterOverlay()">
+  <div class="chapter-overlay-inner" onclick="event.stopPropagation()">
+    <span class="cco-close" onclick="hideChapterOverlay()">✕</span>
+    <div class="chapter-badge">GRATIS</div>
+    <h3 id="chapterBookTitle"></h3>
+    <div id="chapterLabel" class="disco-subtitle" style="margin-bottom:1.2rem;"></div>
+    <div class="chapter-text" id="chapterText"></div>
+    <div class="chapter-buy-cta">
+      <a id="chapterBuyLink" href="#" target="_blank" rel="noopener" class="chapter-buy-btn">🛒 BUY NOW — Histoire complète</a>
     </div>
   </div>
 </div>
@@ -3283,6 +3362,35 @@ function hideCompilationCover() {
   const overlay = document.getElementById('compilationCoverOverlay');
   if (overlay) overlay.classList.remove('open');
 }
+// Pop-up de lecture — chapitre gratuit (déclenché par le clic sur une bandiera langue "prête")
+function openChapterOverlay(bookKey, langCode) {
+  const book = bookData[bookKey];
+  const lang = book && book.langs.find(l => l.code === langCode);
+  if (!book || !lang || !lang.chapter) return;
+
+  document.getElementById('chapterBookTitle').textContent = book.title;
+  document.getElementById('chapterLabel').textContent = lang.chapter.label + ' — ' + lang.code;
+  document.getElementById('chapterText').textContent = lang.chapter.text;
+
+  const buyLink = document.getElementById('chapterBuyLink');
+  if (book.buyUrl) {
+    buyLink.href = book.buyUrl;
+    buyLink.style.opacity = '1';
+    buyLink.style.pointerEvents = 'auto';
+    buyLink.textContent = '🛒 BUY NOW — Histoire complète';
+  } else {
+    buyLink.removeAttribute('href');
+    buyLink.style.opacity = '0.5';
+    buyLink.style.pointerEvents = 'none';
+    buyLink.textContent = '🛒 BUY NOW — Bientôt disponible';
+  }
+
+  document.getElementById('chapterOverlay').classList.add('open');
+}
+function hideChapterOverlay() {
+  document.getElementById('chapterOverlay').classList.remove('open');
+}
+
 // Protection anti-robot de l'email — même principe que le CAPTCHA du bloc Contact :
 // vérification humaine par calcul mathématique avant de révéler l'adresse (Boutique + Livres)
 const _wEmailParts = ['inf','o','@','alj','ady','rec','ords','.','com'];
@@ -3332,14 +3440,16 @@ const bookData = {
     title: 'REM — Il Principio della Memoria',
     cover: '/books/REM-IL-PRINCIPIO-DELLA-MEMORIA.jpeg',
     synopsis: 'Dans un futur où l\'empathie est un luxe et la justice une illusion, le juge Remedio perd tout ce qui lui est cher. La mort, pourtant, n\'est pas la fin, mais le commencement d\'une nouvelle existence, ténébreuse.<br><br>S\'éveillant dans une dimension inconnue – un entre-deux de souvenirs et d\'ombres –, il découvre qu\'il peut voyager là où aucune loi humaine ne s\'étend : la phase REM du sommeil. C\'est le seul lieu où le libre arbitre peut encore se manifester, le seul moment où un destin criminel peut être corrigé… avant qu\'il ne se réalise.<br><br>Sa mission est de devenir REM, le correcteur silencieux. Mais chaque intervention laisse une trace, et chaque acte de justice risque de générer un nouvel enfer imprévisible. Car le véritable ennemi n\'est ni l\'extraterrestre ni le démon : c\'est la froide perfection d\'un système qui a oublié ce que signifie aimer.<br><br>Parviendra-t-il à injecter le « virus » de l\'amour dans l\'algorithme cosmique ? Ou le salut réside-t-il dans le refus de tout jugement ?<br><br><strong style="color:var(--gold);">LES DIEUX REVIENNENT-ILS ?</strong>',
-    langs: [ { code: 'IT', flag: '🇮🇹', ready: false }, { code: 'EN', flag: '🇬🇧', ready: false } ],
+    langs: [ { code: 'IT', flag: '🇮🇹', ready: false, chapter: null }, { code: 'EN', flag: '🇬🇧', ready: false, chapter: null } ],
+    buyUrl: null, // lien Payhip du livre complet — à ajouter dès qu'il existe
   },
   wth: {
     title: 'What the HELL',
     subtitle: 'Le Jardin du Diable',
     cover: '/books/WHAT-THE-HELL.jpeg',
     synopsis: '<em style="color:var(--gold-dim);font-size:0.85rem;">02.06.2026</em><br><br>Le monde est devenu une serre hyperconnectée où les âmes sont cultivées pour engendrer vanité, envie et solitude. À l\'ère de la désolation numérique, la marque culte est « PARFUM DELUXE CHIC », une entreprise porteuse d\'espoir.<br><br>Son fondateur, Elias Piantagrana de « PDC », promet des fragrances idylliques et des élixirs de longévité. Méfiez-vous des jardins secrets : les fleurs parlent. Un étranger sournois venu de loin offre succès, pouvoir et plaisirs sans fin. Ce criminel a la main verte. Il laisse la plante du désir s\'épanouir en sa victime. Il ne conclut pas d\'accords, il sème. Puis, lorsque les fruits sont mûrs et que la nature est à son apogée, il coupe net.<br><br>C\'est là que les opportunités se présentent, dans les moments difficiles. Les vices sont des désirs.',
-    langs: [ { code: 'IT', flag: '🇮🇹', ready: false }, { code: 'EN', flag: '🇬🇧', ready: false } ],
+    langs: [ { code: 'IT', flag: '🇮🇹', ready: false, chapter: null }, { code: 'EN', flag: '🇬🇧', ready: false, chapter: null } ],
+    buyUrl: null, // lien Payhip du livre complet — à ajouter dès qu'il existe
   },
 };
 
@@ -3371,7 +3481,12 @@ function openBookOverlay(key) {
   book.langs.forEach(l => {
     const btn = document.createElement('div');
     btn.className = 'flag-btn';
-    if (!l.ready) btn.onclick = () => btn.classList.toggle('show-coming'); // sorvol (CSS :hover) OU clic
+    if (l.ready && l.chapter) {
+      btn.style.cursor = 'pointer';
+      btn.onclick = () => openChapterOverlay(key, l.code);
+    } else if (!l.ready) {
+      btn.onclick = () => btn.classList.toggle('show-coming'); // sorvol (CSS :hover) OU clic
+    }
     btn.innerHTML = '<span class="flag-emoji">' + l.flag + '</span>' + l.code +
       (l.ready ? '' : '<span class="flag-coming">📖 À VENIR</span>');
     flagsEl.appendChild(btn);

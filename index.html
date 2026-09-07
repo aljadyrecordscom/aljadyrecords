@@ -2062,7 +2062,7 @@ footer {
               <button class="flag-btn" data-song="Ghost_Me" data-lang="IT" onclick="playPreview(this)"><span class="flag-emoji">🇮🇹</span>IT<span class="flag-coming">🎵 COMING SOON</span></button>
               <button class="flag-btn" data-song="Ghost_Me" data-lang="EN" onclick="playPreview(this)"><span class="flag-emoji">🇬🇧</span>EN<span class="flag-coming">🎵 COMING SOON</span></button>
               <button class="flag-btn" data-song="Ghost_Me" data-lang="ES" onclick="playPreview(this)"><span class="flag-emoji">🇪🇸</span>ES<span class="flag-coming">🎵 COMING SOON</span></button>
-              <button class="flag-btn" data-song="Ghost_Me" data-lang="FR" onclick="playPreview(this)"><span class="flag-emoji">🇫🇷</span>FR<span class="flag-coming">🎵 COMING SOON</span></button>
+              <button class="flag-btn" data-song="Ghost_Me" data-lang="FR" onclick="playPreview(this)"><span class="flag-emoji">🇫🇷</span>FR</button>
             </div>
           </div>
           <div class="disco-patamu">Patamu n° 286371 · 290475 · ISRC QT6HR2626692</div>
@@ -3302,7 +3302,7 @@ function revealFooterEmail() {
 // mappa: song_id -> { IT: 'url', EN: 'url', ES: 'url', FR: 'url' }
 // Aggiungere gli URL MP3 quando disponibili
 const audioMap = {
-  Ghost_Me:          { IT: null, EN: null, ES: null, FR: null },
+  Ghost_Me:          { IT: null, EN: null, ES: null, FR: '/audio/GHOST-ME-FR-hook.mp3' },
   Sono_Perfetta:     { IT: null, EN: null, ES: null, FR: null },
   La_Copertina:      { IT: null, EN: null, ES: null, FR: null },
   Ma_Karma:          { IT: null, EN: null, ES: null, FR: null },
@@ -3364,12 +3364,21 @@ function playPreview(btn) {
 
   const audio = new Audio(url);
   audio.play();
-  // Stop automatico dopo 21 secondi
-  setTimeout(() => {
-    audio.pause();
-    audio.currentTime = 0;
-    btn.classList.remove('active');
-  }, 21000);
+  // Stop automatique après la durée du hook, plafonné à 60 secondes
+  const MAX_PREVIEW_MS = 60000;
+  let stopTimer = null;
+  const armStop = (ms) => {
+    clearTimeout(stopTimer);
+    stopTimer = setTimeout(() => {
+      audio.pause();
+      audio.currentTime = 0;
+      btn.classList.remove('active');
+    }, ms);
+  };
+  armStop(MAX_PREVIEW_MS); // valeur par défaut tant que la durée réelle n'est pas connue
+  audio.addEventListener('loadedmetadata', () => {
+    if (isFinite(audio.duration)) armStop(Math.min(audio.duration * 1000, MAX_PREVIEW_MS));
+  });
 
   audio.addEventListener('ended', () => btn.classList.remove('active'));
   btn.classList.add('active');

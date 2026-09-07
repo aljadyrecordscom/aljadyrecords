@@ -522,6 +522,32 @@ nav {
   100% { transform: translateX(-50%); }
 }
 
+/* Bandeau "EN CONSTRUCTION" — fond blanc, défile en sens inverse */
+.ticker-alt {
+  background: var(--white);
+  overflow: hidden;
+  padding: 0.75rem 0;
+  white-space: nowrap;
+}
+.ticker-alt .ticker-inner {
+  animation: ticker 26s linear infinite reverse;
+}
+.ticker-alt .ticker-inner span {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--black);
+  font-weight: 700;
+  padding: 0 3rem;
+}
+.ticker-alt .ticker-inner span::before {
+  content: '✦';
+  margin-right: 3rem;
+  color: var(--gold);
+  opacity: 1;
+}
+
 /* ═══════════════════════════════════════════════════
    SECTION — ABOUT / LABEL
 ═══════════════════════════════════════════════════ */
@@ -1845,6 +1871,27 @@ footer {
 </section>
 
 <!-- ═══ TICKER ═══ -->
+<div class="ticker-alt" aria-hidden="true">
+  <div class="ticker-inner">
+    <span>SITE EN CONSTRUCTION</span>
+    <span>SITE EN CONSTRUCTION</span>
+    <span>SITE EN CONSTRUCTION</span>
+    <span>SITE EN CONSTRUCTION</span>
+    <span>SITE EN CONSTRUCTION</span>
+    <span>SITE EN CONSTRUCTION</span>
+    <span>SITE EN CONSTRUCTION</span>
+    <span>SITE EN CONSTRUCTION</span>
+    <span>SITE EN CONSTRUCTION</span>
+    <span>SITE EN CONSTRUCTION</span>
+    <span>SITE EN CONSTRUCTION</span>
+    <span>SITE EN CONSTRUCTION</span>
+    <span>SITE EN CONSTRUCTION</span>
+    <span>SITE EN CONSTRUCTION</span>
+    <span>SITE EN CONSTRUCTION</span>
+    <span>SITE EN CONSTRUCTION</span>
+  </div>
+</div>
+
 <div class="ticker" aria-hidden="true">
     <div class="ticker-inner">
     <span>GHOST ME, I GHOST YOU</span>

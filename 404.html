@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Page introuvable — ALJADY RECORDS™</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black: #060608;
+  --gold: #c9a84c;
+  --gold-dim: #8a6d28;
+  --gold-hi: #f0d080;
+  --white: #f4f0e8;
+  --light: #a09898;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-mono: 'Space Mono', monospace;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; background: var(--black); color: var(--white); font-family: var(--font-display); }
+body {
+  display: flex; align-items: center; justify-content: center;
+  padding: 2rem; text-align: center; position: relative; overflow: hidden;
+}
+.bg {
+  position: absolute; inset: 0; z-index: 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 30%, rgba(201,168,76,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 80% at 10% 90%, rgba(201,168,76,0.04) 0%, transparent 50%);
+}
+.card { position: relative; z-index: 1; max-width: 520px; animation: fadeUp 0.9s var(--ease-out) forwards; opacity: 0; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+.code {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  color: var(--gold-dim);
+  margin-bottom: 1.2rem;
+}
+h1 { font-size: clamp(2.4rem, 7vw, 3.6rem); font-weight: 900; margin-bottom: 0.6rem; }
+h1 em { font-style: italic; color: var(--gold); }
+p { color: var(--light); font-size: 1.05rem; line-height: 1.7; margin-bottom: 2.5rem; }
+.actions { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+a.btn {
+  display: inline-block; font-family: var(--font-mono); font-size: 0.7rem;
+  letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none;
+  padding: 0.9rem 1.8rem; border-radius: 4px; transition: all 0.3s var(--ease-out);
+}
+a.btn-gold { background: var(--gold); color: var(--black); }
+a.btn-gold:hover { background: var(--gold-hi); transform: translateY(-2px); }
+a.btn-ghost { border: 1px solid var(--gold-dim); color: var(--gold); }
+a.btn-ghost:hover { border-color: var(--gold); background: rgba(201,168,76,0.06); }
+.footer-note { margin-top: 3rem; font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.15em; color: var(--gold-dim); text-transform: uppercase; }
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<div class="card">
+  <div class="code">ERREUR 404</div>
+  <h1>Page <em>introuvable</em>.</h1>
+  <p>Ce lien n'existe pas, ou plus. La musique et les livres d'ALJADY RECORDS™ vous attendent sur la page principale.</p>
+  <div class="actions">
+    <a href="/#boutique" class="btn btn-gold">Voir la Boutique</a>
+    <a href="/" class="btn btn-ghost">Retour au site</a>
+  </div>
+  <div class="footer-note">ALJADY RECORDS™ — LucaTaraz™</div>
+</div>
+</body>
+</html>

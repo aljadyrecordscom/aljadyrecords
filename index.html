@@ -951,6 +951,58 @@ section {
   box-shadow: 0 0 60px rgba(201,168,76,0.25), 0 20px 60px rgba(0,0,0,0.6);
 }
 .chapter-overlay.open .chapter-overlay-inner { transform: scale(1); }
+
+/* Pop-up "Voir le Clip" — vidéo verticale déclenchée par un bouton près du hook-hint */
+.video-overlay {
+  position: fixed; inset: 0; z-index: 999;
+  background: rgba(6,6,8,0.94);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.35s var(--ease-out);
+  padding: 2rem;
+}
+.video-overlay.open { opacity: 1; pointer-events: auto; }
+.video-overlay-inner {
+  position: relative;
+  max-width: 420px; width: 100%;
+  background: var(--deep);
+  border: 1px solid rgba(201,168,76,0.3);
+  border-radius: 8px;
+  padding: 1.2rem;
+  transform: scale(0.94);
+  transition: transform 0.35s var(--ease-out);
+  box-shadow: 0 0 60px rgba(201,168,76,0.25), 0 20px 60px rgba(0,0,0,0.6);
+}
+.video-overlay.open .video-overlay-inner { transform: scale(1); }
+.video-overlay .cco-close {
+  position: absolute; top: 0.8rem; right: 1rem;
+  color: var(--gold); font-family: var(--font-mono); font-size: 1.4rem;
+  cursor: pointer; line-height: 1; opacity: 0.8; z-index: 1;
+}
+.video-overlay .cco-close:hover { opacity: 1; }
+#videoOverlayTitle { color: var(--gold); font-size: 1.1rem; margin-bottom: 0.9rem; padding-right: 1.5rem; }
+.video-overlay video {
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  border-radius: 4px;
+  display: block;
+  background: var(--black);
+}
+.clip-btn {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 0.82rem;
+  color: var(--gold);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-underline-offset: 3px;
+  transition: color 0.25s;
+}
+.clip-btn:hover { color: var(--gold-hi); }
 .chapter-badge {
   display: inline-block;
   font-family: var(--font-mono);
@@ -1823,6 +1875,15 @@ footer {
     <div class="chapter-buy-cta">
       <a id="chapterBuyLink" href="#" target="_blank" rel="noopener" class="chapter-buy-btn">🛒 BUY NOW — Histoire complète</a>
     </div>
+  </div>
+</div>
+
+<!-- Pop-up "Voir le Clip" — vidéo verticale déclenchée par un bouton près du hook-hint -->
+<div class="video-overlay" id="videoOverlay" onclick="hideVideoOverlay()">
+  <div class="video-overlay-inner" onclick="event.stopPropagation()">
+    <span class="cco-close" onclick="hideVideoOverlay()">✕</span>
+    <h3 id="videoOverlayTitle"></h3>
+    <video id="videoOverlayPlayer" controls playsinline></video>
   </div>
 </div>
 
@@ -3543,6 +3604,27 @@ function openChapterOverlay(bookKey, langCode) {
 }
 function hideChapterOverlay() {
   document.getElementById('chapterOverlay').classList.remove('open');
+}
+
+// "Voir le Clip" — pop-up vidéo verticale (teaser social monté depuis les rushs)
+// mappa: song_id -> { url, title }. Aggiungere quando il montaggio è pronto.
+const videoMap = {
+  Ghost_Me: null,
+};
+function openVideoOverlay(song) {
+  const v = videoMap[song];
+  if (!v) return;
+  document.getElementById('videoOverlayTitle').textContent = v.title;
+  const player = document.getElementById('videoOverlayPlayer');
+  player.src = v.url;
+  document.getElementById('videoOverlay').classList.add('open');
+  player.play().catch(() => {});
+}
+function hideVideoOverlay() {
+  document.getElementById('videoOverlay').classList.remove('open');
+  const player = document.getElementById('videoOverlayPlayer');
+  player.pause();
+  player.currentTime = 0;
 }
 
 // Protection anti-robot de l'email — même principe que le CAPTCHA du bloc Contact :

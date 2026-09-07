@@ -984,6 +984,7 @@ section {
 .video-overlay video {
   width: 100%;
   aspect-ratio: 9 / 16;
+  object-fit: cover;
   border-radius: 4px;
   display: block;
   background: var(--black);
@@ -1883,7 +1884,8 @@ footer {
   <div class="video-overlay-inner" onclick="event.stopPropagation()">
     <span class="cco-close" onclick="hideVideoOverlay()">✕</span>
     <h3 id="videoOverlayTitle"></h3>
-    <video id="videoOverlayPlayer" controls playsinline></video>
+    <div id="videoOverlaySubtitle" class="disco-subtitle" style="margin-bottom:0.9rem;"></div>
+    <video id="videoOverlayPlayer" controls playsinline loop></video>
   </div>
 </div>
 
@@ -2168,6 +2170,7 @@ footer {
               <button class="flag-btn" data-song="Ghost_Me" data-lang="FR" onclick="playPreview(this)"><span class="flag-emoji">🇫🇷</span>FR</button>
             </div>
             <span class="hook-hint">👈</span>
+            <button class="clip-btn" onclick="openVideoOverlay('Ghost_Me')">▶ Voir le Clip</button>
           </div>
           <div class="disco-patamu">Patamu n° 286371 · 290475 · ISRC QT6HR2626692</div>
         </div>
@@ -3607,14 +3610,17 @@ function hideChapterOverlay() {
 }
 
 // "Voir le Clip" — pop-up vidéo verticale (teaser social monté depuis les rushs)
-// mappa: song_id -> { url, title }. Aggiungere quando il montaggio è pronto.
+// mappa: song_id -> { url, title, subtitle? }. subtitle "COMING SOON" tant que
+// le vrai montage (rushs voiture + hook) n'est pas prêt — remplacer par le clip
+// définitif dès qu'il est monté, et retirer le champ subtitle.
 const videoMap = {
-  Ghost_Me: null,
+  Ghost_Me: { url: '/videos/DROITS-STUDIO.mp4', title: 'Ghost Me, I Ghost You', subtitle: 'COMING SOON — Clip en montage' },
 };
 function openVideoOverlay(song) {
   const v = videoMap[song];
   if (!v) return;
   document.getElementById('videoOverlayTitle').textContent = v.title;
+  document.getElementById('videoOverlaySubtitle').textContent = v.subtitle || '';
   const player = document.getElementById('videoOverlayPlayer');
   player.src = v.url;
   document.getElementById('videoOverlay').classList.add('open');

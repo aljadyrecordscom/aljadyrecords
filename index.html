@@ -1181,6 +1181,7 @@ section {
   border-color: rgba(201,168,76,0.4);
   transform: translateY(-4px);
 }
+.droits-video-card { grid-column: span 2; }
 .right-icon {
   font-size: 1.8rem;
   margin-bottom: 1rem;
@@ -1353,7 +1354,8 @@ footer {
 
 .footer-links {
   display: flex;
-  gap: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem 2rem;
 }
 .footer-links a {
   font-family: var(--font-mono);
@@ -1405,6 +1407,7 @@ footer {
   .artist-header { grid-template-columns: 1fr; gap: 2rem; }
   .disco-list { gap: 1px; } .disco-row { flex-wrap: wrap; } .disco-badges { display: none; }
   .rights-grid { grid-template-columns: 1fr; }
+  .droits-video-card { grid-column: span 1; }
   .contact-grid { grid-template-columns: 1fr; }
   .attr-table { grid-template-columns: 1fr; }
   .hero-stats { display: none; }
@@ -2909,7 +2912,7 @@ footer {
         <div class="right-duration">Aucun cookie · Aucun profilage — RGPD (UE) 2016/679</div>
       </div>
 
-      <div class="right-card reveal" style="padding:0;overflow:hidden;grid-column:span 2;">
+      <div class="right-card droits-video-card reveal" style="padding:0;overflow:hidden;">
         <video src="/videos/DROITS-STUDIO.mp4" poster="/videos/DROITS-STUDIO-poster.jpg" autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;display:block;"></video>
       </div>
     </div>

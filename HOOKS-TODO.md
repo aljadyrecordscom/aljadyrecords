@@ -28,3 +28,5 @@ Legenda: ✅ collegato · ⬜ da fare
 | Countdown | ⬜ | ⬜ | ⬜ | ⬜ |
 
 **Strategia concordata**: si aggiungono man mano che ogni traccia ha la sua data di uscita — non serve fare tutto in una volta. Basta mandare il file audio + nome canzone + lingua, il collegamento richiede pochi minuti.
+
+**Indizio visivo "☝️"**: ogni flag con hook reale ha una piccola manina animata (rimbalzo leggero) sopra il pulsante, per indicare al visitatore "questo funziona, clicca qui". Va aggiunta automaticamente ad ogni nuovo hook collegato (classe CSS `.flag-hint-wrap` / `.flag-hint`, già pronta e riutilizzabile).

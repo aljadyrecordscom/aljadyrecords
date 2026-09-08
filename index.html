@@ -846,8 +846,16 @@ section {
   cursor: pointer; line-height: 1; opacity: 0.8;
 }
 .compilation-cover-overlay .cco-close:hover { opacity: 1; }
-.disco-row.active { background: var(--panel); }
+.disco-row.active {
+  background: var(--panel);
+  box-shadow: 0 0 18px rgba(70,140,255,0.4), inset 0 0 24px rgba(70,140,255,0.12);
+  animation: rowGlowPulse 1.8s ease-in-out infinite;
+}
 .disco-row.active::before { height: 100%; }
+@keyframes rowGlowPulse {
+  0%, 100% { box-shadow: 0 0 14px rgba(70,140,255,0.3), inset 0 0 20px rgba(70,140,255,0.08); }
+  50% { box-shadow: 0 0 28px rgba(70,140,255,0.6), inset 0 0 30px rgba(70,140,255,0.18); }
+}
 
 /* BOUTIQUE */
 #boutique { background: var(--black); }

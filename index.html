@@ -964,7 +964,7 @@ section {
 .video-overlay.open { opacity: 1; pointer-events: auto; }
 .video-overlay-inner {
   position: relative;
-  max-width: 420px; width: 100%;
+  max-width: 720px; width: 100%;
   background: var(--deep);
   border: 1px solid rgba(201,168,76,0.3);
   border-radius: 8px;
@@ -983,7 +983,7 @@ section {
 #videoOverlayTitle { color: var(--gold); font-size: 1.1rem; margin-bottom: 0.9rem; padding-right: 1.5rem; }
 .video-overlay video {
   width: 100%;
-  aspect-ratio: 9 / 16;
+  aspect-ratio: 16 / 9;
   object-fit: cover;
   border-radius: 4px;
   display: block;
@@ -3614,7 +3614,7 @@ function hideChapterOverlay() {
 // le vrai montage (rushs voiture + hook) n'est pas prêt — remplacer par le clip
 // définitif dès qu'il est monté, et retirer le champ subtitle.
 const videoMap = {
-  Ghost_Me: { url: '/videos/DROITS-STUDIO.mp4', title: 'Ghost Me, I Ghost You', subtitle: 'COMING SOON — Clip en montage' },
+  Ghost_Me: { url: '/videos/GHOST-ME-CLIP.mp4', title: 'Ghost Me, I Ghost You' },
 };
 function openVideoOverlay(song) {
   const v = videoMap[song];

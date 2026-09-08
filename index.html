@@ -2164,9 +2164,9 @@ footer {
             <button class="btn-like" data-song="Ghost_Me" onclick="toggleLike(this)">♡ LIKE</button>
             <span class="preview-invite">✦ Écoutez maintenant</span>
             <div class="flag-btns">
-              <button class="flag-btn" data-song="Ghost_Me" data-lang="IT" onclick="playPreview(this)"><span class="flag-emoji">🇮🇹</span>IT<span class="flag-coming">🎵 COMING SOON</span></button>
-              <button class="flag-btn" data-song="Ghost_Me" data-lang="EN" onclick="playPreview(this)"><span class="flag-emoji">🇬🇧</span>EN<span class="flag-coming">🎵 COMING SOON</span></button>
-              <button class="flag-btn" data-song="Ghost_Me" data-lang="ES" onclick="playPreview(this)"><span class="flag-emoji">🇪🇸</span>ES<span class="flag-coming">🎵 COMING SOON</span></button>
+              <button class="flag-btn" data-song="Ghost_Me" data-lang="IT" onclick="playPreview(this)"><span class="flag-emoji">🇮🇹</span>IT</button>
+              <button class="flag-btn" data-song="Ghost_Me" data-lang="EN" onclick="playPreview(this)"><span class="flag-emoji">🇬🇧</span>EN</button>
+              <button class="flag-btn" data-song="Ghost_Me" data-lang="ES" onclick="playPreview(this)"><span class="flag-emoji">🇪🇸</span>ES</button>
               <button class="flag-btn" data-song="Ghost_Me" data-lang="FR" onclick="playPreview(this)"><span class="flag-emoji">🇫🇷</span>FR</button>
             </div>
             <button class="clip-btn" onclick="openVideoOverlay('Ghost_Me')">▶ Voir le Clip</button>
@@ -3428,7 +3428,7 @@ function revealFooterEmail() {
 // mappa: song_id -> { IT: 'url', EN: 'url', ES: 'url', FR: 'url' }
 // Aggiungere gli URL MP3 quando disponibili
 const audioMap = {
-  Ghost_Me:          { IT: null, EN: null, ES: null, FR: '/audio/GHOST-ME-FR-hook.mp3' },
+  Ghost_Me:          { IT: '/audio/GHOST-ME-IT-hook.mp3', EN: '/audio/GHOST-ME-EN-hook.mp3', ES: '/audio/GHOST-ME-ES-hook.mp3', FR: '/audio/GHOST-ME-FR-hook.mp3' },
   Sono_Perfetta:     { IT: null, EN: null, ES: null, FR: null },
   La_Copertina:      { IT: null, EN: null, ES: null, FR: null },
   Ma_Karma:          { IT: null, EN: null, ES: null, FR: null },

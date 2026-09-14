@@ -7,7 +7,7 @@ Legenda: ✅ collegato · ⬜ da fare
 | Canzone | IT | EN | ES | FR |
 |---|---|---|---|---|
 | Ghost Me, I Ghost You | ✅ | ✅ | ✅ | ✅ |
-| Sono Perfetta | ⬜ | ⬜ | ⬜ | ⬜ |
+| Sono Perfetta | ✅ | ⬜ | ⬜ | ⬜ |
 | La Copertina | ⬜ | ⬜ | ⬜ | ⬜ |
 | Ma Karma | ⬜ | ⬜ | ⬜ | ⬜ |
 | Acqua e Fuoco | ⬜ | ⬜ | ⬜ | ⬜ |

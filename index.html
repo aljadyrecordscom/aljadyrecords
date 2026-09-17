@@ -1595,6 +1595,68 @@ footer {
   margin-top: 0.4rem;
   letter-spacing: 0.1em;
 }
+
+.newsletter-box {
+  max-width: 480px;
+  margin: 0 auto 3rem auto;
+  padding: 1.8rem 2rem;
+  border: 1px solid rgba(201,168,76,0.35);
+  border-radius: 6px;
+  background: rgba(201,168,76,0.05);
+  text-align: center;
+}
+.newsletter-title {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.4rem;
+  color: var(--white);
+  margin: 0.3rem 0 0.6rem 0;
+}
+.newsletter-sub {
+  color: var(--light);
+  font-size: 0.88rem;
+  margin-bottom: 1.3rem;
+  line-height: 1.5;
+}
+.newsletter-form {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.newsletter-input {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  flex: 1;
+  min-width: 200px;
+  background: var(--panel);
+  border: 1px solid var(--gold-dim);
+  color: var(--white);
+  padding: 0.7rem 1rem;
+  outline: none;
+}
+.newsletter-input:focus { border-color: var(--gold); }
+.newsletter-input::placeholder { color: var(--light); opacity: 0.7; }
+.newsletter-btn {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--black);
+  background: var(--gold);
+  border: none;
+  padding: 0.7rem 1.4rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.newsletter-btn:hover { background: var(--gold-hi); }
+.newsletter-msg {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  margin-top: 0.8rem;
+}
+
 .email-revealed {
   font-family: var(--font-mono);
   font-size: 0.75rem;
@@ -3311,6 +3373,20 @@ footer {
         <span class="contact-item-label">TikTok</span>
         <span class="contact-item-value">@lucataraz</span>
       </a>
+    </div>
+
+    <div class="newsletter-box reveal">
+      <div class="section-eyebrow" style="justify-content:center;">Newsletter</div>
+      <h3 class="newsletter-title">Restez informé(e).</h3>
+      <p class="newsletter-sub">Sorties, clips et coulisses — directement dans votre boîte mail. Aucun spam, désinscription en un clic.</p>
+      <form id="sib-form" method="POST" action="https://b20243ad.sibforms.com/serve/MUIFAMsY6hr2muaAaqdoCvLN_Vk6qVuo8LDBNr98NFDgNVQoDM_Ts8-YeNABVma5MMYwldVfq6N9J7f6YZRJaPtgTLcD65CIJJMyupyD-GiUMrsktvFXoSkUlZzWYFehpOxX_Ur531J4tRyWHLTkZG-A64LyVRmAVrYTPqiJGhJKlrWXLGiD8TVVaYpNmqgPQwVw2qACUNRMo8-VIw==" class="newsletter-form">
+        <label for="NEWSLETTER_EMAIL" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);">Adresse email</label>
+        <input class="newsletter-input" type="email" id="NEWSLETTER_EMAIL" name="EMAIL" autocomplete="off" placeholder="votre@email.com" required>
+        <input type="text" name="email_address_check" value="" style="display:none !important;" tabindex="-1" autocomplete="off">
+        <input type="hidden" name="locale" value="fr">
+        <input type="hidden" name="html_type" value="simple">
+        <button type="submit" class="newsletter-btn">S'inscrire</button>
+      </form>
     </div>
 
     <div class="contact-address reveal">

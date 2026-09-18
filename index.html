@@ -2960,15 +2960,6 @@ footer {
         </div>
       </div>
     </div>
-
-    <div class="reveal" style="max-width:650px;margin:1.5rem auto 0 auto;padding:1.2rem 1.5rem;border:1px solid rgba(201,168,76,0.35);border-radius:6px;background:rgba(201,168,76,0.05);text-align:center;">
-      <p style="color:var(--gold);font-size:0.85rem;margin:0 0 1rem 0;font-family:var(--font-mono);letter-spacing:0.08em;text-transform:uppercase;">🖼️ Chaque pochette en quadro — tailles disponibles</p>
-      <div class="shop-item" style="max-width:180px;margin:0 auto;" onclick="openImageOverlay('/merch/DIMENSIONI-quadri.jpeg','Dimensions disponibles — Quadri ALJADY RECORDS')">
-        <div class="shop-thumb"><img src="/merch/DIMENSIONI-quadri.jpeg" alt="Dimensions disponibles pour les quadri" loading="lazy"></div>
-        <div class="shop-label">Quadri — Dimensions</div>
-      </div>
-      <p style="color:var(--light);font-size:0.85rem;margin-top:1.2rem;">Toutes les pochettes de la compilation peuvent être imprimées sur toile, du 20×20&nbsp;cm au 100×100&nbsp;cm. Détails et commande dans la <a href="#boutique" style="color:var(--gold);">Boutique</a>.</p>
-    </div>
   </div>
 </section>
 
@@ -3939,6 +3930,24 @@ function hideBookOverlay() {
     item.appendChild(label);
     grid.appendChild(item);
   });
+
+  // Dernière tuile — dimensions disponibles pour l'impression sur toile (quadro)
+  const dimsItem = document.createElement('div');
+  dimsItem.className = 'shop-item';
+  dimsItem.onclick = () => openImageOverlay('/merch/DIMENSIONI-quadri.jpeg', 'Dimensions disponibles — Quadri ALJADY RECORDS');
+  const dimsThumb = document.createElement('div');
+  dimsThumb.className = 'shop-thumb';
+  const dimsImg = document.createElement('img');
+  dimsImg.src = '/merch/DIMENSIONI-quadri.jpeg';
+  dimsImg.alt = 'Dimensions disponibles pour les quadri';
+  dimsImg.loading = 'lazy';
+  dimsThumb.appendChild(dimsImg);
+  const dimsLabel = document.createElement('div');
+  dimsLabel.className = 'shop-label';
+  dimsLabel.textContent = 'Quadri — Dimensions';
+  dimsItem.appendChild(dimsThumb);
+  dimsItem.appendChild(dimsLabel);
+  grid.appendChild(dimsItem);
 })();
 
 // Pastille "nombre de titres" à côté du ticket DIGNITÀ — toujours à jour, compte les lignes réelles

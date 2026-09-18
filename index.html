@@ -882,6 +882,7 @@ section {
   aspect-ratio: 1 / 1;
   overflow: hidden;
   background: var(--black);
+  position: relative;
 }
 .shop-item .shop-thumb img {
   width: 100%; height: 100%;
@@ -890,6 +891,30 @@ section {
   transition: transform 0.4s var(--ease-out);
 }
 .shop-item:hover .shop-thumb img { transform: scale(1.08); }
+.cover-lang-strip {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  display: flex; justify-content: center; gap: 0.15rem;
+  background: linear-gradient(0deg, rgba(6,6,8,0.85) 0%, rgba(6,6,8,0.55) 70%, transparent 100%);
+  padding: 0.35rem 0.2rem 0.25rem 0.2rem;
+  z-index: 1;
+}
+.cover-lang-strip button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 0.95rem;
+  line-height: 1;
+  padding: 0.1rem 0.25rem;
+  opacity: 0.5;
+  filter: grayscale(60%);
+  transition: opacity 0.2s, transform 0.2s, filter 0.2s;
+}
+.cover-lang-strip button:hover { opacity: 0.85; filter: grayscale(20%); }
+.cover-lang-strip button.active {
+  opacity: 1;
+  filter: none;
+  transform: scale(1.2);
+}
 .buy-now-hint { position: relative; cursor: help; }
 .buy-now-hint .dims-tooltip {
   display: none;
@@ -2257,7 +2282,7 @@ footer {
 
       <!-- N°1 -->
       <div class="disco-row reveal" onclick="this.classList.toggle('active');this.nextElementSibling.classList.toggle('open')">
-        <div class="disco-thumb"><div class="disco-thumb-num">1</div><img loading="lazy" src="/covers/SONO-PERFETTA.png" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" alt="Sono Perfetta — cover" class="disco-cover-img" data-song="Sono_Perfetta"></div>
+        <div class="disco-thumb"><div class="disco-thumb-num">1</div><img loading="lazy" src="/covers/SONO-PERFETTA-IT.jpg" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" alt="Sono Perfetta — cover" class="disco-cover-img" data-song="Sono_Perfetta"></div>
         <div class="disco-info">
           <div class="disco-title"><a href="https://www.patamu.com/index.php/it/certificate/287954-4d4" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(201,168,76,0.4);transition:border-color 0.3s;" onmouseover="this.style.borderBottomColor='var(--gold)'" onmouseout="this.style.borderBottomColor='rgba(201,168,76,0.4)'">Sono Perfetta <span style="font-size:0.45em;vertical-align:middle;color:var(--gold-dim);font-family:var(--font-mono);letter-spacing:0.1em;">PATAMU ↗</span></a></div>
           <div class="disco-subtitle">Portrait d'une femme libre</div>
@@ -3610,13 +3635,16 @@ const audioMap = {
 // Cover par langue — ajouter une ligne ici quand une nouvelle chanson a ses 4 covers
 const coverMap = {
   Ghost_Me: { IT: '/covers/GHOST-ME-IT.jpg', EN: '/covers/GHOST-ME-EN.jpg', ES: '/covers/GHOST-ME-ES.jpg', FR: '/covers/GHOST-ME-FR.jpg' },
+  Sono_Perfetta: { IT: '/covers/SONO-PERFETTA-IT.jpg', EN: '/covers/SONO-PERFETTA-EN.jpg', ES: '/covers/SONO-PERFETTA-ES.jpg', FR: '/covers/SONO-PERFETTA-FR.jpg' },
 };
 
 function swapCover(song, lang) {
   const covers = coverMap[song];
   if (!covers || !covers[lang]) return;
-  const img = document.querySelector(`.disco-cover-img[data-song="${song}"]`);
-  if (img) img.src = covers[lang];
+  document.querySelectorAll(`img[data-song="${song}"]`).forEach(img => { img.src = covers[lang]; });
+  document.querySelectorAll(`.cover-lang-strip[data-song="${song}"] button`).forEach(b => {
+    b.classList.toggle('active', b.dataset.lang === lang);
+  });
 }
 
 let currentAudio = null;
@@ -3916,7 +3944,6 @@ function hideBookOverlay() {
 
     const item = document.createElement('div');
     item.className = 'shop-item';
-    item.onclick = () => openImageOverlay(src, title, true); // filigrane ALJADY RECORDS — anti-copie sur les pochettes vendables
 
     const thumb = document.createElement('div');
     thumb.className = 'shop-thumb';
@@ -3924,7 +3951,31 @@ function hideBookOverlay() {
     thumbImg.src = src;
     thumbImg.alt = title + ' — cover';
     thumbImg.loading = 'lazy';
+    thumbImg.dataset.song = song;
     thumb.appendChild(thumbImg);
+
+    // Sottopancia langues — uniquement pour les titres ayant une cover par langue (coverMap)
+    const langs = coverMap[song];
+    if (langs) {
+      const strip = document.createElement('div');
+      strip.className = 'cover-lang-strip';
+      strip.dataset.song = song;
+      const flagEmoji = { IT: '🇮🇹', EN: '🇬🇧', ES: '🇪🇸', FR: '🇫🇷' };
+      ['IT', 'EN', 'ES', 'FR'].forEach(lang => {
+        if (!langs[lang]) return;
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.textContent = flagEmoji[lang];
+        b.title = lang;
+        b.dataset.lang = lang;
+        if (src === langs[lang]) b.classList.add('active');
+        b.onclick = (e) => { e.stopPropagation(); swapCover(song, lang); };
+        strip.appendChild(b);
+      });
+      thumb.appendChild(strip);
+    }
+
+    item.onclick = () => openImageOverlay(thumbImg.src, title, true); // filigrane ALJADY RECORDS — anti-copie sur les pochettes vendables
 
     const label = document.createElement('div');
     label.className = 'shop-label';

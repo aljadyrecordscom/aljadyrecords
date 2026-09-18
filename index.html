@@ -813,7 +813,8 @@ section {
 .compilation-cover-overlay {
   position: fixed; inset: 0; z-index: 999;
   background: rgba(6,6,8,0.92);
-  display: flex; align-items: center; justify-content: center;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 1.5rem;
   opacity: 0; pointer-events: none;
   transition: opacity 0.35s var(--ease-out);
   padding: 2rem;
@@ -914,6 +915,23 @@ section {
   opacity: 1;
   filter: none;
   transform: scale(1.2);
+}
+.cover-lang-strip--big {
+  position: static;
+  background: none;
+  padding: 0;
+  gap: 0.9rem;
+}
+.cover-lang-strip--big button {
+  font-size: 2.4rem;
+  padding: 0.3rem 0.5rem;
+  border-radius: 6px;
+}
+.cover-lang-strip--big button:hover { background: rgba(201,168,76,0.08); transform: translateY(-3px); }
+.cover-lang-strip--big button.active {
+  background: rgba(201,168,76,0.12);
+  transform: scale(1.25);
+  box-shadow: 0 0 0 1px rgba(201,168,76,0.4);
 }
 .buy-now-hint { position: relative; cursor: help; }
 .buy-now-hint .dims-tooltip {
@@ -1939,6 +1957,7 @@ footer {
     <img alt="Cover — Compilation DIGNITÀ 2026">
     <div class="cco-watermark"></div>
   </div>
+  <div class="cover-lang-strip cover-lang-strip--big" id="ccoLangStrip" onclick="event.stopPropagation();" style="display:none;"></div>
 </div>
 
 <!-- Livres — overlay cover + infos (synopsis, langues, like, buy now) affiché au clic sur une couverture -->
@@ -3753,13 +3772,37 @@ function toggleMobileNav() {
 }
 
 // Lightbox générique (réutilisé par la pastille conta-brani ET la boutique)
-function openImageOverlay(src, alt, watermark) {
+function openImageOverlay(src, alt, watermark, song) {
   const overlay = document.getElementById('compilationCoverOverlay');
   if (!overlay) return;
   const img = overlay.querySelector('img');
-  if (img) { img.src = src; img.alt = alt || ''; }
+  if (img) { img.src = src; img.alt = alt || ''; img.dataset.song = song || ''; }
   overlay.classList.toggle('show-wm', !!watermark);
+  renderCoverLangStrip(song, src);
   overlay.classList.add('open');
+}
+
+// Sottopancia langues dans le lightbox — visible uniquement pour les titres ayant une cover par langue (coverMap)
+function renderCoverLangStrip(song, currentSrc) {
+  const strip = document.getElementById('ccoLangStrip');
+  if (!strip) return;
+  const langs = coverMap[song];
+  if (!langs) { strip.style.display = 'none'; strip.innerHTML = ''; strip.removeAttribute('data-song'); return; }
+  strip.dataset.song = song;
+  strip.innerHTML = '';
+  const flagEmoji = { IT: '🇮🇹', EN: '🇬🇧', ES: '🇪🇸', FR: '🇫🇷' };
+  ['IT', 'EN', 'ES', 'FR'].forEach(lang => {
+    if (!langs[lang]) return;
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.textContent = flagEmoji[lang];
+    b.title = lang;
+    b.dataset.lang = lang;
+    if (currentSrc === langs[lang]) b.classList.add('active');
+    b.onclick = (e) => { e.stopPropagation(); swapCover(song, lang); };
+    strip.appendChild(b);
+  });
+  strip.style.display = 'flex';
 }
 function hideCompilationCover() {
   const overlay = document.getElementById('compilationCoverOverlay');
@@ -3954,28 +3997,8 @@ function hideBookOverlay() {
     thumbImg.dataset.song = song;
     thumb.appendChild(thumbImg);
 
-    // Sottopancia langues — uniquement pour les titres ayant une cover par langue (coverMap)
-    const langs = coverMap[song];
-    if (langs) {
-      const strip = document.createElement('div');
-      strip.className = 'cover-lang-strip';
-      strip.dataset.song = song;
-      const flagEmoji = { IT: '🇮🇹', EN: '🇬🇧', ES: '🇪🇸', FR: '🇫🇷' };
-      ['IT', 'EN', 'ES', 'FR'].forEach(lang => {
-        if (!langs[lang]) return;
-        const b = document.createElement('button');
-        b.type = 'button';
-        b.textContent = flagEmoji[lang];
-        b.title = lang;
-        b.dataset.lang = lang;
-        if (src === langs[lang]) b.classList.add('active');
-        b.onclick = (e) => { e.stopPropagation(); swapCover(song, lang); };
-        strip.appendChild(b);
-      });
-      thumb.appendChild(strip);
-    }
-
-    item.onclick = () => openImageOverlay(thumbImg.src, title, true); // filigrane ALJADY RECORDS — anti-copie sur les pochettes vendables
+    // Le choix de la langue se fait après ouverture, dans le lightbox (voir renderCoverLangStrip)
+    item.onclick = () => openImageOverlay(thumbImg.src, title, true, song); // filigrane ALJADY RECORDS — anti-copie sur les pochettes vendables
 
     const label = document.createElement('div');
     label.className = 'shop-label';

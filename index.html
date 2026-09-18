@@ -3697,6 +3697,12 @@ function playPreview(btn) {
     if (currentBtn) currentBtn.classList.remove('active');
   }
 
+  // Stop le clip vidéo si en cours de lecture — un seul son à la fois sur tout le site
+  const videoPlayer = document.getElementById('videoOverlayPlayer');
+  if (videoPlayer && !videoPlayer.paused) {
+    videoPlayer.pause();
+  }
+
   if (currentBtn === btn) {
     currentAudio = null;
     currentBtn = null;
@@ -3859,6 +3865,14 @@ const videoMap = {
 function openVideoOverlay(song) {
   const v = videoMap[song];
   if (!v) return;
+  // Stop l'aperçu audio (hook) si en cours — un seul son à la fois sur tout le site
+  if (currentAudio) {
+    currentAudio.pause();
+    currentAudio.currentTime = 0;
+    if (currentBtn) currentBtn.classList.remove('active');
+    currentAudio = null;
+    currentBtn = null;
+  }
   document.getElementById('videoOverlayTitle').textContent = v.title;
   document.getElementById('videoOverlaySubtitle').textContent = v.subtitle || '';
   const player = document.getElementById('videoOverlayPlayer');

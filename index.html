@@ -2324,6 +2324,7 @@ footer {
               <button class="flag-btn" data-song="Sono_Perfetta" data-lang="ES" onclick="playPreview(this)"><span class="flag-emoji">🇪🇸</span>ES<span class="flag-coming">🎵 COMING SOON</span></button>
               <button class="flag-btn" data-song="Sono_Perfetta" data-lang="FR" onclick="playPreview(this)"><span class="flag-emoji">🇫🇷</span>FR<span class="flag-coming">🎵 COMING SOON</span></button>
             </div>
+            <button class="clip-btn" onclick="openVideoOverlay('Sono_Perfetta')">▶ Voir le Clip</button>
             <span class="hook-hint">👈</span>
           </div>
           <div class="disco-patamu">Patamu n° 287954</div>
@@ -3853,6 +3854,7 @@ function hideChapterOverlay() {
 // définitif dès qu'il est monté, et retirer le champ subtitle.
 const videoMap = {
   Ghost_Me: { url: '/videos/GHOST-ME-CLIP.mp4', title: 'Ghost Me, I Ghost You' },
+  Sono_Perfetta: { url: '/videos/SONO-PERFETTA-CLIP.mp4', title: 'Sono Perfetta' },
 };
 function openVideoOverlay(song) {
   const v = videoMap[song];

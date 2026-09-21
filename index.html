@@ -523,9 +523,9 @@ nav {
   100% { transform: translateX(-50%); }
 }
 
-/* Bandeau "EN CONSTRUCTION" — fond blanc, défile en sens inverse */
+/* Bandeau "Novità / Pré-sorties" — fond bleu (même bleu que l'indice hook-hint), défile en sens inverse */
 .ticker-alt {
-  background: var(--white);
+  background: rgb(70,140,255);
   overflow: hidden;
   padding: 0.75rem 0;
   white-space: nowrap;
@@ -533,20 +533,43 @@ nav {
 .ticker-alt .ticker-inner {
   animation: ticker 26s linear infinite reverse;
 }
-.ticker-alt .ticker-inner span {
+.ticker-alt .ticker-inner span,
+.ticker-alt .ticker-inner a {
   font-family: var(--font-mono);
   font-size: 0.65rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--black);
+  color: var(--white);
   font-weight: 700;
   padding: 0 3rem;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
 }
-.ticker-alt .ticker-inner span::before {
+.ticker-alt .ticker-inner a:hover { color: var(--white); text-decoration: underline; }
+.ticker-alt .ticker-inner span::before,
+.ticker-alt .ticker-inner a::before {
   content: '✦';
   margin-right: 3rem;
-  color: var(--gold);
+  color: rgba(255,255,255,0.65);
   opacity: 1;
+}
+.ticker-hand-red {
+  position: relative;
+  display: inline-flex;
+  font-size: 1.3em;
+  margin-right: 0.5rem;
+  animation: hookHintFloat 1.6s ease-in-out infinite;
+}
+.ticker-hand-red::before {
+  content: '';
+  position: absolute;
+  inset: -10px;
+  background: radial-gradient(circle, rgba(255,60,60,0.6) 0%, rgba(255,60,60,0.22) 45%, transparent 75%);
+  filter: blur(6px);
+  z-index: -1;
+  border-radius: 50%;
+  animation: hookGlowPulse 1.6s ease-in-out infinite;
 }
 
 /* ═══════════════════════════════════════════════════
@@ -2092,25 +2115,24 @@ footer {
   </div>
 </section>
 
-<!-- ═══ TICKER ═══ -->
-<div class="ticker-alt" aria-hidden="true">
+<!-- ═══ TICKER — Novità / Pré-sorties ═══ -->
+<div class="ticker-alt">
   <div class="ticker-inner">
-    <span>NOUVEAUTÉS À VENIR</span>
-    <span>NOUVEAUTÉS À VENIR</span>
-    <span>NOUVEAUTÉS À VENIR</span>
-    <span>NOUVEAUTÉS À VENIR</span>
-    <span>NOUVEAUTÉS À VENIR</span>
-    <span>NOUVEAUTÉS À VENIR</span>
-    <span>NOUVEAUTÉS À VENIR</span>
-    <span>NOUVEAUTÉS À VENIR</span>
-    <span>NOUVEAUTÉS À VENIR</span>
-    <span>NOUVEAUTÉS À VENIR</span>
-    <span>NOUVEAUTÉS À VENIR</span>
-    <span>NOUVEAUTÉS À VENIR</span>
-    <span>NOUVEAUTÉS À VENIR</span>
-    <span>NOUVEAUTÉS À VENIR</span>
-    <span>NOUVEAUTÉS À VENIR</span>
-    <span>NOUVEAUTÉS À VENIR</span>
+    <a href="#events"><span class="ticker-hand-red">👉</span>NOUVEAUTÉS DU MOIS</a>
+    <a href="#events"><span class="ticker-hand-red">👉</span>PRE-SAVE</a>
+    <span>SUIVEZ-NOUS</span>
+    <span>SURPRISES À VENIR</span>
+    <span>COMING SOON</span>
+    <a href="#events"><span class="ticker-hand-red">👉</span>NOUVEAUTÉS DU MOIS</a>
+    <a href="#events"><span class="ticker-hand-red">👉</span>PRE-SAVE</a>
+    <span>SUIVEZ-NOUS</span>
+    <span>SURPRISES À VENIR</span>
+    <span>COMING SOON</span>
+    <a href="#events"><span class="ticker-hand-red">👉</span>NOUVEAUTÉS DU MOIS</a>
+    <a href="#events"><span class="ticker-hand-red">👉</span>PRE-SAVE</a>
+    <span>SUIVEZ-NOUS</span>
+    <span>SURPRISES À VENIR</span>
+    <span>COMING SOON</span>
   </div>
 </div>
 

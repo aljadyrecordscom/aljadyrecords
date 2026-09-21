@@ -554,22 +554,32 @@ nav {
   color: var(--gold-dim);
   opacity: 1;
 }
-.ticker-hand-red {
+.ticker-alt .ticker-inner .ticker-hand-red {
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 2.2rem;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  font-size: 2.4rem;
   line-height: 1;
   color: var(--gold);
   margin-right: 0.5rem;
   animation: hookHintFloat 1.6s ease-in-out infinite;
   filter: drop-shadow(0 3px 5px rgba(0,0,0,0.5));
 }
-.ticker-hand-red::before {
+.ticker-alt .ticker-inner .ticker-hand-red::before { content: none; }
+.ticker-alt .ticker-inner .ticker-hand-glyph {
+  display: inline-block;
+  font-size: 2.4rem;
+  line-height: 1;
+  padding: 0;
+}
+.ticker-alt .ticker-inner .ticker-hand-red::after {
   content: '';
   position: absolute;
-  inset: -14px;
+  inset: -10px;
   background: radial-gradient(circle, rgba(255,60,60,0.55) 0%, rgba(255,60,60,0.2) 45%, transparent 75%);
   filter: blur(7px);
   z-index: -1;
@@ -2123,18 +2133,18 @@ footer {
 <!-- ═══ TICKER — Novità / Pré-sorties ═══ -->
 <div class="ticker-alt">
   <div class="ticker-inner">
-    <a href="#events"><span class="ticker-hand-red">👉</span>NOUVEAUTÉS DU MOIS</a>
-    <a href="#events"><span class="ticker-hand-red">👉</span>PRE-SAVE</a>
+    <a href="#events"><span class="ticker-hand-red"><span class="ticker-hand-glyph">👆</span></span>NOUVEAUTÉS DU MOIS</a>
+    <a href="#events"><span class="ticker-hand-red"><span class="ticker-hand-glyph">👆</span></span>PRE-SAVE</a>
     <span>SUIVEZ-NOUS</span>
     <span>SURPRISES À VENIR</span>
     <span>COMING SOON</span>
-    <a href="#events"><span class="ticker-hand-red">👉</span>NOUVEAUTÉS DU MOIS</a>
-    <a href="#events"><span class="ticker-hand-red">👉</span>PRE-SAVE</a>
+    <a href="#events"><span class="ticker-hand-red"><span class="ticker-hand-glyph">👆</span></span>NOUVEAUTÉS DU MOIS</a>
+    <a href="#events"><span class="ticker-hand-red"><span class="ticker-hand-glyph">👆</span></span>PRE-SAVE</a>
     <span>SUIVEZ-NOUS</span>
     <span>SURPRISES À VENIR</span>
     <span>COMING SOON</span>
-    <a href="#events"><span class="ticker-hand-red">👉</span>NOUVEAUTÉS DU MOIS</a>
-    <a href="#events"><span class="ticker-hand-red">👉</span>PRE-SAVE</a>
+    <a href="#events"><span class="ticker-hand-red"><span class="ticker-hand-glyph">👆</span></span>NOUVEAUTÉS DU MOIS</a>
+    <a href="#events"><span class="ticker-hand-red"><span class="ticker-hand-glyph">👆</span></span>PRE-SAVE</a>
     <span>SUIVEZ-NOUS</span>
     <span>SURPRISES À VENIR</span>
     <span>COMING SOON</span>
@@ -2222,7 +2232,6 @@ footer {
       </div>
       <div class="artist-tagline reveal reveal-delay-2">
         Auteur-écrivain-compositeur-inventeur-interprète multilingue.<br>
-        Voix baryton chaude et narrative.<br>
         Né à Taranto (IT). Basé à Luxembourg.<br><br>
 
         Auteur de trois livres de dark fantasy.<br><br>

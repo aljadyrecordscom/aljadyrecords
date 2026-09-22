@@ -1357,6 +1357,22 @@ section {
   border-color: rgba(201,168,76,0.4);
   transform: translateY(-4px);
 }
+.right-card--trust {
+  border-color: rgba(255,60,60,0.55);
+}
+.right-card--trust:hover {
+  border-color: rgba(255,60,60,0.8);
+}
+.right-card--trust::after {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border-radius: 10px;
+  background: radial-gradient(circle, rgba(255,60,60,0.4) 0%, rgba(255,60,60,0.14) 45%, transparent 75%);
+  filter: blur(10px);
+  z-index: -1;
+  animation: hookGlowPulse 1.6s ease-in-out infinite;
+}
 .droits-video-card { grid-column: span 2; }
 .right-icon {
   font-size: 1.8rem;
@@ -3103,6 +3119,14 @@ footer {
           Envoyez-moi un email avec un lien vers votre extrait (audio/vidéo), le titre qui vous intéresse, et votre langue. Je réponds personnellement à chaque candidature sérieuse.
         </p>
       </div>
+
+      <div class="right-card right-card--trust reveal">
+        <span class="right-icon">🛡️</span>
+        <div class="right-title">5. Notre engagement</div>
+        <p class="right-desc">
+          Si vous le souhaitez, vous pouvez m'envoyer un extrait de 30 secondes (voix, vidéo ou chanson) pour vous présenter — ce n'est pas obligatoire. <strong style="color:#ff3c3c;">Nous ne demandons aucun frais d'inscription, et nous ne vendons rien pour rejoindre l'équipe.</strong>
+        </p>
+      </div>
     </div>
 
     <div class="reveal" style="max-width:650px;margin-top:1.5rem;padding:1.2rem 1.5rem;border:1px solid rgba(201,168,76,0.35);border-radius:6px;background:rgba(201,168,76,0.05);">
@@ -3153,6 +3177,14 @@ footer {
         <div class="right-title">4. Comment postuler</div>
         <p class="right-desc">
           Envoyez-moi un email avec un lien vers votre travail (audio/vidéo), votre instrument ou rôle, et votre ville. Je réponds personnellement à chaque candidature sérieuse.
+        </p>
+      </div>
+
+      <div class="right-card right-card--trust reveal">
+        <span class="right-icon">🛡️</span>
+        <div class="right-title">5. Notre engagement</div>
+        <p class="right-desc">
+          Si vous le souhaitez, vous pouvez m'envoyer un extrait de 30 secondes (voix, vidéo ou morceau) pour vous présenter — ce n'est pas obligatoire. <strong style="color:#ff3c3c;">Nous ne demandons aucun frais d'inscription, et nous ne vendons rien pour rejoindre l'équipe.</strong>
         </p>
       </div>
     </div>

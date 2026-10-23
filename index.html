@@ -1085,6 +1085,15 @@ section {
   display: block;
   background: var(--black);
 }
+/* Clip verticale (9:16) : le cadre s'adapte à la hauteur de l'écran, vidéo entière visible */
+.video-overlay-inner.is-vertical {
+  width: min(100%, calc((100vh - 11rem) * 9 / 16 + 2.4rem));
+  width: min(100%, calc((100dvh - 11rem) * 9 / 16 + 2.4rem));
+}
+.video-overlay-inner.is-vertical video {
+  aspect-ratio: 9 / 16;
+  object-fit: contain;
+}
 .clip-btn {
   font-family: var(--font-display);
   font-style: italic;
@@ -3999,7 +4008,7 @@ function hideChapterOverlay() {
 // définitif dès qu'il est monté, et retirer le champ subtitle.
 const videoMap = {
   Ghost_Me: { url: '/videos/GHOST-ME-CLIP.mp4', title: 'Ghost Me, I Ghost You' },
-  Sono_Perfetta: { url: '/videos/SONO-PERFETTA-CLIP.mp4?v=2', title: 'Sono Perfetta' },
+  Sono_Perfetta: { url: '/videos/SONO-PERFETTA-CLIP.mp4?v=2', title: 'Sono Perfetta', vertical: true },
 };
 function openVideoOverlay(song) {
   const v = videoMap[song];
@@ -4015,6 +4024,12 @@ function openVideoOverlay(song) {
   document.getElementById('videoOverlayTitle').textContent = v.title;
   document.getElementById('videoOverlaySubtitle').textContent = v.subtitle || '';
   const player = document.getElementById('videoOverlayPlayer');
+  // Cadre 16:9 ou 9:16 selon le clip (détection automatique au chargement)
+  const inner = document.querySelector('#videoOverlay .video-overlay-inner');
+  inner.classList.toggle('is-vertical', !!v.vertical);
+  player.onloadedmetadata = () => {
+    if (player.videoWidth && player.videoHeight) inner.classList.toggle('is-vertical', player.videoHeight > player.videoWidth);
+  };
   player.src = v.url;
   document.getElementById('videoOverlay').classList.add('open');
   player.play().catch(() => {});

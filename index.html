@@ -2016,9 +2016,26 @@ footer {
   user-select: none;
 }
 
+
+/* ═══════════════════════════════════════════════════
+   FOND GALAXIE — ciel étoilé vivant + étoiles filantes
+   (canvas fixe derrière tout le contenu, sobre)
+═══════════════════════════════════════════════════ */
+#galaxyBg {
+  position: fixed; inset: 0;
+  width: 100vw; height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+  display: block;
+}
+/* Sections semi-transparentes pour laisser apparaître le ciel */
+#about, #compilation, #events, #contact { background: rgba(13,13,18,0.72); }
+#artist, #boutique, #droits { background: rgba(6,6,8,0.55); }
+footer { background: rgba(6,6,8,0.8); }
 </style>
 </head>
 <body>
+<canvas id="galaxyBg" aria-hidden="true"></canvas>
 
 <!-- Cover compilation DIGNITÀ — overlay affiché au clic sur la pastille conta-brani -->
 <div class="compilation-cover-overlay" id="compilationCoverOverlay" onclick="hideCompilationCover()">
@@ -4244,5 +4261,109 @@ function hideBookOverlay() {
 })();
 </script>
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "8ff140fa9b5d4f68be9b1968c899b5a5"}'></script><!-- End Cloudflare Web Analytics -->
+<script>
+/* ═══ FOND GALAXIE : étoiles scintillantes, voie lactée discrète, étoiles filantes colorées ═══ */
+(function () {
+  const cv = document.getElementById('galaxyBg');
+  if (!cv || !cv.getContext) return;
+  const ctx = cv.getContext('2d');
+  const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const DPR = Math.min(window.devicePixelRatio || 1, 1.5);
+  let W = 0, H = 0, sky = null, twinklers = [], meteors = [], nextMeteor = 0, last = 0, running = true;
+  const TRAIL = [[201,168,76],[240,208,128],[120,200,255],[190,130,255],[255,120,190],[120,240,200]];
+  const rnd = (a, b) => a + Math.random() * (b - a);
+
+  function buildSky() {
+    W = window.innerWidth; H = window.innerHeight;
+    cv.width = Math.round(W * DPR); cv.height = Math.round(H * DPR);
+    sky = document.createElement('canvas');
+    sky.width = cv.width; sky.height = cv.height;
+    const g = sky.getContext('2d'); g.scale(DPR, DPR);
+    // voie lactée : bande diagonale très douce
+    const band = (x, y, r, c, a) => {
+      const gr = g.createRadialGradient(x, y, 0, x, y, r);
+      gr.addColorStop(0, `rgba(${c},${a})`); gr.addColorStop(1, `rgba(${c},0)`);
+      g.fillStyle = gr; g.fillRect(0, 0, W, H);
+    };
+    const L = Math.max(W, H);
+    for (let k = 0; k < 7; k++) {
+      const t = k / 6, x = W * (-0.1 + 1.2 * t), y = H * (0.85 - 0.7 * t);
+      band(x, y, L * rnd(0.22, 0.32), k % 2 ? '120,90,200' : '70,110,190', 0.085);
+      band(x + rnd(-60, 60), y + rnd(-60, 60), L * 0.14, '201,168,76', 0.04);
+    }
+    // poussière d'étoiles le long de la bande + ciel général
+    const n = Math.min(900, Math.round(W * H / 1800));
+    for (let i = 0; i < n; i++) {
+      let x, y;
+      if (Math.random() < 0.45) { const t = Math.random(); x = W * (-0.1 + 1.2 * t) + rnd(-1, 1) * L * 0.12; y = H * (0.85 - 0.7 * t) + rnd(-1, 1) * L * 0.12; }
+      else { x = Math.random() * W; y = Math.random() * H; }
+      const r = Math.random() < 0.92 ? rnd(0.3, 0.9) : rnd(0.9, 1.5);
+      const tint = Math.random();
+      g.fillStyle = tint < 0.1 ? `rgba(240,208,128,${rnd(0.4,0.8)})` : tint < 0.18 ? `rgba(170,200,255,${rnd(0.4,0.8)})` : `rgba(244,240,232,${rnd(0.25,0.75)})`;
+      g.beginPath(); g.arc(x, y, r, 0, 6.2832); g.fill();
+    }
+    // étoiles qui scintillent (dessinées à chaque image)
+    twinklers = [];
+    const m = Math.min(110, Math.round(W * H / 14000));
+    for (let i = 0; i < m; i++) twinklers.push({ x: Math.random() * W, y: Math.random() * H, r: rnd(0.8, 1.8), p: Math.random() * 6.28, s: rnd(0.6, 1.8), gold: Math.random() < 0.25 });
+  }
+
+  function spawnMeteor() {
+    // depuis n'importe quel bord, vers l'intérieur de l'écran
+    const side = Math.floor(Math.random() * 4);
+    let x, y;
+    if (side === 0) { x = rnd(0, W); y = -20; } else if (side === 1) { x = W + 20; y = rnd(0, H); }
+    else if (side === 2) { x = rnd(0, W); y = H + 20; } else { x = -20; y = rnd(0, H); }
+    const tx = rnd(W * 0.2, W * 0.8), ty = rnd(H * 0.2, H * 0.8);
+    const a = Math.atan2(ty - y, tx - x) + rnd(-0.35, 0.35);
+    const sp = rnd(520, 950);
+    meteors.push({ x, y, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp, len: rnd(110, 230), w: rnd(1.2, 2.2), life: 0, max: rnd(1.1, 1.8), c: TRAIL[Math.floor(Math.random() * TRAIL.length)] });
+  }
+
+  function draw(now) {
+    if (!running) return;
+    const dt = Math.min(0.05, (now - last) / 1000 || 0); last = now;
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.clearRect(0, 0, cv.width, cv.height);
+    ctx.drawImage(sky, 0, 0);
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    const t = now / 1000;
+    for (const s of twinklers) {
+      const a = 0.25 + 0.6 * (0.5 + 0.5 * Math.sin(t * s.s + s.p));
+      ctx.fillStyle = s.gold ? `rgba(240,208,128,${a})` : `rgba(244,240,232,${a})`;
+      ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, 6.2832); ctx.fill();
+    }
+    if (now > nextMeteor && meteors.length < 2) { spawnMeteor(); nextMeteor = now + rnd(2600, 6500); }
+    ctx.lineCap = 'round';
+    meteors = meteors.filter(m => {
+      m.life += dt; m.x += m.vx * dt; m.y += m.vy * dt;
+      const k = m.life / m.max; if (k >= 1) return false;
+      const fade = k < 0.15 ? k / 0.15 : 1 - (k - 0.15) / 0.85;
+      const sp = Math.hypot(m.vx, m.vy), ux = m.vx / sp, uy = m.vy / sp;
+      const tx = m.x - ux * m.len, ty = m.y - uy * m.len;
+      const gr = ctx.createLinearGradient(m.x, m.y, tx, ty);
+      gr.addColorStop(0, `rgba(255,255,255,${0.9 * fade})`);
+      gr.addColorStop(0.18, `rgba(${m.c},${0.7 * fade})`);
+      gr.addColorStop(1, `rgba(${m.c},0)`);
+      ctx.strokeStyle = gr; ctx.lineWidth = m.w;
+      ctx.beginPath(); ctx.moveTo(m.x, m.y); ctx.lineTo(tx, ty); ctx.stroke();
+      ctx.fillStyle = `rgba(255,255,255,${0.85 * fade})`;
+      ctx.beginPath(); ctx.arc(m.x, m.y, m.w * 0.9, 0, 6.2832); ctx.fill();
+      return true;
+    });
+    requestAnimationFrame(draw);
+  }
+
+  buildSky();
+  let rt; window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { buildSky(); if (reduce) ctx.drawImage(sky, 0, 0); }, 200); });
+  if (reduce) { ctx.drawImage(sky, 0, 0); return; }   // mouvement réduit : ciel fixe, sans animation
+  document.addEventListener('visibilitychange', () => {
+    running = !document.hidden;
+    if (running) { last = performance.now(); requestAnimationFrame(draw); }
+  });
+  nextMeteor = performance.now() + 1200;
+  requestAnimationFrame(t => { last = t; draw(t); });
+})();
+</script>
 </body>
 </html>

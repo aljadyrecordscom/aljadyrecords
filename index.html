@@ -1094,6 +1094,10 @@ section {
   aspect-ratio: 9 / 16;
   object-fit: contain;
 }
+.full-listen{display:flex;flex-wrap:wrap;align-items:center;gap:.45rem;margin:.7rem 0 .2rem;}
+.full-listen-label{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.08em;color:var(--gold);text-transform:uppercase;}
+.full-listen a{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.06em;color:var(--dark,#111);background:var(--gold);border-radius:999px;padding:.32rem .75rem;text-decoration:none;font-weight:700;transition:background .25s;}
+.full-listen a:hover{background:var(--gold-hi);}
 .clip-btn {
   font-family: var(--font-display);
   font-style: italic;
@@ -2183,17 +2187,17 @@ footer { background: rgba(6,6,8,0.8); }
 <div class="ticker-alt">
   <div class="ticker-inner">
     <a href="#events"><span class="ticker-hand-red"><span class="ticker-hand-glyph">👉</span></span>NOUVEAUTÉS DU MOIS</a>
-    <a href="#events"><span class="ticker-hand-red"><span class="ticker-hand-glyph">👉</span></span>PRE-SAVE</a>
+    <a href="#events"><span class="ticker-hand-red"><span class="ticker-hand-glyph">👉</span></span>ÉCOUTEZ LES TITRES</a>
     <span>SUIVEZ-NOUS</span>
     <span>SURPRISES À VENIR</span>
     <span>COMING SOON</span>
     <a href="#events"><span class="ticker-hand-red"><span class="ticker-hand-glyph">👉</span></span>NOUVEAUTÉS DU MOIS</a>
-    <a href="#events"><span class="ticker-hand-red"><span class="ticker-hand-glyph">👉</span></span>PRE-SAVE</a>
+    <a href="#events"><span class="ticker-hand-red"><span class="ticker-hand-glyph">👉</span></span>ÉCOUTEZ LES TITRES</a>
     <span>SUIVEZ-NOUS</span>
     <span>SURPRISES À VENIR</span>
     <span>COMING SOON</span>
     <a href="#events"><span class="ticker-hand-red"><span class="ticker-hand-glyph">👉</span></span>NOUVEAUTÉS DU MOIS</a>
-    <a href="#events"><span class="ticker-hand-red"><span class="ticker-hand-glyph">👉</span></span>PRE-SAVE</a>
+    <a href="#events"><span class="ticker-hand-red"><span class="ticker-hand-glyph">👉</span></span>ÉCOUTEZ LES TITRES</a>
     <span>SUIVEZ-NOUS</span>
     <span>SURPRISES À VENIR</span>
     <span>COMING SOON</span>
@@ -2380,6 +2384,7 @@ footer { background: rgba(6,6,8,0.8); }
             <button class="clip-btn" onclick="openVideoOverlay('Ghost_Me')">▶ Voir le Clip</button>
             <span class="hook-hint">👈</span>
           </div>
+          <div class="full-listen"><span class="full-listen-label">🎧 Titre complet :</span><a href="https://distrokid.com/hyperfollow/lucataraz/ghost-me-i-ghost-you-4?ref=site" target="_blank" rel="noopener">▶ 🇮🇹 IT</a><a href="https://distrokid.com/hyperfollow/lucataraz/ghost-me-i-ghost-you-3?ref=site" target="_blank" rel="noopener">▶ 🇬🇧 EN</a><a href="https://distrokid.com/hyperfollow/lucataraz/ghost-me-i-ghost-you-?ref=site" target="_blank" rel="noopener">▶ 🇪🇸 ES</a><a href="https://distrokid.com/hyperfollow/lucataraz/ghost-me-i-ghost-you-2?ref=site" target="_blank" rel="noopener">▶ 🇫🇷 FR</a></div>
           <div class="disco-patamu">Patamu n° 286371 · 290475 · ISRC QT6HR2626692</div>
         </div>
         <div class="disco-panel-meta">
@@ -2418,6 +2423,7 @@ footer { background: rgba(6,6,8,0.8); }
             <button class="clip-btn" onclick="openVideoOverlay('Sono_Perfetta')">▶ Voir le Clip</button>
             <span class="hook-hint">👈</span>
           </div>
+          <div class="full-listen"><span class="full-listen-label">🎧 Titre complet :</span><a href="https://distrokid.com/hyperfollow/lucataraz/sono-perfetta-cercasi-luca?ref=site" target="_blank" rel="noopener">▶ 🇮🇹 ÉCOUTER</a></div>
           <div class="disco-patamu">Patamu n° 287954 · 314114 · ISRC QTA892658148</div>
         </div>
         <div class="disco-panel-meta">
@@ -3239,15 +3245,15 @@ footer { background: rgba(6,6,8,0.8); }
     </div>
 
     <div class="reveal" style="margin-top:2.5rem;">
-      <h3 style="color:var(--gold);font-size:1rem;font-family:var(--font-mono);letter-spacing:0.08em;margin-bottom:1rem;">PROCHAINES SORTIES</h3>
+      <h3 style="color:var(--gold);font-size:1rem;font-family:var(--font-mono);letter-spacing:0.08em;margin-bottom:1rem;">SORTIES RÉCENTES &amp; À VENIR</h3>
       <div class="event-card">
-        <img src="/covers/SONO-PERFETTA-IT.jpg" alt="Sono perfetta (Cercasi Luca) — sortie le 13.11.2026" loading="lazy" onclick="openImageOverlay('/covers/SONO-PERFETTA-IT.jpg','Sono perfetta (Cercasi Luca) — sortie le 13.11.2026')">
+        <img src="/covers/SONO-PERFETTA-IT.jpg" alt="Sono perfetta (Cercasi Luca) — disponible" loading="lazy" onclick="openImageOverlay('/covers/SONO-PERFETTA-IT.jpg','Sono perfetta (Cercasi Luca) — sortie le 13.11.2026')">
         <div class="event-info">
-          <div class="event-date">🗓️ Sortie le 13.11.2026</div>
+          <div class="event-date">✅ Disponible depuis le 13.11.2026</div>
           <div class="event-title">Sono perfetta (Cercasi Luca) <span style="font-size:0.7em;color:var(--gold-dim);">— version italienne</span></div>
-          <p class="event-desc">Pre-save maintenant : le titre sera dans votre bibliothèque le jour de la sortie.</p>
+          <p class="event-desc">Sorti — écoutez le titre complet sur votre plateforme préférée :</p>
           <div class="flag-btns" style="margin-left:0;flex-wrap:wrap;">
-            <a href="https://distrokid.com/hyperfollow/lucataraz/sono-perfetta-cercasi-luca?ref=release" target="_blank" rel="noopener" class="flag-btn" style="text-decoration:none;display:inline-flex;align-items:center;"><span class="flag-emoji">🇮🇹</span>IT · PRE-SAVE</a>
+            <a href="https://distrokid.com/hyperfollow/lucataraz/sono-perfetta-cercasi-luca?ref=release" target="_blank" rel="noopener" class="flag-btn" style="text-decoration:none;display:inline-flex;align-items:center;"><span class="flag-emoji">🇮🇹</span>IT · ÉCOUTER</a>
           </div>
         </div>
       </div>

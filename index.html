@@ -148,6 +148,17 @@ body:hover .cursor { opacity: 1; }
 /* ═══════════════════════════════════════════════════
    NAVIGATION
 ═══════════════════════════════════════════════════ */
+.lang-switch{display:flex;border:1px solid rgba(201,168,76,0.45);}
+.lang-switch button{font-family:var(--font-mono);font-size:.58rem;letter-spacing:.1em;color:var(--grey);background:transparent;border:0;padding:.3rem .45rem;cursor:pointer;}
+.lang-switch button+button{border-left:1px solid rgba(201,168,76,0.25);}
+.lang-switch button:hover{color:var(--gold);}
+.lang-switch button.on{color:#0b0b0d;background:var(--gold);}
+@media (max-width:700px){.lang-switch button{padding:.28rem .38rem;font-size:.55rem;}}
+/* Google Translate: nascondi barra e tooltip */
+.goog-te-banner-frame,iframe.skiptranslate,#goog-gt-tt,.goog-te-balloon-frame{display:none!important;}
+body{top:0!important;}
+.goog-text-highlight{background:none!important;box-shadow:none!important;}
+#google_translate_element{display:none;}
 nav {
   position: fixed;
   top: 0; left: 0; right: 0;
@@ -2104,7 +2115,7 @@ footer { background: rgba(6,6,8,0.8); }
 
 <!-- ═══ NAV ═══ -->
 <nav>
-  <a href="#hero" class="nav-logo">ALJADY<span> RECORDS™</span></a>
+  <a href="#hero" class="nav-logo notranslate" translate="no">ALJADY<span> RECORDS™</span></a>
   <div style="display:flex;align-items:center;gap:2rem;">
     <ul class="nav-links">
       <li><a href="#about">Label</a></li>
@@ -2117,6 +2128,9 @@ footer { background: rgba(6,6,8,0.8); }
       <li><a href="#collaboration">Collaboration</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
+    <div class="lang-switch notranslate" translate="no" aria-label="Langue">
+      <button data-l="fr" onclick="setSiteLang('fr')">FR</button><button data-l="en" onclick="setSiteLang('en')">EN</button><button data-l="es" onclick="setSiteLang('es')">ES</button><button data-l="it" onclick="setSiteLang('it')">IT</button>
+    </div>
     <span id="visitCounter" class="visit-counter" title="Visites du site"></span>
     <button class="nav-hamburger" id="navHamburger" onclick="toggleMobileNav()" aria-label="Menu">
       <span></span><span></span><span></span>
@@ -2363,7 +2377,7 @@ footer { background: rgba(6,6,8,0.8); }
       <div class="disco-row reveal" onclick="toggleDiscoRow(this)">
         <div class="disco-thumb"><div class="disco-thumb-num">0</div><img src="/covers/GHOST-ME-MASTER.jpg" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" alt="Ghost Me, I Ghost You — cover" class="disco-cover-img" data-song="Ghost_Me"></div>
         <div class="disco-info">
-          <div class="disco-title"><a href="https://www.patamu.com/index.php/it/certificate/286371-3b1" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(201,168,76,0.4);transition:border-color 0.3s;" onmouseover="this.style.borderBottomColor='var(--gold)'" onmouseout="this.style.borderBottomColor='rgba(201,168,76,0.4)'">Ghost Me, I Ghost You <span style="font-size:0.45em;vertical-align:middle;color:var(--gold-dim);font-family:var(--font-mono);letter-spacing:0.1em;">PATAMU ↗</span></a></div>
+          <div class="disco-title notranslate" translate="no"><a href="https://www.patamu.com/index.php/it/certificate/286371-3b1" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(201,168,76,0.4);transition:border-color 0.3s;" onmouseover="this.style.borderBottomColor='var(--gold)'" onmouseout="this.style.borderBottomColor='rgba(201,168,76,0.4)'">Ghost Me, I Ghost You <span style="font-size:0.45em;vertical-align:middle;color:var(--gold-dim);font-family:var(--font-mono);letter-spacing:0.1em;">PATAMU ↗</span></a></div>
           <div class="disco-subtitle">Chiamami ora, o ti brucio per sempre</div>
           <div class="disco-genre">DARK POP · 125–160 BPM · SINGLE PRINCIPAL</div>
         </div>
@@ -2401,7 +2415,7 @@ footer { background: rgba(6,6,8,0.8); }
       <div class="disco-row reveal" onclick="toggleDiscoRow(this)">
         <div class="disco-thumb"><div class="disco-thumb-num">1</div><img loading="lazy" src="/covers/SONO-PERFETTA-IT.jpg" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" alt="Sono Perfetta — cover" class="disco-cover-img" data-song="Sono_Perfetta"></div>
         <div class="disco-info">
-          <div class="disco-title"><a href="https://www.patamu.com/index.php/it/certificate/287954-4d4" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(201,168,76,0.4);transition:border-color 0.3s;" onmouseover="this.style.borderBottomColor='var(--gold)'" onmouseout="this.style.borderBottomColor='rgba(201,168,76,0.4)'">Sono Perfetta <span style="font-size:0.45em;vertical-align:middle;color:var(--gold-dim);font-family:var(--font-mono);letter-spacing:0.1em;">PATAMU ↗</span></a></div>
+          <div class="disco-title notranslate" translate="no"><a href="https://www.patamu.com/index.php/it/certificate/287954-4d4" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(201,168,76,0.4);transition:border-color 0.3s;" onmouseover="this.style.borderBottomColor='var(--gold)'" onmouseout="this.style.borderBottomColor='rgba(201,168,76,0.4)'">Sono Perfetta <span style="font-size:0.45em;vertical-align:middle;color:var(--gold-dim);font-family:var(--font-mono);letter-spacing:0.1em;">PATAMU ↗</span></a></div>
           <div class="disco-subtitle">Portrait d'une femme libre</div>
           <div class="disco-genre">POP EMOTIVO · 125–128 BPM</div>
         </div>
@@ -2439,7 +2453,7 @@ footer { background: rgba(6,6,8,0.8); }
       <div class="disco-row reveal" onclick="toggleDiscoRow(this)">
         <div class="disco-thumb"><div class="disco-thumb-num">3</div><img loading="lazy" src="/covers/LA-COPERTINA.jpg" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" alt="La Copertina — cover" class="disco-cover-img" data-song="La_Copertina"></div>
         <div class="disco-info">
-          <div class="disco-title"><a href="https://www.patamu.com/index.php/it/certificate/286485-869" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(201,168,76,0.4);transition:border-color 0.3s;" onmouseover="this.style.borderBottomColor='var(--gold)'" onmouseout="this.style.borderBottomColor='rgba(201,168,76,0.4)'">La Copertina <span style="font-size:0.45em;vertical-align:middle;color:var(--gold-dim);font-family:var(--font-mono);letter-spacing:0.1em;">PATAMU ↗</span></a></div>
+          <div class="disco-title notranslate" translate="no"><a href="https://www.patamu.com/index.php/it/certificate/286485-869" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(201,168,76,0.4);transition:border-color 0.3s;" onmouseover="this.style.borderBottomColor='var(--gold)'" onmouseout="this.style.borderBottomColor='rgba(201,168,76,0.4)'">La Copertina <span style="font-size:0.45em;vertical-align:middle;color:var(--gold-dim);font-family:var(--font-mono);letter-spacing:0.1em;">PATAMU ↗</span></a></div>
           <div class="disco-subtitle">Mamma mi manchi</div>
           <div class="disco-genre">POP-ROCK SINFONICO · BALLATA CINEMATOGRAFICA</div>
         </div>
@@ -2475,7 +2489,7 @@ footer { background: rgba(6,6,8,0.8); }
       <div class="disco-row reveal" onclick="toggleDiscoRow(this)">
         <div class="disco-thumb"><div class="disco-thumb-num">4</div><img loading="lazy" src="/covers/MA-KARMA.png" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" alt="Ma Karma — cover" class="disco-cover-img" data-song="Ma_Karma"></div>
         <div class="disco-info">
-          <div class="disco-title"><a href="https://www.patamu.com/index.php/it/certificate/315377-123" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(201,168,76,0.4);transition:border-color 0.3s;" onmouseover="this.style.borderBottomColor='var(--gold)'" onmouseout="this.style.borderBottomColor='rgba(201,168,76,0.4)'">Ma Karma <span style="font-size:0.45em;vertical-align:middle;color:var(--gold-dim);font-family:var(--font-mono);letter-spacing:0.1em;">PATAMU ↗</span></a></div>
+          <div class="disco-title notranslate" translate="no"><a href="https://www.patamu.com/index.php/it/certificate/315377-123" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(201,168,76,0.4);transition:border-color 0.3s;" onmouseover="this.style.borderBottomColor='var(--gold)'" onmouseout="this.style.borderBottomColor='rgba(201,168,76,0.4)'">Ma Karma <span style="font-size:0.45em;vertical-align:middle;color:var(--gold-dim);font-family:var(--font-mono);letter-spacing:0.1em;">PATAMU ↗</span></a></div>
           <div class="disco-subtitle">Meglio no!</div>
           <div class="disco-genre">HIP-HOP ALT-POP · 90 BPM · RÉ MINEUR</div>
         </div>
@@ -2513,7 +2527,7 @@ footer { background: rgba(6,6,8,0.8); }
       <div class="disco-row reveal" onclick="toggleDiscoRow(this)">
         <div class="disco-thumb"><div class="disco-thumb-num">5</div><img loading="lazy" src="/covers/ACQUA-E-FUOCO.png" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" alt="Acqua e Fuoco — cover" class="disco-cover-img" data-song="Acqua_e_Fuoco"></div>
         <div class="disco-info">
-          <div class="disco-title"><a href="https://www.patamu.com/index.php/it/certificate/291528-ef7" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(201,168,76,0.4);transition:border-color 0.3s;" onmouseover="this.style.borderBottomColor='var(--gold)'" onmouseout="this.style.borderBottomColor='rgba(201,168,76,0.4)'">Acqua e Fuoco <span style="font-size:0.45em;vertical-align:middle;color:var(--gold-dim);font-family:var(--font-mono);letter-spacing:0.1em;">PATAMU ↗</span></a></div>
+          <div class="disco-title notranslate" translate="no"><a href="https://www.patamu.com/index.php/it/certificate/291528-ef7" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(201,168,76,0.4);transition:border-color 0.3s;" onmouseover="this.style.borderBottomColor='var(--gold)'" onmouseout="this.style.borderBottomColor='rgba(201,168,76,0.4)'">Acqua e Fuoco <span style="font-size:0.45em;vertical-align:middle;color:var(--gold-dim);font-family:var(--font-mono);letter-spacing:0.1em;">PATAMU ↗</span></a></div>
           <div class="disco-subtitle">Non ci sono elementi?!</div>
           <div class="disco-genre">TRIP-HOP · DARK INDIE POP</div>
         </div>
@@ -2548,7 +2562,7 @@ footer { background: rgba(6,6,8,0.8); }
       <div class="disco-row reveal" onclick="toggleDiscoRow(this)">
         <div class="disco-thumb"><div class="disco-thumb-num">6</div><img loading="lazy" src="/covers/THE-LAST-DAY.png" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" alt="The Last Day — cover" class="disco-cover-img" data-song="The_Last_Day"></div>
         <div class="disco-info">
-          <div class="disco-title"><a href="https://www.patamu.com/index.php/it/certificate/291950-261" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(201,168,76,0.4);transition:border-color 0.3s;" onmouseover="this.style.borderBottomColor='var(--gold)'" onmouseout="this.style.borderBottomColor='rgba(201,168,76,0.4)'">The Last Day <span style="font-size:0.45em;vertical-align:middle;color:var(--gold-dim);font-family:var(--font-mono);letter-spacing:0.1em;">PATAMU ↗</span></a></div>
+          <div class="disco-title notranslate" translate="no"><a href="https://www.patamu.com/index.php/it/certificate/291950-261" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(201,168,76,0.4);transition:border-color 0.3s;" onmouseover="this.style.borderBottomColor='var(--gold)'" onmouseout="this.style.borderBottomColor='rgba(201,168,76,0.4)'">The Last Day <span style="font-size:0.45em;vertical-align:middle;color:var(--gold-dim);font-family:var(--font-mono);letter-spacing:0.1em;">PATAMU ↗</span></a></div>
           <div class="disco-subtitle">Che hai fatto figlio mio!</div>
           <div class="disco-genre">ORCHESTRAL ROCK · CINEMATIC POP SOUL</div>
         </div>
@@ -2583,7 +2597,7 @@ footer { background: rgba(6,6,8,0.8); }
       <div class="disco-row reveal" onclick="toggleDiscoRow(this)">
         <div class="disco-thumb"><div class="disco-thumb-num">7</div><img loading="lazy" src="/covers/UFO-DEDICA-MELA.png" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" alt="UFO — Dedica-Mela — cover" class="disco-cover-img" data-song="UFO_Dedica_Mela"></div>
         <div class="disco-info">
-          <div class="disco-title"><a href="https://www.patamu.com/index.php/it/certificate/292040-39d" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(201,168,76,0.4);transition:border-color 0.3s;" onmouseover="this.style.borderBottomColor='var(--gold)'" onmouseout="this.style.borderBottomColor='rgba(201,168,76,0.4)'">UFO — Dedica-Mela <span style="font-size:0.45em;vertical-align:middle;color:var(--gold-dim);font-family:var(--font-mono);letter-spacing:0.1em;">PATAMU ↗</span></a></div>
+          <div class="disco-title notranslate" translate="no"><a href="https://www.patamu.com/index.php/it/certificate/292040-39d" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(201,168,76,0.4);transition:border-color 0.3s;" onmouseover="this.style.borderBottomColor='var(--gold)'" onmouseout="this.style.borderBottomColor='rgba(201,168,76,0.4)'">UFO — Dedica-Mela <span style="font-size:0.45em;vertical-align:middle;color:var(--gold-dim);font-family:var(--font-mono);letter-spacing:0.1em;">PATAMU ↗</span></a></div>
           <div class="disco-subtitle">Niente è vero!</div>
           <div class="disco-genre">ELECTRO POP · ALTERNATIVE</div>
         </div>
@@ -2618,7 +2632,7 @@ footer { background: rgba(6,6,8,0.8); }
       <div class="disco-row reveal" onclick="toggleDiscoRow(this)">
         <div class="disco-thumb"><div class="disco-thumb-num">8</div><img loading="lazy" src="/covers/MAGIC-NIGHT.jpg" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" alt="Magic Night — cover" class="disco-cover-img" data-song="Magic_Night"></div>
         <div class="disco-info">
-          <div class="disco-title"><a href="https://www.patamu.com/certificate/294777-734" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(201,168,76,0.4);transition:border-color 0.3s;" onmouseover="this.style.borderBottomColor='var(--gold)'" onmouseout="this.style.borderBottomColor='rgba(201,168,76,0.4)'">Magic Night <span style="font-size:0.45em;vertical-align:middle;color:var(--gold-dim);font-family:var(--font-mono);letter-spacing:0.1em;">PATAMU ↗</span></a></div>
+          <div class="disco-title notranslate" translate="no"><a href="https://www.patamu.com/certificate/294777-734" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(201,168,76,0.4);transition:border-color 0.3s;" onmouseover="this.style.borderBottomColor='var(--gold)'" onmouseout="this.style.borderBottomColor='rgba(201,168,76,0.4)'">Magic Night <span style="font-size:0.45em;vertical-align:middle;color:var(--gold-dim);font-family:var(--font-mono);letter-spacing:0.1em;">PATAMU ↗</span></a></div>
           <div class="disco-subtitle">En Production</div>
           <div class="disco-genre">IN PRODUZIONE</div>
         </div>
@@ -2653,7 +2667,7 @@ footer { background: rgba(6,6,8,0.8); }
       <div class="disco-row reveal" onclick="toggleDiscoRow(this)">
         <div class="disco-thumb"><div class="disco-thumb-num">6</div><img loading="lazy" src="/covers/TIKET-COVERS.png" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" alt="No Fool — cover provisoire" class="disco-cover-img" data-song="No_Fool"></div>
         <div class="disco-info">
-          <div class="disco-title">No Fool</div>
+          <div class="disco-title notranslate" translate="no">No Fool</div>
           <div class="disco-subtitle">En Production</div>
           <div class="disco-genre">IN PRODUZIONE</div>
         </div>
@@ -2684,7 +2698,7 @@ footer { background: rgba(6,6,8,0.8); }
       <div class="disco-row reveal" onclick="toggleDiscoRow(this)">
         <div class="disco-thumb"><div class="disco-thumb-num">9</div><img loading="lazy" src="/covers/SERATA-DA-LEONI.jpg" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" alt="Serata da Leoni — cover" class="disco-cover-img" data-song="Serata_da_Leoni"></div>
         <div class="disco-info">
-          <div class="disco-title"><a href="https://www.patamu.com/index.php/it/certificate/290192-f15" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(201,168,76,0.4);transition:border-color 0.3s;" onmouseover="this.style.borderBottomColor='var(--gold)'" onmouseout="this.style.borderBottomColor='rgba(201,168,76,0.4)'">Serata da Leoni <span style="font-size:0.45em;vertical-align:middle;color:var(--gold-dim);font-family:var(--font-mono);letter-spacing:0.1em;">PATAMU ↗</span></a></div>
+          <div class="disco-title notranslate" translate="no"><a href="https://www.patamu.com/index.php/it/certificate/290192-f15" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(201,168,76,0.4);transition:border-color 0.3s;" onmouseover="this.style.borderBottomColor='var(--gold)'" onmouseout="this.style.borderBottomColor='rgba(201,168,76,0.4)'">Serata da Leoni <span style="font-size:0.45em;vertical-align:middle;color:var(--gold-dim);font-family:var(--font-mono);letter-spacing:0.1em;">PATAMU ↗</span></a></div>
           <div class="disco-subtitle">Bionda o Bruno?</div>
           <div class="disco-genre">FUNK DISCO R&B · 122–126 BPM · LA MINEUR</div>
         </div>
@@ -2721,7 +2735,7 @@ footer { background: rgba(6,6,8,0.8); }
       <div class="disco-row reveal" onclick="toggleDiscoRow(this)">
         <div class="disco-thumb"><div class="disco-thumb-num">8</div><img loading="lazy" src="/covers/TIKET-COVERS.png" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" alt="I Will Do It — cover provisoire" class="disco-cover-img" data-song="I_Will_Do_It"></div>
         <div class="disco-info">
-          <div class="disco-title">I Will Do It</div>
+          <div class="disco-title notranslate" translate="no">I Will Do It</div>
           <div class="disco-subtitle">En Production</div>
           <div class="disco-genre">IN PRODUZIONE</div>
         </div>
@@ -2752,7 +2766,7 @@ footer { background: rgba(6,6,8,0.8); }
       <div class="disco-row reveal" onclick="toggleDiscoRow(this)">
         <div class="disco-thumb"><div class="disco-thumb-num">10</div><img loading="lazy" src="/covers/TIKET-COVERS.png" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" alt="Dubai — cover provisoire" class="disco-cover-img" data-song="Dubai"></div>
         <div class="disco-info">
-          <div class="disco-title">Dubai</div>
+          <div class="disco-title notranslate" translate="no">Dubai</div>
           <div class="disco-subtitle">En Production</div>
           <div class="disco-genre">IN PRODUZIONE</div>
         </div>
@@ -2785,7 +2799,7 @@ footer { background: rgba(6,6,8,0.8); }
       <div class="disco-row reveal" onclick="toggleDiscoRow(this)">
         <div class="disco-thumb"><div class="disco-thumb-num">11</div><img loading="lazy" src="/covers/DIGNITA-MANTRA.png" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" alt="Dignità Mantra — cover" class="disco-cover-img" data-song="Dignita_Mantra"></div>
         <div class="disco-info">
-          <div class="disco-title"><a href="https://www.patamu.com/index.php/it/certificate/293603-507" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(201,168,76,0.4);transition:border-color 0.3s;" onmouseover="this.style.borderBottomColor='var(--gold)'" onmouseout="this.style.borderBottomColor='rgba(201,168,76,0.4)'">Dignità Mantra <span style="font-size:0.45em;vertical-align:middle;color:var(--gold-dim);font-family:var(--font-mono);letter-spacing:0.1em;">PATAMU ↗</span></a></div>
+          <div class="disco-title notranslate" translate="no"><a href="https://www.patamu.com/index.php/it/certificate/293603-507" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(201,168,76,0.4);transition:border-color 0.3s;" onmouseover="this.style.borderBottomColor='var(--gold)'" onmouseout="this.style.borderBottomColor='rgba(201,168,76,0.4)'">Dignità Mantra <span style="font-size:0.45em;vertical-align:middle;color:var(--gold-dim);font-family:var(--font-mono);letter-spacing:0.1em;">PATAMU ↗</span></a></div>
           <div class="disco-subtitle">don't forget you have to set an example</div>
           <div class="disco-genre">DISCO HOUSE · WORLD TRIBAL · 124 BPM · 6:30+</div>
         </div>
@@ -2821,7 +2835,7 @@ footer { background: rgba(6,6,8,0.8); }
       <div class="disco-row reveal" onclick="toggleDiscoRow(this)">
         <div class="disco-thumb"><div class="disco-thumb-num">12</div><img loading="lazy" src="/covers/SEI-IL-MIO-SEGRETO.png" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" alt="Sei il Mio Segreto — cover" class="disco-cover-img" data-song="Sei_il_Mio_Segreto"></div>
         <div class="disco-info">
-          <div class="disco-title"><a href="https://www.patamu.com/index.php/it/certificate/293629-852" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(201,168,76,0.4);transition:border-color 0.3s;" onmouseover="this.style.borderBottomColor='var(--gold)'" onmouseout="this.style.borderBottomColor='rgba(201,168,76,0.4)'">Sei il Mio Segreto <span style="font-size:0.45em;vertical-align:middle;color:var(--gold-dim);font-family:var(--font-mono);letter-spacing:0.1em;">PATAMU ↗</span></a></div>
+          <div class="disco-title notranslate" translate="no"><a href="https://www.patamu.com/index.php/it/certificate/293629-852" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(201,168,76,0.4);transition:border-color 0.3s;" onmouseover="this.style.borderBottomColor='var(--gold)'" onmouseout="this.style.borderBottomColor='rgba(201,168,76,0.4)'">Sei il Mio Segreto <span style="font-size:0.45em;vertical-align:middle;color:var(--gold-dim);font-family:var(--font-mono);letter-spacing:0.1em;">PATAMU ↗</span></a></div>
           <div class="disco-subtitle">Forse ha senso?</div>
           <div class="disco-genre">SOUL · NEO SOUL · R&B · 84 BPM</div>
         </div>
@@ -2857,7 +2871,7 @@ footer { background: rgba(6,6,8,0.8); }
       <div class="disco-row reveal" onclick="toggleDiscoRow(this)">
         <div class="disco-thumb"><div class="disco-thumb-num">15</div><img loading="lazy" src="/covers/QUADRIFOGLIO-BLU.jpg" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" alt="Quadrifoglio Blu — cover" class="disco-cover-img" data-song="Quadrifoglio_Blu"></div>
         <div class="disco-info">
-          <div class="disco-title"><a href="https://www.patamu.com/index.php/it/certificate/300309-aad" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(201,168,76,0.4);transition:border-color 0.3s;" onmouseover="this.style.borderBottomColor='var(--gold)'" onmouseout="this.style.borderBottomColor='rgba(201,168,76,0.4)'">Quadrifoglio Blu <span style="font-size:0.45em;vertical-align:middle;color:var(--gold-dim);font-family:var(--font-mono);letter-spacing:0.1em;">PATAMU ↗</span></a></div>
+          <div class="disco-title notranslate" translate="no"><a href="https://www.patamu.com/index.php/it/certificate/300309-aad" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(201,168,76,0.4);transition:border-color 0.3s;" onmouseover="this.style.borderBottomColor='var(--gold)'" onmouseout="this.style.borderBottomColor='rgba(201,168,76,0.4)'">Quadrifoglio Blu <span style="font-size:0.45em;vertical-align:middle;color:var(--gold-dim);font-family:var(--font-mono);letter-spacing:0.1em;">PATAMU ↗</span></a></div>
           <div class="disco-subtitle">(Milioni e Milioni)</div>
           <div class="disco-genre">NEO SOUL CINEMATIC POP · 92–98 BPM</div>
         </div>
@@ -2893,7 +2907,7 @@ footer { background: rgba(6,6,8,0.8); }
       <div class="disco-row reveal" onclick="toggleDiscoRow(this)">
         <div class="disco-thumb"><div class="disco-thumb-num">16</div><img loading="lazy" src="/covers/TUTTO-IN-UNA-STANZA.jpg" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" alt="Tutto in una Stanza — cover" class="disco-cover-img" data-song="Tutto_in_Una_Stanza"></div>
         <div class="disco-info">
-          <div class="disco-title"><a href="https://www.patamu.com/index.php/it/certificate/300356-08a" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(201,168,76,0.4);transition:border-color 0.3s;" onmouseover="this.style.borderBottomColor='var(--gold)'" onmouseout="this.style.borderBottomColor='rgba(201,168,76,0.4)'">Tutto in una Stanza <span style="font-size:0.45em;vertical-align:middle;color:var(--gold-dim);font-family:var(--font-mono);letter-spacing:0.1em;">PATAMU ↗</span></a> <span style="font-size:0.55em;vertical-align:middle;color:var(--gold-dim);font-family:var(--font-mono);letter-spacing:0.1em;border:1px solid rgba(201,168,76,0.4);padding:0.1em 0.5em;border-radius:3px;">🔞 ADULTES</span></div>
+          <div class="disco-title notranslate" translate="no"><a href="https://www.patamu.com/index.php/it/certificate/300356-08a" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(201,168,76,0.4);transition:border-color 0.3s;" onmouseover="this.style.borderBottomColor='var(--gold)'" onmouseout="this.style.borderBottomColor='rgba(201,168,76,0.4)'">Tutto in una Stanza <span style="font-size:0.45em;vertical-align:middle;color:var(--gold-dim);font-family:var(--font-mono);letter-spacing:0.1em;">PATAMU ↗</span></a> <span style="font-size:0.55em;vertical-align:middle;color:var(--gold-dim);font-family:var(--font-mono);letter-spacing:0.1em;border:1px solid rgba(201,168,76,0.4);padding:0.1em 0.5em;border-radius:3px;">🔞 ADULTES</span></div>
           <div class="disco-subtitle">(Nessuno torna indietro)</div>
           <div class="disco-genre">SOUL R&B DISCO WARMTH · 95 BPM</div>
         </div>
@@ -2929,7 +2943,7 @@ footer { background: rgba(6,6,8,0.8); }
       <div class="disco-row reveal" onclick="toggleDiscoRow(this)">
         <div class="disco-thumb"><div class="disco-thumb-num">19</div><img loading="lazy" src="/covers/ERA-QUI.jpg" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" alt="Era Qui — cover" class="disco-cover-img" data-song="Era_Qui"></div>
         <div class="disco-info">
-          <div class="disco-title"><a href="https://www.patamu.com/index.php/it/certificate/304451-15a" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(201,168,76,0.4);transition:border-color 0.3s;" onmouseover="this.style.borderBottomColor='var(--gold)'" onmouseout="this.style.borderBottomColor='rgba(201,168,76,0.4)'">Era Qui <span style="font-size:0.45em;vertical-align:middle;color:var(--gold-dim);font-family:var(--font-mono);letter-spacing:0.1em;">PATAMU ↗</span></a></div>
+          <div class="disco-title notranslate" translate="no"><a href="https://www.patamu.com/index.php/it/certificate/304451-15a" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(201,168,76,0.4);transition:border-color 0.3s;" onmouseover="this.style.borderBottomColor='var(--gold)'" onmouseout="this.style.borderBottomColor='rgba(201,168,76,0.4)'">Era Qui <span style="font-size:0.45em;vertical-align:middle;color:var(--gold-dim);font-family:var(--font-mono);letter-spacing:0.1em;">PATAMU ↗</span></a></div>
           <div class="disco-subtitle">(Ma ti ho persa davvero !?)</div>
           <div class="disco-genre">MELANCHOLIC PIANO · MID-TEMPO URBAN POP</div>
         </div>
@@ -2965,7 +2979,7 @@ footer { background: rgba(6,6,8,0.8); }
       <div class="disco-row reveal" onclick="toggleDiscoRow(this)">
         <div class="disco-thumb"><div class="disco-thumb-num">20</div><img loading="lazy" src="/covers/SILENZIO.jpg" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" alt="Silenzio — cover" class="disco-cover-img" data-song="Silenzio"></div>
         <div class="disco-info">
-          <div class="disco-title"><a href="https://www.patamu.com/index.php/it/certificate/303340-e8b" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(201,168,76,0.4);transition:border-color 0.3s;" onmouseover="this.style.borderBottomColor='var(--gold)'" onmouseout="this.style.borderBottomColor='rgba(201,168,76,0.4)'">Silenzio <span style="font-size:0.45em;vertical-align:middle;color:var(--gold-dim);font-family:var(--font-mono);letter-spacing:0.1em;">PATAMU ↗</span></a></div>
+          <div class="disco-title notranslate" translate="no"><a href="https://www.patamu.com/index.php/it/certificate/303340-e8b" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(201,168,76,0.4);transition:border-color 0.3s;" onmouseover="this.style.borderBottomColor='var(--gold)'" onmouseout="this.style.borderBottomColor='rgba(201,168,76,0.4)'">Silenzio <span style="font-size:0.45em;vertical-align:middle;color:var(--gold-dim);font-family:var(--font-mono);letter-spacing:0.1em;">PATAMU ↗</span></a></div>
           <div class="disco-subtitle">(Anch'io farò silenzio con te)</div>
           <div class="disco-genre">MODERN ITALIAN POP · CINEMATIC STADIUM BALLAD</div>
         </div>
@@ -3000,7 +3014,7 @@ footer { background: rgba(6,6,8,0.8); }
       <div class="disco-row reveal" onclick="toggleDiscoRow(this)">
         <div class="disco-thumb"><div class="disco-thumb-num">21</div><img loading="lazy" src="/covers/PUPSIK.jpg" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" alt="Pupsik — cover" class="disco-cover-img" data-song="Pupsik"></div>
         <div class="disco-info">
-          <div class="disco-title"><a href="https://www.patamu.com/index.php/it/certificate/305336-965" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(201,168,76,0.4);transition:border-color 0.3s;" onmouseover="this.style.borderBottomColor='var(--gold)'" onmouseout="this.style.borderBottomColor='rgba(201,168,76,0.4)'">Pupsik <span style="font-size:0.45em;vertical-align:middle;color:var(--gold-dim);font-family:var(--font-mono);letter-spacing:0.1em;">PATAMU ↗</span></a> <span style="font-size:0.55em;vertical-align:middle;color:var(--gold-dim);font-family:var(--font-mono);letter-spacing:0.1em;border:1px solid rgba(201,168,76,0.4);padding:0.1em 0.5em;border-radius:3px;">🔞 ADULTES</span></div>
+          <div class="disco-title notranslate" translate="no"><a href="https://www.patamu.com/index.php/it/certificate/305336-965" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(201,168,76,0.4);transition:border-color 0.3s;" onmouseover="this.style.borderBottomColor='var(--gold)'" onmouseout="this.style.borderBottomColor='rgba(201,168,76,0.4)'">Pupsik <span style="font-size:0.45em;vertical-align:middle;color:var(--gold-dim);font-family:var(--font-mono);letter-spacing:0.1em;">PATAMU ↗</span></a> <span style="font-size:0.55em;vertical-align:middle;color:var(--gold-dim);font-family:var(--font-mono);letter-spacing:0.1em;border:1px solid rgba(201,168,76,0.4);padding:0.1em 0.5em;border-radius:3px;">🔞 ADULTES</span></div>
           <div class="disco-subtitle">(Sotto lo stesso cielo)</div>
           <div class="disco-genre">NU-DISCO · FEEL-GOOD RADIO-POP</div>
         </div>
@@ -3035,7 +3049,7 @@ footer { background: rgba(6,6,8,0.8); }
       <div class="disco-row reveal" onclick="toggleDiscoRow(this)">
         <div class="disco-thumb"><div class="disco-thumb-num">18</div><img loading="lazy" src="/covers/COUNTDOWN.jpg" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" alt="Countdown — cover" class="disco-cover-img" data-song="Countdown"></div>
         <div class="disco-info">
-          <div class="disco-title">Countdown</div>
+          <div class="disco-title notranslate" translate="no">Countdown</div>
           <div class="disco-subtitle">(All In One)</div>
           <div class="disco-genre">PARTY ANTHEM · FESTIVAL POP · 126 BPM</div>
         </div>
@@ -3067,7 +3081,7 @@ footer { background: rgba(6,6,8,0.8); }
       <div class="disco-row reveal" onclick="toggleDiscoRow(this)">
         <div class="disco-thumb"><div class="disco-thumb-num">N/A</div><img loading="lazy" src="/covers/TIKET-COVERS.png" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" alt="Stream — cover provisoire" class="disco-cover-img" data-song="Stream"></div>
         <div class="disco-info">
-          <div class="disco-title">Stream</div>
+          <div class="disco-title notranslate" translate="no">Stream</div>
           <div class="disco-genre">Détails à venir</div>
         </div>
         <div class="disco-arrow">▼</div>
@@ -3088,7 +3102,7 @@ footer { background: rgba(6,6,8,0.8); }
       <div class="disco-row reveal" onclick="toggleDiscoRow(this)">
         <div class="disco-thumb"><div class="disco-thumb-num">22</div><img loading="lazy" src="/covers/JAPAN-DREAM.jpg" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" alt="Japan Dream — cover" class="disco-cover-img" data-song="Japan_Dream"></div>
         <div class="disco-info">
-          <div class="disco-title">Japan Dream</div>
+          <div class="disco-title notranslate" translate="no">Japan Dream</div>
           <div class="disco-genre">Détails à venir</div>
         </div>
         <div class="disco-arrow">▼</div>
@@ -4385,6 +4399,20 @@ function hideBookOverlay() {
   nextMeteor = performance.now() + 1200;
   requestAnimationFrame(t => { last = t; draw(t); });
 })();
+</script>
+<div id="google_translate_element"></div>
+<script>
+function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:'fr',includedLanguages:'fr,en,es,it',autoDisplay:false},'google_translate_element');}
+function getSiteLang(){var m=document.cookie.match(/googtrans=\/fr\/(\w+)/);return m?m[1]:'fr';}
+function setSiteLang(l){
+  var h=location.hostname, d=h.replace(/^www\./,'');
+  var exp='expires=Thu, 01 Jan 1970 00:00:00 GMT';
+  ['', ';domain='+h, ';domain=.'+d].forEach(function(x){document.cookie='googtrans=;'+exp+';path=/'+x;});
+  if(l!=='fr'){['', ';domain=.'+d].forEach(function(x){document.cookie='googtrans=/fr/'+l+';path=/'+x;});}
+  location.reload();
+}
+(function(){var l=getSiteLang();document.querySelectorAll('.lang-switch button').forEach(function(b){if(b.dataset.l===l)b.classList.add('on');});
+ if(l!=='fr'){var sc=document.createElement('script');sc.src='https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';document.body.appendChild(sc);}})();
 </script>
 </body>
 </html>

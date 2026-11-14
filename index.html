@@ -2415,12 +2415,12 @@ footer { background: rgba(6,6,8,0.8); }
               <div class="coming-soon-bubble">✦ COMING SOON ✦</div>
             </div>
             <button class="btn-like" data-song="Sono_Perfetta" onclick="toggleLike(this)">♡ LIKE</button>
-            <span class="listen-full">🎧 Écouter le titre complet sur Spotify — sorti le 13.11.2026 ▼ <span style="font-size:.85em;color:var(--gold-dim)">(🇮🇹 disponible ; autres langues : extrait)</span></span>
+            <span class="listen-full">🎧 Écouter le titre complet sur Spotify — sorti le 13.11.2026 ▼ <span style="font-size:.85em;color:var(--gold-dim)">(🇮🇹 disponible ; 🇬🇧 🇫🇷 extraits ; 🇪🇸 bientôt)</span></span>
             <div class="flag-btns">
               <a class="flag-btn full" href="https://distrokid.com/hyperfollow/lucataraz/sono-perfetta-cercasi-luca?ref=site" target="_blank" rel="noopener" title="Titre complet — Spotify, Apple Music, Deezer…"><span class="flag-emoji">🇮🇹</span>IT</a>
-              <button class="flag-btn" data-song="Sono_Perfetta" data-lang="EN" onclick="playPreview(this)"><span class="flag-emoji">🇬🇧</span>EN<span class="flag-coming">🎵 COMING SOON</span></button>
+              <button class="flag-btn" data-song="Sono_Perfetta" data-lang="EN" onclick="playPreview(this)"><span class="flag-emoji">🇬🇧</span>EN</button>
               <button class="flag-btn" data-song="Sono_Perfetta" data-lang="ES" onclick="playPreview(this)"><span class="flag-emoji">🇪🇸</span>ES<span class="flag-coming">🎵 COMING SOON</span></button>
-              <button class="flag-btn" data-song="Sono_Perfetta" data-lang="FR" onclick="playPreview(this)"><span class="flag-emoji">🇫🇷</span>FR<span class="flag-coming">🎵 COMING SOON</span></button>
+              <button class="flag-btn" data-song="Sono_Perfetta" data-lang="FR" onclick="playPreview(this)"><span class="flag-emoji">🇫🇷</span>FR</button>
             </div>
             <button class="clip-btn" onclick="openVideoOverlay('Sono_Perfetta')">▶ Voir le Clip</button>
             <span class="hook-hint">👈</span>
@@ -3816,7 +3816,7 @@ function revealFooterEmail() {
 // Aggiungere gli URL MP3 quando disponibili
 const audioMap = {
   Ghost_Me:          { IT: '/audio/GHOST-ME-IT-hook.mp3', EN: '/audio/GHOST-ME-EN-hook.mp3', ES: '/audio/GHOST-ME-ES-hook.mp3', FR: '/audio/GHOST-ME-FR-hook.mp3' },
-  Sono_Perfetta:     { IT: '/audio/SONO-PERFETTA-IT-hook.mp3', EN: null, ES: null, FR: null },
+  Sono_Perfetta:     { IT: '/audio/SONO-PERFETTA-IT-hook.mp3', EN: '/audio/SONO-PERFETTA-EN-hook.mp3?v=1', ES: null, FR: '/audio/SONO-PERFETTA-FR-hook.mp3?v=1' },
   La_Copertina:      { IT: null, EN: null, ES: null, FR: null },
   Ma_Karma:          { IT: '/audio/MA-KARMA-IT-hook.mp3?v=2', EN: null, ES: null, FR: null },
   Acqua_e_Fuoco:     { IT: null, EN: null, ES: null, FR: null },

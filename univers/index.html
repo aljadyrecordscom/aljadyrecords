@@ -625,12 +625,8 @@ ul.points li::before{content:"";flex:none;width:12px;height:12px;border-radius:5
 .gate .langs button[aria-pressed="true"]{border-color:var(--gold);color:var(--gold-soft)}
 .np{font-size:12px;color:var(--gold-soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:280px;text-decoration:none;border-bottom:1px dotted rgba(212,172,85,.5)}
 .np:hover{color:#fff}
-.cta{position:fixed;left:50%;bottom:86px;transform:translate(-50%,30px);z-index:40;opacity:0;pointer-events:none;transition:opacity .8s ease,transform .8s ease;
   display:flex;align-items:center;gap:12px;padding:14px 22px;border-radius:40px;background:rgba(7,10,13,.92);border:1px solid var(--gold);color:var(--gold-soft);text-decoration:none;font:700 clamp(14px,1.8vw,19px) var(--body);box-shadow:0 20px 50px rgba(0,0,0,.6)}
-.cta.show{opacity:1;transform:translate(-50%,0);pointer-events:auto}
-.cta b{color:var(--night);background:var(--gold);border-radius:20px;padding:6px 14px;font-family:var(--display);letter-spacing:.04em}
-@media (max-width:700px){.np{max-width:120px}.cta{bottom:76px;flex-direction:column;gap:8px;text-align:center}}
-</style>
+@media (max-width:700px){.np{max-width:120px}</style>
 </head>
 <body>
 <div class="gate" id="gate"><div class="gate-in">
@@ -640,7 +636,6 @@ ul.points li::before{content:"";flex:none;width:12px;height:12px;border-radius:5
   <button class="mute" id="goSilent"><span lang="fr">Entrer sans son</span><span lang="en">Enter without sound</span></button>
   <div class="langs"><button class="lang" data-l="fr" aria-pressed="true">FR</button><button class="lang" data-l="en" aria-pressed="false">EN</button></div>
 </div></div>
-<a class="cta" id="cta" href="https://www.aljadyrecords.com/?ref=univers#compilation" target="_blank" rel="noopener">🎧 <span><span lang="fr">Écoutez les titres complets de LucaTaraz</span><span lang="en">Listen to LucaTaraz's full songs</span></span><b><span lang="fr">Visitez le site</span><span lang="en">Visit the website</span> ↗</b></a>
 <div class="viewport" id="vp">
 <div class="stage" id="stage" aria-live="polite">
   <!-- 1 -->
@@ -1759,15 +1754,15 @@ document.querySelectorAll('.slide').forEach(makeSky);
   const L={fr:[['/audio/GHOST-ME-FR-hook.mp3','Ghost Me, I Ghost You (FR)'],['/audio/SONO-PERFETTA-FR-hook.mp3?v=1','Je suis parfaite (cherche Luca)'],['/audio/MA-KARMA-IT-hook.mp3?v=2','Ma Karma (Meglio no!)']].concat(EXTRA),
            en:[['/audio/GHOST-ME-EN-hook.mp3','Ghost Me, I Ghost You (EN)'],['/audio/SONO-PERFETTA-EN-hook.mp3?v=1',"I'm Perfect (Looking for Luca)"],['/audio/MA-KARMA-IT-hook.mp3?v=2','Ma Karma (Meglio no!)']].concat(EXTRA)};
   const a=new Audio(); a.preload='auto'; let n=0, on=false, done=false, fadeT=null;
-  const np=document.getElementById('np'), snd=document.getElementById('snd'), gate=document.getElementById('gate'), cta=document.getElementById('cta');
+  const np=document.getElementById('np'), snd=document.getElementById('snd'), gate=document.getElementById('gate');
   const lang=()=>document.documentElement.dataset.lang==='en'?'en':'fr';
   function fade(to,ms,cb){clearInterval(fadeT);const from=a.volume,st=performance.now();fadeT=setInterval(()=>{const k=Math.min(1,(performance.now()-st)/ms);a.volume=from+(to-from)*k;if(k>=1){clearInterval(fadeT);cb&&cb();}},40);}
   function label(){np.textContent=done?(lang()==='en'?'🎧 Visit the website ↗':'🎧 Visitez le site ↗'):'♪ '+L[lang()][n][1]+' — LucaTaraz ↗';}
   function load(i){n=i;a.src=BASE+L[lang()][n][0];a._f=0;label();}
   function play(){a.volume=0;a.play().then(()=>fade(.85,1200)).catch(()=>{});}
   a.addEventListener('timeupdate',()=>{if(on&&a.duration&&a.duration-a.currentTime<1.4&&!a._f){a._f=1;fade(0,1200);}});
-  a.addEventListener('ended',()=>{ if(n+1<L[lang()].length){load(n+1);if(on)play();} else {done=true;on=false;snd.textContent='🔁';label();cta.classList.add('show');} });
-  function setOn(v){ if(v&&done){done=false;cta.classList.remove('show');load(0);} on=v;snd.textContent=v?'🔊':'🔇'; if(v){if(!a.src)load(0);play();} else fade(0,500,()=>a.pause()); }
+  a.addEventListener('ended',()=>{ if(n+1<L[lang()].length){load(n+1);if(on)play();} else {done=true;on=false;snd.textContent='🔁';label();} });
+  function setOn(v){ if(v&&done){done=false;load(0);} on=v;snd.textContent=v?'🔊':'🔇'; if(v){if(!a.src)load(0);play();} else fade(0,500,()=>a.pause()); }
   snd.onclick=()=>setOn(!on);
   // cambio lingua: stessa canzone nell'altra lingua
   document.querySelectorAll('.lang').forEach(b=>b.addEventListener('click',()=>{

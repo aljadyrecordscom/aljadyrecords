@@ -1206,6 +1206,12 @@ section {
 .fans-wall a:hover{background:rgba(201,168,76,.12)}
 @media (max-width:900px){.fans-grid{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:480px){#fans{padding:5rem 16px}.fan-card{padding:1.2rem 1rem}.fan-card .net{font-size:1.1rem}}
+.fans-start{margin-top:2.2rem;display:flex;flex-wrap:wrap;gap:1rem 1.4rem;align-items:center;padding:1.1rem 1.4rem;border-left:3px solid var(--gold);background:rgba(201,168,76,.07)}
+.fans-start .fs-txt{flex:1 1 360px;color:var(--white);font-size:1.15rem;line-height:1.45}
+.fans-start .fs-txt b{color:var(--gold-hi);font-weight:600}
+.fans-start .fs-btns{display:flex;gap:.5rem;flex-wrap:wrap}
+.fans-start a,.fans-start button{font-family:var(--font-mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;padding:.55rem .9rem;border:1px solid var(--gold);color:var(--gold);background:transparent;text-decoration:none;cursor:pointer}
+.fans-start a:hover,.fans-start button:hover{background:var(--gold);color:var(--black)}
 #events { background: var(--deep); }
 .event-card {
   display: flex;
@@ -3357,6 +3363,14 @@ footer { background: rgba(6,6,8,0.8); }
       <div class="section-eyebrow">Communauté</div>
       <h2 class="section-title">Fans<br><em style="font-style:italic;color:var(--gold);font-size:0.6em;">La famille LucaTaraz</em></h2>
       <p style="color:var(--light);max-width:650px;margin-top:1rem;">Chaque écoute, chaque partage, chaque abonnement fait grandir la musique. Rejoignez la famille sur vos réseaux préférés.</p>
+    </div>
+    <div class="fans-start">
+      <span class="fs-txt">🚀 <b>On démarre !</b> La famille est toute jeune — invitez vos amis à découvrir <b class="notranslate" translate="no">TARAZ</b> 😄</span>
+      <span class="fs-btns">
+        <a class="fs-wa" href="https://wa.me/?text=%F0%9F%8E%B5%20D%C3%A9couvre%20la%20musique%20de%20LucaTaraz%20%E2%80%94%20https%3A%2F%2Fwww.aljadyrecords.com%2F%3Fref%3Dwhatsapp" target="_blank" rel="noopener">WhatsApp</a>
+        <a class="fs-fb" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.aljadyrecords.com%2F%3Fref%3Dfacebook" target="_blank" rel="noopener">Facebook</a>
+        <button type="button" class="fs-copy" onclick="(function(b){var u='https://www.aljadyrecords.com/';if(navigator.share){navigator.share({title:'LucaTaraz — ALJADY RECORDS',url:u}).catch(function(){});}else if(navigator.clipboard){navigator.clipboard.writeText(u).then(function(){b.textContent='Lien copié ✓';});}})(this)">Partager le lien</button>
+      </span>
     </div>
     <div class="fans-total" id="fansTotal" hidden><span class="num" id="fansNum">0</span><span class="lbl">fans sur nos réseaux</span><span class="upd" id="fansUpd"></span></div>
     <div class="fans-grid">

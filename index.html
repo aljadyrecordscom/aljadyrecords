@@ -1180,6 +1180,32 @@ section {
 }
 
 /* EVENTS */
+/* ═══ FANS ═══ */
+#fans{background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(201,168,76,.10),transparent 70%),var(--black);padding:7rem 2rem;position:relative;overflow:hidden}
+.fans-inner{max-width:1100px;margin:0 auto}
+.fans-total{display:flex;align-items:baseline;gap:1rem;flex-wrap:wrap;margin:2.2rem 0 2.6rem}
+.fans-total[hidden]{display:none}
+.fans-total .num{font-family:var(--font-display);font-size:clamp(3rem,8vw,5.5rem);font-weight:900;line-height:1;background:linear-gradient(100deg,#8a6d28,#f0d080 40%,#c9a84c 60%,#f0d080 85%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.fans-total .lbl{font-family:var(--font-mono);font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--sand)}
+.fans-total .upd{flex-basis:100%;font-family:var(--font-mono);font-size:.62rem;letter-spacing:.1em;color:var(--grey)}
+.fans-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1rem;margin-top:2.4rem}
+.fan-card{position:relative;display:flex;flex-direction:column;gap:.7rem;padding:1.6rem 1.4rem;border:1px solid rgba(201,168,76,.25);background:linear-gradient(160deg,var(--panel),var(--dark));text-decoration:none;color:var(--white);transition:transform .4s var(--ease-out),border-color .4s,box-shadow .4s}
+.fan-card:hover{transform:translateY(-6px);border-color:var(--gold);box-shadow:0 18px 40px rgba(0,0,0,.5),0 0 0 1px rgba(201,168,76,.3)}
+.fan-card svg{width:34px;height:34px;fill:var(--gold)}
+.fan-card .net{font-family:var(--font-display);font-size:1.35rem}
+.fan-card .handle{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.06em;color:var(--light)}
+.fan-card .cnt{font-family:var(--font-display);font-size:1.6rem;color:var(--gold-hi)}
+.fan-card .cnt:empty{display:none}
+.fan-card .cnt small{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.12em;color:var(--grey);margin-left:.35rem}
+.fan-card .follow{margin-top:auto;align-self:flex-start;font-family:var(--font-mono);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--black);background:var(--gold);padding:.5rem .9rem;transition:background .3s}
+.fan-card:hover .follow{background:var(--gold-hi)}
+.fans-wall{margin-top:2.6rem;padding:1.8rem;border:1px dashed rgba(201,168,76,.4);display:flex;gap:1.4rem;align-items:center;flex-wrap:wrap}
+.fans-wall p{margin:0;flex:1 1 380px;color:var(--sand);font-size:1.15rem;line-height:1.5}
+.fans-wall .tags{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.08em;color:var(--gold)}
+.fans-wall a{font-family:var(--font-mono);font-size:.65rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);border:1px solid var(--gold);padding:.6rem 1rem;text-decoration:none}
+.fans-wall a:hover{background:rgba(201,168,76,.12)}
+@media (max-width:900px){.fans-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:480px){#fans{padding:5rem 16px}.fan-card{padding:1.2rem 1rem}.fan-card .net{font-size:1.1rem}}
 #events { background: var(--deep); }
 .event-card {
   display: flex;
@@ -2124,6 +2150,7 @@ footer { background: rgba(6,6,8,0.8); }
       <li><a href="#compilation">Compilation</a></li>
       <li><a href="#casting">Casting</a></li>
       <li><a href="#events">Events</a></li>
+      <li><a href="#fans">Fans</a></li>
       <li><a href="#boutique">Boutique</a></li>
       <li><a href="#droits">Droits</a></li>
       <li><a href="#collaboration">Collaboration</a></li>
@@ -2147,6 +2174,7 @@ footer { background: rgba(6,6,8,0.8); }
     <li><a href="#compilation">Compilation</a></li>
     <li><a href="#casting">Casting</a></li>
     <li><a href="#events">Events</a></li>
+    <li><a href="#fans">Fans</a></li>
     <li><a href="#boutique">Boutique</a></li>
     <li><a href="#droits">Droits</a></li>
     <li><a href="#collaboration">Collaboration</a></li>
@@ -3310,6 +3338,41 @@ footer { background: rgba(6,6,8,0.8); }
 </section>
 
 <!-- ═══ BOUTIQUE ═══ -->
+<!-- ═══ FANS ═══ -->
+<section id="fans">
+  <div class="fans-inner">
+    <div class="reveal">
+      <div class="section-eyebrow">Communauté</div>
+      <h2 class="section-title">Fans<br><em style="font-style:italic;color:var(--gold);font-size:0.6em;">La famille LucaTaraz</em></h2>
+      <p style="color:var(--light);max-width:650px;margin-top:1rem;">Chaque écoute, chaque partage, chaque abonnement fait grandir la musique. Rejoignez la famille sur vos réseaux préférés.</p>
+    </div>
+    <div class="fans-total" id="fansTotal" hidden><span class="num" id="fansNum">0</span><span class="lbl">fans sur nos réseaux</span><span class="upd" id="fansUpd"></span></div>
+    <div class="fans-grid">
+      <a class="fan-card" href="https://instagram.com/lucataraz/" target="_blank" rel="noopener" data-net="instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7.2A4.8 4.8 0 1 0 16.8 12 4.8 4.8 0 0 0 12 7.2Zm0 7.9A3.1 3.1 0 1 1 15.1 12 3.1 3.1 0 0 1 12 15.1Zm6.1-8.1a1.1 1.1 0 1 1-1.1-1.1 1.1 1.1 0 0 1 1.1 1.1ZM21.9 8.1a5.6 5.6 0 0 0-1.5-4 5.6 5.6 0 0 0-4-1.5c-1.6-.1-6.3-.1-7.9 0a5.6 5.6 0 0 0-4 1.5 5.6 5.6 0 0 0-1.5 4c-.1 1.6-.1 6.3 0 7.9a5.6 5.6 0 0 0 1.5 4 5.6 5.6 0 0 0 4 1.5c1.6.1 6.3.1 7.9 0a5.6 5.6 0 0 0 4-1.5 5.6 5.6 0 0 0 1.5-4c.1-1.6.1-6.3 0-7.9Zm-2.1 9.6a3.2 3.2 0 0 1-1.8 1.8c-1.3.5-4.3.4-5.7.4s-4.4.1-5.7-.4a3.2 3.2 0 0 1-1.8-1.8c-.5-1.3-.4-4.3-.4-5.7s-.1-4.4.4-5.7a3.2 3.2 0 0 1 1.8-1.8c1.3-.5 4.3-.4 5.7-.4s4.4-.1 5.7.4a3.2 3.2 0 0 1 1.8 1.8c.5 1.3.4 4.3.4 5.7s.1 4.4-.4 5.7Z"/></svg><span class="net notranslate" translate="no">Instagram</span><span class="handle notranslate" translate="no">@lucataraz</span><span class="cnt" data-cnt="instagram"></span><span class="follow">Suivre ↗</span></a>
+      <a class="fan-card" href="https://tiktok.com/@lucataraz" target="_blank" rel="noopener" data-net="tiktok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.6 2h-3.3v13.3a2.9 2.9 0 1 1-2-2.8V9.1a6.3 6.3 0 1 0 5.3 6.2V8.6a7.9 7.9 0 0 0 4.6 1.5V6.8a4.6 4.6 0 0 1-4.6-4.8Z"/></svg><span class="net notranslate" translate="no">TikTok</span><span class="handle notranslate" translate="no">@lucataraz</span><span class="cnt" data-cnt="tiktok"></span><span class="follow">Suivre ↗</span></a>
+      <a class="fan-card" href="https://youtube.com/@LucaTaraz" target="_blank" rel="noopener" data-net="youtube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8ZM9.8 15V9l5.8 3Z"/></svg><span class="net notranslate" translate="no">YouTube</span><span class="handle notranslate" translate="no">@LucaTaraz</span><span class="cnt" data-cnt="youtube"></span><span class="follow">Suivre ↗</span></a>
+      <a class="fan-card" href="https://facebook.com/lucataraz" target="_blank" rel="noopener" data-net="facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12a12 12 0 1 0-13.9 11.9v-8.4H7.1V12h3V9.4c0-3 1.8-4.7 4.5-4.7a18 18 0 0 1 2.7.2v2.9h-1.5c-1.5 0-1.9.9-1.9 1.9V12h3.3l-.5 3.5h-2.8v8.4A12 12 0 0 0 24 12Z"/></svg><span class="net notranslate" translate="no">Facebook</span><span class="handle notranslate" translate="no">lucataraz</span><span class="cnt" data-cnt="facebook"></span><span class="follow">Suivre ↗</span></a>
+    </div>
+    <div class="fans-wall">
+      <p>Vous dansez sur <em>Sono Perfetta</em> ? Vous chantez <em>Ghost Me</em> ? Publiez votre vidéo avec <span class="tags notranslate" translate="no">#LucaTaraz #SonoPerfetta #DignitaCompilation2026</span> — les plus belles seront partagées ici.</p>
+      <a href="mailto:info@aljadyrecords.com?subject=FANS%20%E2%80%94%20ma%20vid%C3%A9o">Envoyer ma vidéo</a>
+    </div>
+  </div>
+</section>
+<script>
+(function(){
+  fetch('/data/fans.json?ts='+Date.now()).then(function(r){return r.ok?r.json():null}).then(function(d){
+    if(!d) return; var tot=0, any=false;
+    ['instagram','tiktok','youtube','facebook'].forEach(function(k){ var v=d[k]; if(typeof v==='number'){ any=true; tot+=v;
+      var el=document.querySelector('[data-cnt="'+k+'"]'); if(el) el.innerHTML=v.toLocaleString('fr-FR')+'<small>FANS</small>'; } });
+    if(!any) return;
+    var box=document.getElementById('fansTotal'), num=document.getElementById('fansNum'); box.hidden=false;
+    var st=performance.now(), D=1600; (function tick(n){var k=Math.min(1,(n-st)/D); num.textContent=Math.round(tot*(1-Math.pow(1-k,3))).toLocaleString('fr-FR'); if(k<1) requestAnimationFrame(tick);})(st);
+    if(d.updated) document.getElementById('fansUpd').textContent='Mis à jour le '+d.updated;
+  }).catch(function(){});
+})();
+</script>
+
 <section id="boutique">
   <div class="boutique-inner">
     <div class="reveal">

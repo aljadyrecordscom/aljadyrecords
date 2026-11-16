@@ -1212,6 +1212,9 @@ section {
 .fans-start .fs-btns{display:flex;gap:.5rem;flex-wrap:wrap}
 .fans-start a,.fans-start button{font-family:var(--font-mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;padding:.55rem .9rem;border:1px solid var(--gold);color:var(--gold);background:transparent;text-decoration:none;cursor:pointer}
 .fans-start a:hover,.fans-start button:hover{background:var(--gold);color:var(--black)}
+.fans-grid{position:relative}
+.fans-grid .fw-canvas{position:absolute;left:-120px;top:-120px;width:calc(100% + 240px);height:calc(100% + 240px);pointer-events:none;z-index:0}
+.fans-grid .fan-card{z-index:1}
 #events { background: var(--deep); }
 .event-card {
   display: flex;
@@ -3396,6 +3399,39 @@ footer { background: rgba(6,6,8,0.8); }
     var st=performance.now(), D=1600; (function tick(n){var k=Math.min(1,(n-st)/D); num.textContent=Math.round(tot*(1-Math.pow(1-k,3))).toLocaleString('fr-FR'); if(k<1) requestAnimationFrame(tick);})(st);
     if(d.updated) document.getElementById('fansUpd').textContent='Mis à jour le '+d.updated;
   }).catch(function(){});
+})();
+</script>
+
+<script>
+/* FANS: fuochi d'artificio multicolore dietro la scheda al passaggio del mouse */
+(function(){
+  var grid=document.querySelector('.fans-grid'); if(!grid) return;
+  if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var cv=document.createElement('canvas'); cv.className='fw-canvas'; cv.setAttribute('aria-hidden','true'); grid.insertBefore(cv,grid.firstChild);
+  var ctx=cv.getContext('2d'), parts=[], raf=null, dpr=Math.min(2,window.devicePixelRatio||1), PAD=120;
+  var COLS=['#f0d080','#c9a84c','#ff4f8b','#2fb8e0','#7fd08a','#c94fd6','#ff6a3d','#ffffff'];
+  function size(){ var r=cv.getBoundingClientRect(); cv.width=r.width*dpr; cv.height=r.height*dpr; ctx.setTransform(dpr,0,0,dpr,0,0); }
+  function star(x,y,r){ ctx.beginPath(); for(var i=0;i<10;i++){ var a=i*Math.PI/5, rr=i%2?r*.42:r; ctx.lineTo(x+Math.cos(a)*rr,y+Math.sin(a)*rr);} ctx.closePath(); ctx.fill(); }
+  function burst(card){
+    size(); var g=grid.getBoundingClientRect(), c=card.getBoundingClientRect();
+    var cx=c.left-g.left+c.width/2+PAD, cy=c.top-g.top+c.height/2+PAD;
+    for(var i=0;i<140;i++){ var a=Math.random()*Math.PI*2, v=260+Math.random()*420;
+      parts.push({x:cx,y:cy,vx:Math.cos(a)*v,vy:Math.sin(a)*v,life:1,c:COLS[i%COLS.length],s:2+Math.random()*3.5,st:Math.random()<.35}); }
+    if(!raf){ last=performance.now(); raf=requestAnimationFrame(frame); }
+  }
+  var last=0;
+  function frame(n){ var dt=Math.min(.05,(n-last)/1000); last=n; var w=cv.width/dpr,h=cv.height/dpr;
+    ctx.clearRect(0,0,w,h); ctx.globalCompositeOperation='lighter';
+    parts.forEach(function(p){ p.vx*=.965; p.vy=p.vy*.965+60*dt; p.x+=p.vx*dt; p.y+=p.vy*dt; p.life-=dt/1.6;
+      var al=Math.max(0,p.life); ctx.globalAlpha=al; ctx.fillStyle=p.c; ctx.shadowColor=p.c; ctx.shadowBlur=12;
+      if(p.st) star(p.x,p.y,p.s*1.8*Math.max(.4,al)); else { ctx.beginPath(); ctx.arc(p.x,p.y,p.s*Math.max(.4,al),0,7); ctx.fill(); } });
+    ctx.globalAlpha=1; ctx.shadowBlur=0; parts=parts.filter(function(p){return p.life>0;});
+    if(parts.length) raf=requestAnimationFrame(frame); else { raf=null; ctx.clearRect(0,0,w,h); } }
+  grid.querySelectorAll('.fan-card').forEach(function(card){
+    var t=0; card.addEventListener('mouseenter',function(){ var n=Date.now(); if(n-t>600){ t=n; burst(card);} });
+    card.addEventListener('focus',function(){ burst(card); });
+  });
+  window.addEventListener('resize',size);
 })();
 </script>
 

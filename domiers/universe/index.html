@@ -259,6 +259,8 @@ ul.points li::before{content:"";flex:none;width:12px;height:12px;border-radius:5
 .hub.on .htxt{opacity:1}
 .hub .htxt h2{font-size:56px}
 .hub .hint{font-size:22px;line-height:1.45;color:#d5dae0;margin:20px 0 0}
+.hub .motto{font-family:var(--display);font-style:italic;font-size:28px;line-height:1.25;color:var(--gold);margin:14px 0 0;letter-spacing:.01em}
+.hub .hsys{left:110px} /* sistema solare DOMIER più a destra */
 .hsys{position:absolute;left:0;top:0;width:1600px;height:900px;opacity:0;transform:scale(.85);transition:opacity 1.2s ease,transform 1.6s cubic-bezier(.2,.75,.2,1)}
 .hub.on .hsys{opacity:1;transform:none}
 .hsys svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
@@ -798,6 +800,7 @@ ul.points li::before{content:"";flex:none;width:12px;height:12px;border-radius:5
     <canvas class="sky" aria-hidden="true"></canvas>
     <div class="htxt">
       <h2><span lang="fr">L’univers ALJADY</span><span lang="en">The ALJADY universe</span></h2>
+      <p class="motto"><span lang="fr">Nous intervenons, vous êtes en sécurité.</span><span lang="en">We step in, you stay safe.</span></p>
       <p class="hint"><span lang="fr">Chaque planète est une branche du réseau. Survolez-la pour voir qui est relié, cliquez pour voir son app. Au centre, le film DOMIER.</span><span lang="en">Each planet is a branch of the network. Hover to see who is connected, click to see its app. In the centre, the DOMIER film.</span></p>
     </div>
     <div class="hsys">

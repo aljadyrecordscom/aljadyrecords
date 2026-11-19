@@ -11,3 +11,5 @@
 ## Da fare (deciso col titolare il 19/11/2026)
 - Pianeta «Devenir client» → modulo d'iscrizione con **consenso RGPD proprio e separato** (uso dei dati della richiesta, durata di conservazione, diritto di cancellazione, contatto), oltre alla spunta CGU; email obbligatoria.
 - Pagamento online delle licenze (provider da scegliere: consigliato Stripe + bonifico; conto a nome di ALJADY RECORDS LTD aperto dal titolare).
+- Messaggio annunciatori: prezzo «dès 3,99 € HT» (IVA esclusa, confermato dal titolare il 19/11/2026); da precisare a cosa corrisponde (giorno / settimana / posto).
+- **Da aggiungere più avanti, solo quando è vero e documentato:** numero dei follower dei social AJR/DOMIER (quando avviati); «plus de 4 000 logements dans le réseau» quando il cliente con quegli appartamenti sarà iscritto nella nuova rete con contratto (senza nominarlo).

@@ -725,6 +725,13 @@ ul.points li::before{content:"";flex:none;width:12px;height:12px;border-radius:5
 .mbox .msub{margin:0 0 18px;color:#c3cad2;font-size:18px;line-height:1.45}
 .mclose{position:absolute;right:16px;top:14px;width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:#141b22;color:var(--text);font:700 22px var(--body);cursor:pointer}
 .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.pflip{position:relative;border:0;border-top:4px solid var(--c);padding:0;font:inherit;color:inherit;text-align:left;cursor:pointer;perspective:900px;min-height:230px}
+.pf-in{position:absolute;inset:0;transition:transform .6s;transform-style:preserve-3d}.pflip.on .pf-in,.pflip:focus-visible .pf-in{transform:rotateY(180deg)}
+.pf-a,.pf-b{position:absolute;inset:0;padding:16px;backface-visibility:hidden;-webkit-backface-visibility:hidden;display:flex;flex-direction:column}
+.pf-a{align-items:center;justify-content:center;text-align:center;gap:6px}.pf-a img{border-radius:50%;filter:drop-shadow(0 0 14px rgba(255,106,61,.55))}.pf-hint{font-size:12px;color:#9aa6b2}
+.pf-b{transform:rotateY(180deg);background:#151d25;border-radius:14px}.pf-b .pr{display:block}.pf-t{font-size:13px;color:#c3cad2;line-height:1.4}
+.mbtns{display:flex;gap:10px;flex-wrap:wrap}.msend.msec{background:#1b2630;color:var(--gold-soft);border:1px solid var(--gold-soft)}
+
 .plan2{padding:16px;border-radius:14px;background:#151d25;border-top:4px solid var(--c)}
 .plan2 b{display:block;font-size:19px;margin-bottom:6px}
 .plan2 .pr{font:700 26px var(--display);color:var(--gold-soft);margin:6px 0}
@@ -857,10 +864,12 @@ ul.points li::before{content:"";flex:none;width:12px;height:12px;border-radius:5
           <p class="msub"><span lang="fr">Une licence annuelle relie votre structure à la centrale DOMIER et à toutes les apps.</span><span lang="en">An annual licence links your business to the DOMIER control room and to every app.</span></p>
           <div class="plans">
             <div class="plan2" style="--c:#d4ac55"><b><span lang="fr">Licence DOMIER</span><span lang="en">DOMIER licence</span></b><div class="pr"><span lang="fr">266,6 € / an</span><span lang="en">€266.6 / year</span></div><p><span lang="fr">Offre de lancement, 3 mois d’essai. Propriétaires, gérances, agences, hôtels, Airbnb.</span><span lang="en">Launch offer, 3-month trial. Owners, property managers, agencies, hotels, Airbnb.</span></p></div>
-            <div class="plan2" style="--c:#ff6a3d"><b><span lang="fr">Annonceurs</span><span lang="en">Advertisers</span></b><div class="pr"><span lang="fr">dès 19 € HT / mois</span><span lang="en">from €19 / month</span></div><p><span lang="fr">Start 19 €, Plus 29 €, Max 49 € HT par mois. Bars, restaurants, boutiques, clubs.</span><span lang="en">Start €19, Plus €29, Max €49 per month, excl. VAT. Bars, restaurants, shops, clubs.</span></p></div>
+            <button type="button" class="plan2 pflip" style="--c:#ff6a3d" aria-label="Annonceurs"><span class="pf-in"><span class="pf-a"><img src="img/161899925359.webp" alt="" width="92" height="92"><b><span lang="fr">Annonceurs</span><span lang="en">Advertisers</span></b><span class="pf-hint"><span lang="fr">touchez pour voir l’offre</span><span lang="en">tap to see the offer</span></span></span>
+              <span class="pf-b"><b><span lang="fr">Full opération</span><span lang="en">Full operation</span></b><span class="pr">299&nbsp;€</span><span class="pf-t"><span lang="fr">Payée ici, elle est activée d’office : vous publiez vos annonces dans l’app des annonceurs sans rien payer de plus. Sinon, à la carte dans l’app : dès 3,99&nbsp;€&nbsp;HT.</span><span lang="en">Paid here, it is switched on straight away: you publish your ads in the advertiser app with nothing more to pay. Otherwise, à la carte in the app: from €3.99 excl.&nbsp;VAT.</span></span></span></span></button>
             <div class="plan2" style="--c:#2fb8e0"><b>Interventions</b><div class="pr"><span lang="fr">sur devis</span><span lang="en">on quote</span></div><p><span lang="fr">Le domiste passe, la centrale envoie le devis, vous signez dans l’app.</span><span lang="en">The domiste visits, the control room sends the quote, you sign in the app.</span></p></div>
           </div>
-          <a class="msend" href="mailto:info@aljadyrecords.com?subject=Abonnement%20DOMIER" target="_blank" rel="noopener"><span lang="fr">Je m’abonne</span><span lang="en">Subscribe</span></a>
+          <div class="mbtns"><a class="msend mgo" data-go="https://ajr-interventions.pages.dev/devenir-client.html" data-q="abo=1" href="https://ajr-interventions.pages.dev/devenir-client.html?abo=1" target="_blank" rel="noopener"><span lang="fr">💎 Je m’abonne</span><span lang="en">💎 Subscribe</span></a><a class="msend msec mgo" data-go="https://ajr-interventions.pages.dev/devenir-client.html" data-q="abo=1&amp;pay=vir" href="https://ajr-interventions.pages.dev/devenir-client.html?abo=1&amp;pay=vir" target="_blank" rel="noopener"><span lang="fr">🏦 Par virement bancaire</span><span lang="en">🏦 By bank transfer</span></a></div>
+          <div class="mnote"><span lang="fr">Votre demande arrive à la centrale DOMIER : nous créons votre licence et vous envoyons la facture avec les coordonnées de paiement.</span><span lang="en">Your request reaches the DOMIER control room: we create your licence and send the invoice with the payment details.</span></div>
         </div>
         <div class="mpane" data-m="client">
           <h3><span lang="fr">Devenir client</span><span lang="en">Become a client</span></h3>
@@ -1824,7 +1833,8 @@ const ICONS={"proprio": "img/099e7d010e04.webp", "locat": "img/9952e35264e5.webp
   modal.addEventListener('click',e=>{ if(e.target===modal) close(); });
   document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&modal.classList.contains('show')) close(); });
   // build the mail from the form fields each time the visitor presses send
-  modal.querySelectorAll('a.mgo').forEach(a=>{ const set=()=>{ a.href=a.dataset.go+'?lang='+(document.documentElement.dataset.lang||'fr'); }; set(); a.addEventListener('pointerdown',set); a.addEventListener('focus',set); a.addEventListener('click',set); });
+  modal.querySelectorAll('.pflip').forEach(b=>b.addEventListener('click',()=>b.classList.toggle('on')));
+  modal.querySelectorAll('a.mgo').forEach(a=>{ const set=()=>{ a.href=a.dataset.go+'?'+(a.dataset.q?a.dataset.q+'&':'')+'lang='+(document.documentElement.dataset.lang||'fr'); }; set(); a.addEventListener('pointerdown',set); a.addEventListener('focus',set); a.addEventListener('click',set); });
   modal.querySelectorAll('a.msend[data-subj]').forEach(a=>{
     const pane=a.closest('.mpane');
     function build(){ const lines=[...pane.querySelectorAll('input:not([type=checkbox]),select,textarea')].map(el=>{ const lab=el.closest('label'); const name=lab?lab.querySelector('span[lang="'+(document.documentElement.dataset.lang||'fr')+'"]'):null; return (name?name.textContent:(el.name||'Email'))+': '+el.value; });

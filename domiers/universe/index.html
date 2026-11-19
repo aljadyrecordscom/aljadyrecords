@@ -2122,6 +2122,7 @@ document.querySelectorAll('.slide').forEach(makeSky);
   document.getElementById('goSilent').onclick=()=>enter(false);
 })();
 </script>
+<script>/* «Rejoignez l'univers» toujours sous le texte blanc, même si Safari met une ligne de plus */(()=>{const h=document.querySelector('.hub .htxt'),m=document.querySelector('.hub .msys');if(!h||!m)return;const place=()=>{const need=h.offsetTop+h.offsetHeight+34;m.style.top=Math.min(620,Math.max(542,need))+'px';};place();if(window.ResizeObserver)new ResizeObserver(place).observe(h);addEventListener('load',place);document.fonts&&document.fonts.ready.then(place);})();</script>
 <script>document.querySelectorAll('.hub .alien').forEach(a=>{a.addEventListener('click',e=>{e.stopPropagation();const g=e.target.closest('[data-play]');if(g&&window.DOMIER){a.classList.remove('open');window.DOMIER.play(g.dataset.play);return;}a.classList.toggle('open');});document.addEventListener('click',()=>a.classList.remove('open'));});</script>
 </body>
 </html>

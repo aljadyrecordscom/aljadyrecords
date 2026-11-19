@@ -9,7 +9,7 @@
 - Le immagini vecchie che non servono più in `img/` si possono togliere dopo il controllo (nessun riferimento in `index.html`).
 
 ## Da fare (deciso col titolare il 19/11/2026)
-- Pianeta «Devenir client» → modulo d'iscrizione con **consenso RGPD proprio e separato** (uso dei dati della richiesta, durata di conservazione, diritto di cancellazione, contatto), oltre alla spunta CGU; email obbligatoria.
+- ✅ (19/11/2026) «Devenir client» e «Partenaires et domistes»: email obbligatoria, spunta CGU (solo cliente) + consenso RGPD separato (uso, 12 mesi, cancellazione); invio bloccato senza spunte; riga di consenso con data nell’email. Durata 12 mesi = proposta da confermare col titolare/avvocato.
 - Pagamento online delle licenze (provider da scegliere: consigliato Stripe + bonifico; conto a nome di ALJADY RECORDS LTD aperto dal titolare).
 - Messaggio annunciatori: prezzo «dès 3,99 € HT» (IVA esclusa, confermato dal titolare il 19/11/2026); da precisare a cosa corrisponde (giorno / settimana / posto).
 - **Da aggiungere più avanti, solo quando è vero e documentato:** numero dei follower dei social AJR/DOMIER (quando avviati); «plus de 4 000 logements dans le réseau» quando il cliente con quegli appartamenti sarà iscritto nella nuova rete con contratto (senza nominarlo).

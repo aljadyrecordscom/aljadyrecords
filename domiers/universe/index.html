@@ -729,6 +729,11 @@ ul.points li::before{content:"";flex:none;width:12px;height:12px;border-radius:5
 .plan2 b{display:block;font-size:19px;margin-bottom:6px}
 .plan2 .pr{font:700 26px var(--display);color:var(--gold-soft);margin:6px 0}
 .plan2 p{margin:0;font-size:15px;color:#c3cad2;line-height:1.4}
+.mconsent{display:flex;flex-direction:column;gap:8px;margin:12px 0 4px}
+.mconsent label{display:flex;gap:10px;align-items:flex-start;font-size:13px;line-height:1.4;color:#c3cad2;cursor:pointer}
+.mconsent input{width:20px;height:20px;flex:0 0 auto;margin-top:1px;accent-color:#d4ac55}
+.mconsent a{color:var(--gold-soft);text-decoration:underline}
+.msend.off{opacity:.45;filter:grayscale(.4);cursor:not-allowed}
 .mform{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .mform label{display:flex;flex-direction:column;gap:5px;font-size:14px;color:#c3cad2}
 .mform label.full{grid-column:1/-1}
@@ -858,14 +863,18 @@ ul.points li::before{content:"";flex:none;width:12px;height:12px;border-radius:5
         </div>
         <div class="mpane" data-m="client">
           <h3><span lang="fr">Devenir client</span><span lang="en">Become a client</span></h3>
-          <p class="msub"><span lang="fr">Dites-nous qui vous êtes : nous vous recontactons pour activer vos 3 mois d’essai.</span><span lang="en">Tell us who you are: we’ll get back to you to start your 3-month trial.</span></p>
+          <p class="msub"><span lang="fr">Dites-nous qui vous êtes : nous vous recontactons pour activer vos 15 jours d’essai.</span><span lang="en">Tell us who you are: we’ll get back to you to start your 15-day trial.</span></p>
           <div class="mform">
             <label><span lang="fr">Nom</span><span lang="en">Name</span><input name="nom" autocomplete="name"></label>
             <label><span lang="fr">Société</span><span lang="en">Company</span><input name="societe" autocomplete="organization"></label>
             <label><span lang="fr">Je suis</span><span lang="en">I am</span><select name="type"><option>Propriétaire / Owner</option><option>Gérance / Property manager</option><option>Agence / Agency</option><option>Hôtel / Hotel</option><option>Airbnb</option><option>Taxi</option><option>Commerce, annonceur / Shop, advertiser</option></select></label>
             <label><span lang="fr">Téléphone</span><span lang="en">Phone</span><input name="tel" type="tel" autocomplete="tel"></label>
-            <label class="full">Email<input name="email" type="email" autocomplete="email"></label>
+            <label class="full"><span lang="fr">Email *</span><span lang="en">Email *</span><input name="email" type="email" autocomplete="email" required></label>
             <label class="full">Message<textarea name="msg"></textarea></label>
+          </div>
+          <div class="mconsent">
+            <label><input type="checkbox" data-ok="cgu"><span><span lang="fr">J’accepte les <a href="https://ajr-interventions.pages.dev/conditions.html" target="_blank" rel="noopener">conditions générales</a>.</span><span lang="en">I accept the <a href="https://ajr-interventions.pages.dev/conditions.html" target="_blank" rel="noopener">terms and conditions</a>.</span></span></label>
+            <label><input type="checkbox" data-ok="rgpd"><span><span lang="fr"><b>Protection de mes données (RGPD)</b> : j’accepte que mon nom, ma société, mon téléphone, mon email et mon message soient utilisés <b>uniquement</b> pour traiter ma demande et me recontacter. Ils ne sont jamais transmis à des tiers, sont conservés 12 mois au plus si la demande n’aboutit pas, et je peux à tout moment demander leur consultation ou leur suppression à info@aljadyrecords.com. <a href="https://ajr-interventions.pages.dev/confidentialite.html" target="_blank" rel="noopener">Politique de confidentialité</a></span><span lang="en"><b>Protection of my data (GDPR)</b>: I agree that my name, company, phone, email and message are used <b>only</b> to handle my request and contact me. They are never passed to third parties, are kept for 12 months at most if the request goes no further, and I can ask at any time to see or delete them at info@aljadyrecords.com. <a href="https://ajr-interventions.pages.dev/confidentialite.html" target="_blank" rel="noopener">Privacy policy</a></span></span></label>
           </div>
           <a class="msend" data-subj="Demande client DOMIER" href="#" target="_blank" rel="noopener"><span lang="fr">Envoyer ma demande</span><span lang="en">Send my request</span></a>
           <div class="mnote"><span lang="fr">La demande s’ouvre dans votre messagerie, adressée à info@aljadyrecords.com.</span><span lang="en">The request opens in your email app, addressed to info@aljadyrecords.com.</span></div>
@@ -878,8 +887,11 @@ ul.points li::before{content:"";flex:none;width:12px;height:12px;border-radius:5
             <label><span lang="fr">Métier</span><span lang="en">Trade</span><select name="metier"><option>Plombier / Plumber</option><option>Électricien / Electrician</option><option>Maçon / Mason</option><option>Peintre / Painter</option><option>Menuisier / Carpenter</option><option>Jardinier / Gardener</option><option>Nettoyage / Cleaning</option><option>Chauffeur, taxi / Driver</option><option>Entreprise partenaire / Partner company</option><option>Autre / Other</option></select></label>
             <label><span lang="fr">Zone de travail</span><span lang="en">Work area</span><input name="zone"></label>
             <label><span lang="fr">Téléphone</span><span lang="en">Phone</span><input name="tel" type="tel" autocomplete="tel"></label>
-            <label class="full">Email<input name="email" type="email" autocomplete="email"></label>
+            <label class="full"><span lang="fr">Email *</span><span lang="en">Email *</span><input name="email" type="email" autocomplete="email" required></label>
             <label class="full"><span lang="fr">Disponibilités, expérience</span><span lang="en">Availability, experience</span><textarea name="msg"></textarea></label>
+          </div>
+          <div class="mconsent">
+            <label><input type="checkbox" data-ok="rgpd"><span><span lang="fr"><b>Protection de mes données (RGPD)</b> : j’accepte que mon nom, mon métier, ma zone, mon téléphone, mon email et mon message soient utilisés <b>uniquement</b> pour étudier ma candidature et me recontacter. Ils ne sont jamais transmis à des tiers, sont conservés 12 mois au plus si la candidature n’aboutit pas, et je peux à tout moment demander leur consultation ou leur suppression à info@aljadyrecords.com. <a href="https://ajr-interventions.pages.dev/confidentialite.html" target="_blank" rel="noopener">Politique de confidentialité</a></span><span lang="en"><b>Protection of my data (GDPR)</b>: I agree that my name, trade, area, phone, email and message are used <b>only</b> to review my application and contact me. They are never passed to third parties, are kept for 12 months at most if the application goes no further, and I can ask at any time to see or delete them at info@aljadyrecords.com. <a href="https://ajr-interventions.pages.dev/confidentialite.html" target="_blank" rel="noopener">Privacy policy</a></span></span></label>
           </div>
           <a class="msend" data-subj="Candidature partenaire DOMIER" href="#" target="_blank" rel="noopener"><span lang="fr">Envoyer ma candidature</span><span lang="en">Send my application</span></a>
           <div class="mnote"><span lang="fr">La candidature s’ouvre dans votre messagerie, adressée à info@aljadyrecords.com.</span><span lang="en">The application opens in your email app, addressed to info@aljadyrecords.com.</span></div>
@@ -1834,8 +1846,12 @@ const ICONS={"proprio": "img/099e7d010e04.webp", "locat": "img/9952e35264e5.webp
   // build the mail from the form fields each time the visitor presses send
   modal.querySelectorAll('a.msend[data-subj]').forEach(a=>{
     const pane=a.closest('.mpane');
-    function build(){ const lines=[...pane.querySelectorAll('input,select,textarea')].map(el=>{ const lab=el.closest('label'); const name=lab?lab.querySelector('span[lang="'+(document.documentElement.dataset.lang||'fr')+'"]'):null; return (name?name.textContent:(el.name||'Email'))+': '+el.value; });
+    function build(){ const lines=[...pane.querySelectorAll('input:not([type=checkbox]),select,textarea')].map(el=>{ const lab=el.closest('label'); const name=lab?lab.querySelector('span[lang="'+(document.documentElement.dataset.lang||'fr')+'"]'):null; return (name?name.textContent:(el.name||'Email'))+': '+el.value; });
+      const oks=[...pane.querySelectorAll('.mconsent input')], em=pane.querySelector('input[type=email]'), ready=oks.every(c=>c.checked)&&em&&/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em.value.trim());
+      lines.push('', (pane.querySelector('[data-ok=cgu]')?'CGU acceptées + ':'')+'Consentement RGPD donné le '+new Date().toLocaleString('fr-LU')+' (formulaire univers DOMIER)');
+      a.classList.toggle('off',!ready); a.setAttribute('aria-disabled',String(!ready));
       a.href='mailto:info@aljadyrecords.com?subject='+encodeURIComponent(a.dataset.subj)+'&body='+encodeURIComponent(lines.join('\n')); }
+    a.addEventListener('click',e=>{ build(); if(a.classList.contains('off')){ e.preventDefault(); const c=pane.querySelector('.mconsent'); if(c) c.animate([{transform:'translateX(0)'},{transform:'translateX(-6px)'},{transform:'translateX(6px)'},{transform:'translateX(0)'}],{duration:300}); const em=pane.querySelector('input[type=email]'); if(em&&!em.value.trim()) em.focus(); } });
     pane.addEventListener('input',build); pane.addEventListener('change',build); a.addEventListener('pointerdown',build); a.addEventListener('focus',build); build();
   });
   new MutationObserver(()=>{ const on=s.classList.contains('on')||s.classList.contains('off'); if(on&&!was){last=performance.now();raf=requestAnimationFrame(frame);} if(!on&&was){cancelAnimationFrame(raf);close();} was=on; }).observe(s,{attributes:true,attributeFilter:['class']});

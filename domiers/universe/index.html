@@ -262,6 +262,18 @@ ul.points li::before{content:"";flex:none;width:12px;height:12px;border-radius:5
 .hub .htxt h2 .hby{display:block;font-family:var(--body,inherit);font-size:20px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--muted,#9aa3ad);margin-top:6px}
 .hub .htxt{top:56px;width:540px}
 .hub .hint{font-size:20px;margin-top:14px}
+.hub .alien{position:relative;display:inline-flex;align-items:center;gap:8px;margin:10px 0 0;cursor:pointer;outline:none}
+.hub .alien svg{width:78px;height:58px;filter:drop-shadow(0 0 12px rgba(110,224,138,.45));animation:alfloat 5s ease-in-out infinite}
+.hub .alien .al-ufo{animation:alufo 3.2s ease-in-out infinite}
+.hub .alien .al-lbl{font-size:15px;font-weight:700;letter-spacing:.06em;color:#9ff0b4}
+.hub .alien .al-tip{position:absolute;left:96px;top:-6px;width:380px;z-index:6;padding:12px 14px;border-radius:14px;background:rgba(9,22,18,.94);border:1.5px solid #6ee08a;box-shadow:0 0 26px rgba(110,224,138,.35);font-size:16px;line-height:1.45;color:#e8fff0;opacity:0;transform:translateX(-8px) scale(.97);pointer-events:none;transition:opacity .25s ease,transform .25s ease}
+.hub .alien .al-tip .al-h{display:block;color:#9ff0b4;margin-bottom:4px}
+.hub .htxt{z-index:5}
+.hub .alien:hover .al-tip,.hub .alien:focus .al-tip,.hub .alien.open .al-tip{opacity:1;transform:none;pointer-events:auto}
+.hub .alien:hover svg{filter:drop-shadow(0 0 20px rgba(110,224,138,.8))}
+@keyframes alfloat{50%{transform:translateY(-4px) rotate(-3deg)}}
+@keyframes alufo{0%,100%{transform:translate(0,0)}50%{transform:translate(-6px,3px)}}
+@media (prefers-reduced-motion: reduce){.hub .alien svg,.hub .alien .al-ufo{animation:none}}
 .hub .what{font-size:19px;line-height:1.45;color:#e9cf8f;margin:12px 0 0;opacity:.95}
 .hub .motto{font-family:var(--display);font-style:italic;font-size:28px;line-height:1.25;color:var(--gold);margin:14px 0 0;letter-spacing:.01em}
 .hub .hsys{left:180px} /* sistema solare DOMIER più a destra */
@@ -807,6 +819,16 @@ ul.points li::before{content:"";flex:none;width:12px;height:12px;border-radius:5
       <h2><span lang="fr">L’univers DOMIER</span><span lang="en">The DOMIER universe</span><small class="hby">by ALJADY R.</small></h2>
       <p class="motto"><span lang="fr">Nous intervenons, vous êtes en sécurité.</span><span lang="en">We step in, you stay safe.</span></p>
       <p class="what"><span lang="fr">Notre centre d’interventions 24/7 : chacun est relié <b>uniquement à nous</b>, jamais aux autres. Nous intervenons avec nos <b>domistes</b>, des professionnels accrédités de tous les métiers. Signalez-nous les meilleurs ou proposez votre candidature : ensemble, on élève la qualité.</span><span lang="en">Our 24/7 intervention centre: each one is linked <b>only to us</b>, never to the others. We step in with our <b>domistes</b>, accredited professionals from every trade. Recommend the best ones or apply yourself: together we raise the quality.</span></p>
+      <div class="alien" tabindex="0" role="button" aria-label="Annonceurs">
+        <svg viewBox="0 0 120 90" aria-hidden="true"><defs><radialGradient id="alG" cx="38%" cy="32%" r="70%"><stop offset="0" stop-color="#d9ffb0"/><stop offset=".45" stop-color="#6ee08a"/><stop offset="1" stop-color="#1f6f5c"/></radialGradient><linearGradient id="alR" x1="0" x2="1"><stop offset="0" stop-color="#b98cff" stop-opacity=".2"/><stop offset=".5" stop-color="#e9b8ff"/><stop offset="1" stop-color="#b98cff" stop-opacity=".2"/></linearGradient></defs>
+          <ellipse cx="60" cy="50" rx="54" ry="13" fill="none" stroke="url(#alR)" stroke-width="5" transform="rotate(-14 60 50)" opacity=".55"/>
+          <circle cx="60" cy="46" r="28" fill="url(#alG)"/><circle cx="50" cy="38" r="5" fill="#3d9f74" opacity=".55"/><circle cx="70" cy="55" r="7" fill="#2f8a66" opacity=".5"/><circle cx="66" cy="34" r="3" fill="#3d9f74" opacity=".6"/>
+          <path d="M8 52 Q60 72 112 46" fill="none" stroke="url(#alR)" stroke-width="5" stroke-linecap="round"/>
+          <g class="al-ufo"><ellipse cx="98" cy="14" rx="11" ry="4" fill="#cfd6e0"/><path d="M92 13 a6 5 0 0 1 12 0z" fill="#8fe3ff" opacity=".9"/><circle cx="93" cy="15" r="1" fill="#ffe27a"/><circle cx="98" cy="16" r="1" fill="#ffe27a"/><circle cx="103" cy="15" r="1" fill="#ffe27a"/></g>
+        </svg>
+        <span class="al-lbl"><span lang="fr">Annonceurs ?</span><span lang="en">Advertisers?</span></span>
+        <div class="al-tip"><b class="al-h"><span lang="fr">📣 Message aux annonceurs</span><span lang="en">📣 A word for advertisers</span></b><span lang="fr">Restaurant, bar, boulangerie, night-club, commerce… Votre annonce apparaît dans les apps des locataires, des voyageurs et des hôtels de tout l’univers DOMIER. Touchez la planète <b>Annonceurs</b> pour voir l’app.</span><span lang="en">Restaurant, bar, bakery, night-club, shop… Your ad appears in the apps of tenants, travellers and hotels across the whole DOMIER universe. Tap the <b>Advertisers</b> planet to see the app.</span></div>
+      </div>
       <p class="hint"><span lang="fr">Chaque planète est une branche du réseau. Survolez-la pour voir qui est relié, cliquez pour voir son app. Au centre, le film DOMIER.</span><span lang="en">Each planet is a branch of the network. Hover to see who is connected, click to see its app. In the centre, the DOMIER film.</span></p>
     </div>
     <div class="hsys">
@@ -2092,5 +2114,6 @@ document.querySelectorAll('.slide').forEach(makeSky);
   document.getElementById('goSilent').onclick=()=>enter(false);
 })();
 </script>
+<script>document.querySelectorAll('.hub .alien').forEach(a=>{a.addEventListener('click',e=>{e.stopPropagation();a.classList.toggle('open');});document.addEventListener('click',()=>a.classList.remove('open'));});</script>
 </body>
 </html>

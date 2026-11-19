@@ -2094,9 +2094,9 @@ document.querySelectorAll('.slide').forEach(makeSky);
 <script>
 (function(){
   const BASE='https://www.aljadyrecords.com';
-  const EXTRA=[['/audio/ACQUA-E-FUOCO-FR-hook.mp3?v=1','Acqua e Fuoco (FR)'],['/audio/MAGIC-NIGHT-FR-hook.mp3?v=1','Magic Night (FR)'],['/audio/THE-LAST-DAY-FR-hook.mp3?v=1','The Last Day (FR)']];
+  const EXTRA=[['/audio/ACQUA-E-FUOCO-FR-hook.mp3?v=1','Acqua e Fuoco (FR)'],['/audio/MAGIC-NIGHT-FR-hook.mp3?v=1','Magic Night (FR)'],['/audio/THE-LAST-DAY-FR-hook.mp3?v=1','The Last Day (FR)'],['/audio/MAGIC-NIGHT-ES-hook.mp3?v=1','Magic Night (ES)']];
   const L={fr:[['/audio/GHOST-ME-FR-hook.mp3','Ghost Me, I Ghost You (FR)'],['/audio/SONO-PERFETTA-FR-hook.mp3?v=1','Je suis parfaite (cherche Luca)'],['/audio/MA-KARMA-IT-hook.mp3?v=2','Ma Karma (Meglio no!)']].concat(EXTRA),
-           en:[['/audio/GHOST-ME-EN-hook.mp3','Ghost Me, I Ghost You (EN)'],['/audio/SONO-PERFETTA-EN-hook.mp3?v=1',"I'm Perfect (Looking for Luca)"],['/audio/MA-KARMA-IT-hook.mp3?v=2','Ma Karma (Meglio no!)']].concat(EXTRA)};
+           en:[['/audio/GHOST-ME-EN-hook.mp3','Ghost Me, I Ghost You (EN)'],['/audio/SONO-PERFETTA-EN-hook.mp3?v=1',"I'm Perfect (Looking for Luca)"],['/audio/MA-KARMA-IT-hook.mp3?v=2','Ma Karma (Meglio no!)'],['/audio/MAGIC-NIGHT-EN-hook.mp3?v=1','Magic Night (EN)']].concat(EXTRA)};
   const a=new Audio(); a.preload='auto'; let n=0, on=false, done=false, fadeT=null;
   const np=document.getElementById('np'), snd=document.getElementById('snd'), gate=document.getElementById('gate');
   const lang=()=>document.documentElement.dataset.lang==='en'?'en':'fr';

@@ -16,7 +16,7 @@ Legenda: ✅ collegato · ⬜ da fare
 | Serata da Leoni | ⬜ | ⬜ | ⬜ | ⬜ |
 | Dignità Mantra | ⬜ | ⬜ | ⬜ | ⬜ |
 | Sei il Mio Segreto | ⬜ | ⬜ | ⬜ | ⬜ |
-| Magic Night | ⬜ | ⬜ | ⬜ | ⬜ |
+| Magic Night | ✅ | ✅ | ✅ | ✅ |
 | No Fool | ⬜ | ⬜ | ⬜ | ⬜ |
 | I Will Do It | ⬜ | ⬜ | ⬜ | ⬜ |
 | Dubai | ⬜ | ⬜ | ⬜ | ⬜ |

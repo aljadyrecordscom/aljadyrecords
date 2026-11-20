@@ -803,7 +803,10 @@ ul.points li::before{content:"";flex:none;width:12px;height:12px;border-radius:5
 .np{font-size:12px;color:var(--gold-soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:280px;text-decoration:none;border-bottom:1px dotted rgba(212,172,85,.5)}
 .np:hover{color:#fff}
   display:flex;align-items:center;gap:12px;padding:14px 22px;border-radius:40px;background:rgba(7,10,13,.92);border:1px solid var(--gold);color:var(--gold-soft);text-decoration:none;font:700 clamp(14px,1.8vw,19px) var(--body);box-shadow:0 20px 50px rgba(0,0,0,.6)}
-@media (max-width:700px){.np{max-width:120px}</style>
+@media (max-width:700px){.np{max-width:120px}
+html.lite .hub .hsys *,html.lite .hub .msys *{filter:none!important}
+html.lite .hub .alien svg{filter:none!important}
+</style>
 </head>
 <body>
 <div class="rotate" role="dialog" aria-label="Orientation">
@@ -1677,10 +1680,16 @@ ul.points li::before{content:"";flex:none;width:12px;height:12px;border-radius:5
   <button class="lang" data-l="en" aria-pressed="false">EN</button>
   <button class="lang" data-l="it" aria-pressed="false">IT</button>
 </nav>
+<script>/* ⚡ mode léger (iPad, téléphones, machines modestes) : animations à ~30 images/s, sans halos de canvas ni filtres sur les planètes qui bougent */
+(function(){var q=new URLSearchParams(location.search).get('lite');var L=q==='1'||(q!=='0'&&(matchMedia('(pointer:coarse)').matches||(navigator.hardwareConcurrency||8)<=4));window.LITE=L;if(!L)return;
+document.documentElement.classList.add('lite');
+var raf0=window.requestAnimationFrame.bind(window);window.requestAnimationFrame=function(cb){var t0=performance.now();return raf0(function st(t){if(t-t0<30)return raf0(st);cb(t);});};
+try{Object.defineProperty(CanvasRenderingContext2D.prototype,'shadowBlur',{set:function(){},get:function(){return 0},configurable:true});}catch(e){}
+})();</script>
 <script>window.ITL={'Propriétaires':'Proprietari','Hôtels':'Hotel','Taxis':'Taxi','Agences immobilières':'Agenzie immobiliari','Gérances':'Gestioni immobiliari','Locataires':'Inquilini','Domistes':'Domisti','Agences':'Agenzie','Annonceurs':'Inserzionisti','Discothèques':'Discoteche','Voyageurs':'Viaggiatori'};var ITL=window.ITL;</script>
 <script>
 /* canvases only hold memory while their scene is on screen; half resolution on phones */
-const DZ={k:(Math.max(screen.width,screen.height)<1100?0.5:(matchMedia('(pointer:coarse)').matches?0.7:1)),
+const DZ={k:(Math.max(screen.width,screen.height)<1100||window.LITE?0.5:1),
   size(cv,ctx,on){ if(on){ cv.width=1600*DZ.k; cv.height=900*DZ.k; ctx.setTransform(DZ.k,0,0,DZ.k,0,0); } else { cv.width=0; cv.height=0; } }};
 /* the page already fits the screen: block pinch zoom, which made iPhone Safari run out of memory */
 ['gesturestart','gesturechange','gestureend'].forEach(ev=>document.addEventListener(ev,e=>e.preventDefault(),{passive:false}));
@@ -1803,8 +1812,9 @@ const ICONS={"proprio": "img/099e7d010e04.webp", "locat": "img/9952e35264e5.webp
     return {b,l,base:i*40*Math.PI/180,amp:(55+ (i%3)*15)*Math.PI/180,sp:.35+(i%4)*.07,ph:i*1.3,dir:i%2?1:-1,lr:i%2?42:84};
   });
   const stars=[...Array(170)].map(()=>({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.4+.3,t:Math.random()*6}));
-  let shoots=[], raf=null, t0=0, was=false;
+  let shoots=[], raf=null, t0=0, was=false, lastS=0;
   function frame(now){
+    if(window.LITE&&now-lastS<90){raf=requestAnimationFrame(frame);return;} lastS=now; // ciel léger : ~11 images/s
     const t=(now-t0)/1000;
     // orbit: back and forth along the dotted ring, crossing each other
     P.forEach(p=>{
@@ -1877,8 +1887,9 @@ function makeSky(slide){
   const cv=slide.querySelector('canvas.sky'); if(!cv) return;
   const ctx=cv.getContext('2d'), W=1600,H=900; DZ.size(cv,ctx,false);
   const stars=[...Array(170)].map(()=>({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.4+.3,t:Math.random()*6}));
-  let shoots=[], raf=null, t0=0, was=false;
+  let shoots=[], raf=null, t0=0, was=false, lastS=0;
   function frame(now){
+    if(window.LITE&&now-lastS<90){raf=requestAnimationFrame(frame);return;} lastS=now;
     const t=(now-t0)/1000; ctx.clearRect(0,0,W,H);
     stars.forEach(st=>{ctx.globalAlpha=.35+.45*Math.abs(Math.sin(t*.8+st.t));ctx.fillStyle='#fff';ctx.beginPath();ctx.arc(st.x,st.y,st.r,0,7);ctx.fill();});
     if(Math.random()<.012&&shoots.length<2) shoots.push({x:Math.random()*W*.8,y:Math.random()*H*.4,life:0});

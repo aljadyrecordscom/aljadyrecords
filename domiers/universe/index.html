@@ -259,6 +259,8 @@ ul.points li::before{content:"";flex:none;width:12px;height:12px;border-radius:5
 .hub.on .htxt{opacity:1}
 .hub .htxt h2{font-size:56px}
 .hub .hint{font-size:22px;line-height:1.45;color:#d5dae0;margin:20px 0 0}
+.hub .who-btn{display:inline-block;margin-left:6px;padding:2px 10px;border-radius:999px;border:1px solid rgba(233,207,143,.6);background:rgba(233,207,143,.08);color:#e9cf8f;font:600 14px var(--body,inherit);cursor:pointer;vertical-align:1px}
+.mpane .about p{margin:0 0 12px;color:#c3cad2;font-size:15px;line-height:1.5}.mpane .about b{color:#e9cf8f}
 .hub .htxt h2 .hby{display:block;font-family:var(--body,inherit);font-size:20px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--muted,#9aa3ad);margin-top:6px}
 .hub .htxt{top:56px;width:540px}
 .hub .hint{font-size:20px;margin-top:14px}
@@ -830,9 +832,9 @@ ul.points li::before{content:"";flex:none;width:12px;height:12px;border-radius:5
   <section class="slide hub" data-id="hub" data-dur="0">
     <canvas class="sky" aria-hidden="true"></canvas>
     <div class="htxt">
-      <h2><span lang="fr">L’univers DOMIER</span><span lang="en">The DOMIER universe</span><small class="hby">by ALJADY R.</small></h2>
-      <p class="motto"><span lang="fr">Nous intervenons, vous êtes en sécurité.</span><span lang="en">We step in, you stay safe.</span></p>
-      <p class="what"><span lang="fr">Notre centre d’interventions 24/7 : chacun est relié <b>uniquement à nous</b>, jamais aux autres. Nous intervenons avec nos <b>domistes</b>, des professionnels accrédités de tous les métiers. Signalez-nous les meilleurs ou proposez votre candidature : ensemble, on élève la qualité.</span><span lang="en">Our 24/7 intervention centre: each one is linked <b>only to us</b>, never to the others. We step in with our <b>domistes</b>, accredited professionals from every trade. Recommend the best ones or apply yourself: together we raise the quality.</span></p>
+      <h2><span lang="fr">L’univers DOMIER</span><span lang="en">The DOMIER universe</span></h2>
+      <p class="motto"><span lang="fr">Vous ne vous sentez pas en sécurité ? Appelez-nous : nous intervenons, vous êtes en sécurité.</span><span lang="en">Don’t feel safe? Call us: we step in, and you are safe.</span></p>
+      <p class="what"><span lang="fr">Notre centre d’interventions 24/7 : chacun est relié <b>uniquement à nous</b>, jamais aux autres. Nous intervenons avec nos <b>domistes</b>, des professionnels accrédités de tous les métiers. Signalez-nous les meilleurs ou proposez votre candidature : ensemble, on élève la qualité. <button type="button" class="who-btn" data-open="about">ℹ️ Qui sommes-nous ?</button></span><span lang="en">Our 24/7 intervention centre: each one is linked <b>only to us</b>, never to the others. We step in with our <b>domistes</b>, accredited professionals from every trade. Recommend the best ones or apply yourself: together we raise the quality. <button type="button" class="who-btn" data-open="about">ℹ️ Who are we?</button></span></p>
       <div class="alien" tabindex="0" role="button" aria-label="Annonceurs">
         <svg viewBox="0 0 120 90" aria-hidden="true"><defs><radialGradient id="alG" cx="38%" cy="32%" r="70%"><stop offset="0" stop-color="#d9ffb0"/><stop offset=".45" stop-color="#6ee08a"/><stop offset="1" stop-color="#1f6f5c"/></radialGradient><linearGradient id="alR" x1="0" x2="1"><stop offset="0" stop-color="#b98cff" stop-opacity=".2"/><stop offset=".5" stop-color="#e9b8ff"/><stop offset="1" stop-color="#b98cff" stop-opacity=".2"/></linearGradient></defs>
           <ellipse cx="60" cy="50" rx="54" ry="13" fill="none" stroke="url(#alR)" stroke-width="5" transform="rotate(-14 60 50)" opacity=".55"/>
@@ -841,9 +843,9 @@ ul.points li::before{content:"";flex:none;width:12px;height:12px;border-radius:5
           <g class="al-ufo"><ellipse cx="98" cy="14" rx="11" ry="4" fill="#cfd6e0"/><path d="M92 13 a6 5 0 0 1 12 0z" fill="#8fe3ff" opacity=".9"/><circle cx="93" cy="15" r="1" fill="#ffe27a"/><circle cx="98" cy="16" r="1" fill="#ffe27a"/><circle cx="103" cy="15" r="1" fill="#ffe27a"/></g>
         </svg>
         <span class="al-lbl"><span lang="fr">Annonceurs ?</span><span lang="en">Advertisers?</span></span>
-        <div class="al-tip"><b class="al-h"><span lang="fr">📣 Message aux annonceurs</span><span lang="en">📣 A word for advertisers</span></b><span lang="fr"><b>24h/24, publiez votre annonce en un clic, dès 3,99&nbsp;€ HT.</b> Restaurant, bar, boulangerie, night-club, commerce : informez d’un geste tous les utilisateurs de l’univers DOMIER, au creux de leur main. <b>Chaque utilisateur peut partager votre annonce d’un clic</b> : plus l’univers grandit, plus elle voyage. En bonus : la vitrine de nos réseaux sociaux.</span><span lang="en"><b>24/7, publish your ad in one click, from €3.99 excl. VAT.</b> Restaurant, bar, bakery, night-club, shop: reach every user of the DOMIER universe, right in the palm of their hand. <b>Every user can share your ad in one click</b>: the more the universe grows, the further it travels. Bonus: the showcase of our social networks.</span><button type="button" class="al-go" data-play="ads"><span lang="fr">📣 Voir l’app des annonceurs</span><span lang="en">📣 See the advertiser app</span></button></div>
+        <div class="al-tip"><b class="al-h"><span lang="fr">📣 Message aux annonceurs</span><span lang="en">📣 A word for advertisers</span></b><span lang="fr"><b>24h/24, publiez votre annonce en un clic, à un prix et une utilité imbattables.</b> Restaurant, bar, boulangerie, night-club, commerce : informez d’un geste tous les utilisateurs de l’univers DOMIER, au creux de leur main. <b>Chaque utilisateur peut partager votre annonce d’un clic</b> : plus l’univers grandit, plus elle voyage. En bonus : la vitrine de nos réseaux sociaux.</span><span lang="en"><b>24/7, publish your ad in one click, at an unbeatable price and usefulness.</b> Restaurant, bar, bakery, night-club, shop: reach every user of the DOMIER universe, right in the palm of their hand. <b>Every user can share your ad in one click</b>: the more the universe grows, the further it travels. Bonus: the showcase of our social networks.</span><button type="button" class="al-go" data-play="ads"><span lang="fr">📣 Voir l’app des annonceurs</span><span lang="en">📣 See the advertiser app</span></button></div>
       </div>
-      <p class="hint"><span lang="fr">Chaque planète est une branche du réseau. Survolez-la pour voir qui est relié, cliquez pour voir son app. Au centre, le film DOMIER.</span><span lang="en">Each planet is a branch of the network. Hover to see who is connected, click to see its app. In the centre, the DOMIER film.</span></p>
+      <p class="hint"><span lang="fr">Chaque planète est une branche du réseau. Survolez-la pour voir qui est relié, cliquez pour voir son app. Au centre, le film : <b>comment ça marche et comment nous vous assistons</b>.</span><span lang="en">Each planet is a branch of the network. Hover to see who is connected, click to see its app. In the centre, the film: <b>how it works and how we assist you</b>.</span></p>
     </div>
     <div class="hsys">
       <svg viewBox="0 0 1600 900" aria-hidden="true"><circle cx="870" cy="440" r="330" fill="none" stroke="#d4ac55" stroke-width="2.5" stroke-dasharray="7 11" opacity=".75"/></svg>
@@ -860,6 +862,15 @@ ul.points li::before{content:"";flex:none;width:12px;height:12px;border-radius:5
     <div class="mmodal" role="dialog" aria-modal="true">
       <div class="mbox">
         <button type="button" class="mclose" aria-label="Fermer">×</button>
+        <div class="mpane" data-m="about">
+          <h3><span lang="fr">Qui sommes-nous ?</span><span lang="en">Who are we?</span></h3>
+          <p class="msub">AJR INTERVENTIONS · by ALJADY RECORDS LTD</p>
+          <div class="about">
+            <p><b><span lang="fr">Qui nous sommes</span><span lang="en">Who we are</span></b><br><span lang="fr">AJR INTERVENTIONS est la marque d’interventions d’ALJADY RECORDS LTD, société de droit anglais (Company No. 17387576). L’univers DOMIER est notre centre d’interventions 24/7.</span><span lang="en">AJR INTERVENTIONS is the intervention brand of ALJADY RECORDS LTD, a company registered in England (Company No. 17387576). The DOMIER universe is our 24/7 intervention centre.</span></p>
+            <p><b><span lang="fr">Ce que nous faisons pour vous</span><span lang="en">What we do for you</span></b><br><span lang="fr">Une panne, une fuite, une porte bloquée, ou simplement vous ne vous sentez pas en sécurité : vous nous appelez, nous envoyons un domiste accrédité et nous suivons l’intervention jusqu’au bout, en vous tenant informé dans votre app. Vos données sont chiffrées : personne d’autre ne les lit.</span><span lang="en">A breakdown, a leak, a locked door, or you simply don’t feel safe: you call us, we send an accredited domiste and follow the job to the end, keeping you informed in your app. Your data is encrypted: nobody else reads it.</span></p>
+            <p><b><span lang="fr">Notre ambition</span><span lang="en">Our ambition</span></b><br><span lang="fr">Réunir dans un seul univers les gérances, propriétaires, hôtels, Airbnb, taxis, commerçants et les meilleurs professionnels de chaque métier, chacun relié uniquement à nous, pour que chaque habitant, voyageur ou client se sente en sécurité, partout et à toute heure.</span><span lang="en">To bring together in one universe property managers, owners, hotels, Airbnb hosts, taxis, shops and the best professionals of every trade, each linked only to us, so that every resident, traveller or customer feels safe, anywhere, at any hour.</span></p>
+          </div>
+        </div>
         <div class="mpane" data-m="plans">
           <h3><span lang="fr">Nos abonnements</span><span lang="en">Our subscriptions</span></h3>
           <p class="msub"><span lang="fr">Une licence annuelle relie votre structure à la centrale DOMIER et à toutes les apps.</span><span lang="en">An annual licence links your business to the DOMIER control room and to every app.</span></p>
@@ -1830,6 +1841,7 @@ const ICONS={"proprio": "img/099e7d010e04.webp", "locat": "img/9952e35264e5.webp
   function open(m){ panes.forEach(p=>p.style.display=p.dataset.m===m?'block':'none'); modal.classList.add('show'); const f=modal.querySelector('.mpane[data-m="'+m+'"] input'); if(f) f.focus(); else modal.querySelector('.mclose').focus(); }
   function close(){ modal.classList.remove('show'); }
   P.forEach(p=>p.b.addEventListener('click',()=>open(p.b.dataset.m)));
+  s.querySelectorAll('[data-open]').forEach(b=>b.addEventListener('click',e=>{e.stopPropagation();open(b.dataset.open);}));
   modal.querySelector('.mclose').addEventListener('click',close);
   modal.addEventListener('click',e=>{ if(e.target===modal) close(); });
   document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&modal.classList.contains('show')) close(); });

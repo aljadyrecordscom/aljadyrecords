@@ -1686,6 +1686,8 @@ document.documentElement.classList.add('lite');
 var raf0=window.requestAnimationFrame.bind(window);window.requestAnimationFrame=function(cb){var t0=performance.now();return raf0(function st(t){if(t-t0<30)return raf0(st);cb(t);});};
 try{Object.defineProperty(CanvasRenderingContext2D.prototype,'shadowBlur',{set:function(){},get:function(){return 0},configurable:true});}catch(e){}
 })();</script>
+<script>/* 👣 visite anonyme (1 par session du navigateur) : aucun cookie, aucune donnée personnelle */
+try{if(!sessionStorage.getItem('dv')){sessionStorage.setItem('dv','1');navigator.sendBeacon&&navigator.sendBeacon('https://ajr-interventions-api.cold-tooth-767a.workers.dev/api/visit?p=univers');}}catch(e){}</script>
 <script>window.ITL={'Propriétaires':'Proprietari','Hôtels':'Hotel','Taxis':'Taxi','Agences immobilières':'Agenzie immobiliari','Gérances':'Gestioni immobiliari','Locataires':'Inquilini','Domistes':'Domisti','Agences':'Agenzie','Annonceurs':'Inserzionisti','Discothèques':'Discoteche','Voyageurs':'Viaggiatori'};var ITL=window.ITL;</script>
 <script>
 /* canvases only hold memory while their scene is on screen; half resolution on phones */

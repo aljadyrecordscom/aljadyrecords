@@ -794,6 +794,8 @@ ul.points li::before{content:"";flex:none;width:12px;height:12px;border-radius:5
 .gate-in{text-align:center;padding:24px}
 .gate h1{font-size:clamp(34px,6vw,72px)}
 .gate p{color:var(--muted);font-size:clamp(15px,2vw,20px);margin:14px 0 28px}
+.gate p.gsig{font-family:"Great Vibes","Snell Roundhand","Apple Chancery",cursive;color:var(--gold-soft);font-size:clamp(24px,3.4vw,34px);line-height:1.1;transform:rotate(-3deg);margin:18px 0 32px}
+.gate p.gsig b{font-weight:400;font-size:1.55em;color:var(--gold);margin-left:.1em}
 .gate .go{font:700 clamp(16px,2.2vw,22px) var(--display);letter-spacing:.08em;color:var(--night);background:var(--gold);border:0;border-radius:40px;padding:16px 34px;cursor:pointer;animation:pulse 2s infinite}
 @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(212,172,85,.5)}70%{box-shadow:0 0 0 18px rgba(212,172,85,0)}100%{box-shadow:0 0 0 0 rgba(212,172,85,0)}}
 .gate .mute{display:block;margin:18px auto 0;background:none;border:0;color:var(--muted);font:600 14px var(--body);text-decoration:underline;cursor:pointer}
@@ -822,7 +824,7 @@ html.lite .hub .alien svg{filter:none!important}
 </div>
 <div class="gate" id="gate"><div class="gate-in">
   <h1>ALJADY R. INTERVENTIONS</h1>
-  <p><span lang="fr">Bande originale de LucaTaraz</span><span lang="en">Original soundtrack by LucaTaraz</span><span lang="it">Colonna sonora originale di LucaTaraz</span></p>
+  <p class="gsig"><span lang="fr">Bande originale de</span><span lang="en">Original soundtrack by</span><span lang="it">Colonna sonora originale di</span> <b>LucaTaraz</b></p>
   <button class="go" id="goMusic"><span lang="fr">Entrer avec la musique</span><span lang="en">Enter with music</span><span lang="it">Entra con la musica</span></button>
   <button class="mute" id="goSilent"><span lang="fr">Entrer sans son</span><span lang="en">Enter without sound</span><span lang="it">Entra senza suono</span></button>
   <div class="langs"><button class="lang" data-l="fr" aria-pressed="true">FR</button><button class="lang" data-l="en" aria-pressed="false">EN</button><button class="lang" data-l="it" aria-pressed="false">IT</button></div>

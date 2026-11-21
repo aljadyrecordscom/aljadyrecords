@@ -813,7 +813,7 @@ html.lite .hub .alien svg{filter:none!important}
 
 #liteB{font-size:18px}#legalB{padding:2px 6px;display:inline-flex;align-items:center;justify-content:center}#legalB svg{filter:drop-shadow(0 0 6px rgba(185,230,160,.55))}
 .legalp{--c:#ff6b6b;position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);z-index:60;width:min(820px,calc(100vw - 24px));height:min(78vh,720px);padding:14px 16px 10px;border-radius:18px;background:rgba(10,14,18,.86);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1.5px solid var(--c);box-shadow:0 0 40px rgba(0,0,0,.6);display:flex;flex-direction:column;gap:10px;color:#e8fff0;font-size:15px}
-.legalp[hidden]{display:none}.lp-head{display:flex;align-items:center;justify-content:space-between;font-size:18px;color:#e9cf8f}.lp-x{background:none;border:0;color:#9aa6b2;font-size:18px;cursor:pointer}
+.legalp[hidden]{display:none}.formp{--c:#e9cf8f;z-index:70;height:min(88vh,860px);width:min(760px,calc(100vw - 16px))}.formp .lp-frame{background:#0b1016}.lp-head{display:flex;align-items:center;justify-content:space-between;font-size:18px;color:#e9cf8f}.lp-x{background:none;border:0;color:#9aa6b2;font-size:18px;cursor:pointer}
 .lp-tabs{display:flex;gap:6px;flex-wrap:wrap}.lp-tabs button{background:rgba(255,255,255,.04);border:1.5px solid color-mix(in srgb,var(--c) 45%,transparent);color:var(--c);border-radius:999px;padding:6px 12px;font:700 13px var(--body,inherit);cursor:pointer}.lp-tabs button.on{background:color-mix(in srgb,var(--c) 22%,transparent);border-color:var(--c)}
 .lp-frame{flex:1;width:100%;border:1px solid rgba(255,255,255,.08);border-radius:12px;background:rgba(0,0,0,.35)}.legalp small{color:#9aa6b2;font-size:12px}
 </style>
@@ -1694,6 +1694,14 @@ html.lite .hub .alien svg{filter:none!important}
   <button id="liteB" hidden style="display:none" aria-label="Léger / pleine qualité">⚡</button>
   <button id="legalB" aria-label="Informations légales"><svg viewBox="0 0 40 40" width="26" height="26" aria-hidden="true"><defs><radialGradient id="lmG" cx="36%" cy="32%" r="70%"><stop offset="0" stop-color="#f4ffe0"/><stop offset=".5" stop-color="#b9e6a0"/><stop offset="1" stop-color="#3e7a52"/></radialGradient></defs><circle cx="20" cy="20" r="14" fill="url(#lmG)"/><circle cx="14" cy="15" r="2.6" fill="#7fb38a" opacity=".7"/><circle cx="24" cy="25" r="3.4" fill="#7fb38a" opacity=".6"/><circle cx="26" cy="13" r="1.6" fill="#7fb38a" opacity=".7"/><ellipse cx="20" cy="22" rx="19" ry="4.5" fill="none" stroke="#e9cf8f" stroke-width="1.6" opacity=".7" transform="rotate(-18 20 22)"/></svg></button>
 </nav>
+<div id="formP" class="legalp formp" hidden role="dialog" aria-label="Formulaire">
+  <div class="lp-head"><b><span lang="fr">CENTRAL DOMIER</span><span lang="en">CENTRAL DOMIER</span><span lang="it">CENTRAL DOMIER</span></b><button type="button" class="lp-x" aria-label="Fermer">✕</button></div>
+  <iframe class="lp-frame" title="Formulaire"></iframe>
+</div>
+<script>(function(){var p=document.getElementById('formP'),fr=p.querySelector('iframe');function close(){p.hidden=true;fr.removeAttribute('src');}
+window.domierForm=function(u){fr.src=u;p.hidden=false;};
+p.querySelector('.lp-x').addEventListener('click',function(e){e.stopPropagation();close();});p.addEventListener('click',function(e){e.stopPropagation();});
+addEventListener('message',function(e){if(e.origin==='https://ajr-interventions.pages.dev'&&e.data&&e.data.domier==='close')close();});})();</script>
 <div id="legalP" class="legalp" hidden role="dialog" aria-label="Informations légales">
   <div class="lp-head"><b><span lang="fr">Informations légales</span><span lang="en">Legal information</span><span lang="it">Informazioni legali</span></b><button type="button" class="lp-x" aria-label="Fermer">✕</button></div>
   <div class="lp-tabs">
@@ -1899,7 +1907,7 @@ const ICONS={"proprio": "img/099e7d010e04.webp", "locat": "img/9952e35264e5.webp
   document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&modal.classList.contains('show')) close(); });
   // build the mail from the form fields each time the visitor presses send
   modal.querySelectorAll('.pflip').forEach(b=>b.addEventListener('click',()=>b.classList.toggle('on')));
-  modal.querySelectorAll('a.mgo').forEach(a=>{ const set=()=>{ a.href=a.dataset.go+'?'+(a.dataset.q?a.dataset.q+'&':'')+'lang='+(document.documentElement.dataset.lang||'fr'); }; set(); a.addEventListener('pointerdown',set); a.addEventListener('focus',set); a.addEventListener('click',set); });
+  modal.querySelectorAll('a.mgo').forEach(a=>{ const set=()=>{ a.href=a.dataset.go+'?'+(a.dataset.q?a.dataset.q+'&':'')+'lang='+(document.documentElement.dataset.lang||'fr'); }; set(); a.addEventListener('pointerdown',set); a.addEventListener('focus',set); a.addEventListener('click',e=>{ set(); if(window.domierForm){ e.preventDefault(); window.domierForm(a.href); } }); });
   modal.querySelectorAll('a.msend[data-subj]').forEach(a=>{
     const pane=a.closest('.mpane');
     function build(){ const lines=[...pane.querySelectorAll('input:not([type=checkbox]),select,textarea')].map(el=>{ const lab=el.closest('label'); const name=lab?lab.querySelector('span[lang="'+(document.documentElement.dataset.lang||'fr')+'"]'):null; return (name?name.textContent:(el.name||'Email'))+': '+el.value; });

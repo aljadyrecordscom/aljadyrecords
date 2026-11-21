@@ -143,12 +143,12 @@ ul.points li::before{content:"";flex:none;width:12px;height:12px;border-radius:5
 .slide > .logo-bg ~ *{position:relative}
 
 /* opening: logo shown in full, fades back, then the badge enters */
-.intro.on .logo-bg{animation:logoIntro 5.4s ease forwards;transition:none}
-@keyframes logoIntro{0%{opacity:0;transform:scale(1.06)}14%{opacity:1}48%{opacity:1;transform:scale(1)}100%{opacity:.3;transform:scale(1)}}
-.intro .logo-bg::after{opacity:0;transition:opacity 1.8s ease 2.5s}
+.intro.on .logo-bg{animation:logoIntro 6s ease forwards;transition:none}
+@keyframes logoIntro{0%{opacity:0;transform:scale(1.06)}10%{opacity:1}62%{opacity:1;transform:scale(1)}100%{opacity:.3;transform:scale(1)}}
+.intro .logo-bg::after{opacity:0;transition:opacity 1.2s ease 3.6s}
 .intro.on .logo-bg::after{opacity:1}
-.intro.on .vis{transition-delay:3.2s}
-.intro.on .txt{transition-delay:3.9s}
+.intro.on .vis{transition-delay:4.1s}
+.intro.on .txt{transition-delay:4.5s}
 
 /* owner app slide */
 
@@ -830,7 +830,7 @@ html.lite .hub .alien svg{filter:none!important}
 <div class="viewport" id="vp">
 <div class="stage" id="stage" aria-live="polite">
   <!-- 1 -->
-  <section data-id="intro" class="slide intro" data-from="l" data-dur="10000">
+  <section data-id="intro" class="slide intro" data-from="l" data-dur="8000">
     <div class="logo-bg" aria-hidden="true"></div>
     <div class="vis"><img decoding="async" class="badge" src="img/67cf5d8c2f3d.webp" alt="Stemma dei quattro elementi"></div>
     <div class="txt">

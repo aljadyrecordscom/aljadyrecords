@@ -264,8 +264,9 @@ ul.points li::before{content:"";flex:none;width:12px;height:12px;border-radius:5
 .hub .who-btn{display:inline-block;margin-left:6px;padding:2px 10px;border-radius:999px;border:1px solid rgba(233,207,143,.6);background:rgba(233,207,143,.08);color:#e9cf8f;font:600 14px var(--body,inherit);cursor:pointer;vertical-align:1px}
 .mpane .about p{margin:0 0 12px;color:#c3cad2;font-size:15px;line-height:1.5}.mpane .about b{color:#e9cf8f}
 .hub .htxt h2 .hby{display:block;font-family:var(--body,inherit);font-size:20px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--muted,#9aa3ad);margin-top:6px}
-.hub .htxt{top:56px;width:540px}
-.hub .hint{font-size:20px;margin-top:14px}
+.hub .htxt{top:40px;left:40px;width:600px}
+.hub .htxt h2{font-size:48px}.hub .motto{font-size:24px!important;margin-top:10px!important}.hub .htxt p:not(.motto):not(.hint){font-size:17px}
+.hub .hint{font-size:18px;margin-top:10px}
 .hub .alien{position:relative;display:inline-flex;align-items:center;gap:8px;margin:10px 0 0;cursor:pointer;outline:none}
 .hub .alien svg{width:78px;height:58px;filter:drop-shadow(0 0 12px rgba(110,224,138,.45));animation:alfloat 5s ease-in-out infinite}
 .hub .alien .al-ufo{animation:alufo 3.2s ease-in-out infinite}
@@ -282,8 +283,8 @@ ul.points li::before{content:"";flex:none;width:12px;height:12px;border-radius:5
 @media (prefers-reduced-motion: reduce){.hub .alien svg,.hub .alien .al-ufo{animation:none}}
 .hub .what{font-size:19px;line-height:1.45;color:#e9cf8f;margin:12px 0 0;opacity:.95}
 .hub .motto{font-family:var(--display);font-style:italic;font-size:28px;line-height:1.25;color:var(--gold);margin:14px 0 0;letter-spacing:.01em}
-.hub .hsys{left:180px} /* sistema solare DOMIER più a destra */
-.hub .msys{left:150px;top:542px} /* mini sistema «Rejoignez» più a destra */
+.hub .hsys{left:240px} /* sistema solare DOMIER più a destra */
+.hub .msys{left:30px;top:542px;transform:scale(.8);transform-origin:0 0} /* mini sistema «Rejoignez» più a destra */
 .hsys{position:absolute;left:0;top:0;width:1600px;height:900px;opacity:0;transform:scale(.85);transition:opacity 1.2s ease,transform 1.6s cubic-bezier(.2,.75,.2,1)}
 .hub.on .hsys{opacity:1;transform:none}
 .hsys svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
@@ -2188,7 +2189,7 @@ document.querySelectorAll('.slide').forEach(makeSky);
   try{const r=JSON.parse(sessionStorage.getItem('dResume')||'null');if(r){sessionStorage.removeItem('dResume');const lb=document.querySelector('.controls .lang[data-l="'+r.l+'"]');if(lb)lb.click();enter(false);if(r.st&&r.st.name&&r.st.name!=='start')setTimeout(()=>window.DOMIER.go(r.st.name,r.st.pos),50);}}catch(e){}
 })();
 </script>
-<script>/* «Rejoignez l'univers» toujours sous le texte blanc, même si Safari met une ligne de plus */(()=>{const h=document.querySelector('.hub .htxt'),m=document.querySelector('.hub .msys');if(!h||!m)return;const place=()=>{const need=h.offsetTop+h.offsetHeight+34;m.style.top=Math.min(620,Math.max(542,need))+'px';};place();if(window.ResizeObserver)new ResizeObserver(place).observe(h);addEventListener('load',place);document.fonts&&document.fonts.ready.then(place);})();</script>
+<script>/* «Rejoignez l'univers» toujours sous le texte blanc, même si Safari met une ligne de plus */(()=>{const h=document.querySelector('.hub .htxt'),m=document.querySelector('.hub .msys');if(!h||!m)return;const place=()=>{const need=h.offsetTop+h.offsetHeight+34;m.style.top=Math.min(600,Math.max(470,need))+'px';};place();if(window.ResizeObserver)new ResizeObserver(place).observe(h);addEventListener('load',place);document.fonts&&document.fonts.ready.then(place);})();</script>
 <script>document.querySelectorAll('.hub .alien').forEach(a=>{a.addEventListener('click',e=>{e.stopPropagation();const g=e.target.closest('[data-play]');if(g&&window.DOMIER){a.classList.remove('open');window.DOMIER.play(g.dataset.play);return;}a.classList.toggle('open');});document.addEventListener('click',()=>a.classList.remove('open'));});</script>
 </body>
 </html>

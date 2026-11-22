@@ -2091,6 +2091,7 @@ document.querySelectorAll('.slide').forEach(makeSky);
     taxifix: there('taxi','C','domiste'),
     night:  [[['night','C']],ALL('night')],
     boul:   [[['boul','C']],ALL('boul')],
+    boulfix: chain('boul','C','domiste','boul'),
     horecafix: chain('horeca','C','domiste','horeca'),
     discofix: chain('disco','C','domiste','disco'),
     nightfix: chain('night','C','domiste','night'),
@@ -2100,7 +2101,7 @@ document.querySelectorAll('.slide').forEach(makeSky);
     airbnbfix: chain('ospiti','airbnb','C','domiste','ospiti')
   };
   const BY={locat:'tenant',domiste:'tenant',proprio:'owner',ospiti:'guests',hotel:'guests',taxi:'guests',megafono:'ads',horeca:'horeca',disco:'disco',night:'night',boul:'boul',agences:'agences',gerances:'gerances',airbnb:'airbnb'};
-  const LOOP=['tenant','guests','ads','horecafix','ridehoreca','horeca','taxifix','disco','discofix','ridedisco','airbnbfix','night','nightfix','ridenight','agences','gerances','airbnb'];
+  const LOOP=['tenant','guests','ads','horecafix','ridehoreca','horeca','taxifix','disco','discofix','ridedisco','airbnbfix','night','nightfix','ridenight','boul','boulfix','agences','gerances','airbnb'];
   let flow=null, step=0, stepT=0, loopI=0, idle=0, sparks=[], lastHover=null;
   const STEP=.7;
   function startFlow(name){ flow=FLOWS[name]; step=0; stepT=0; launch(); }

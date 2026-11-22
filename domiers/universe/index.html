@@ -2076,6 +2076,7 @@ document.querySelectorAll('.slide').forEach(makeSky);
   function col(k){ return k==='C'?'#f6e3a1':P[k].color; }
   const ALL=k=>D.map(d=>d[0]).filter(x=>x!==k).map(x=>['C',x,'bounce']);
   const chain=(...ks)=>ks.slice(1).map((k,i)=>[[ks[i],k]]);
+  const VIAM=k=>[[[k,'C']],[['C','megafono']],D.map(d=>d[0]).filter(x=>x!=='megafono'&&x!==k).map(x=>['megafono',x,'bounce'])];
   const there=(...ks)=>chain(...ks).concat(chain(...ks.slice().reverse()));
   const CARS=[['taxi','ospiti','car','van',-170],['taxi','ospiti','car','suv',0],['taxi','ospiti','car','limousine',170]];
   const FLOWS={
@@ -2083,14 +2084,14 @@ document.querySelectorAll('.slide').forEach(makeSky);
     owner:  there('proprio','C','domiste'),
     guests: chain('ospiti','hotel','C','taxi').concat([CARS]),
     ads:    [[['megafono','C']],ALL('megafono')],
-    horeca: [[['horeca','C']],ALL('horeca')],
-    disco:  [[['disco','C']],ALL('disco')],
+    horeca: VIAM('horeca'),
+    disco:  VIAM('disco'),
     agences:there('agences','C','domiste'),
     gerances:there('gerances','C','domiste'),
     airbnb: chain('ospiti','airbnb','C','taxi').concat([CARS]),
     taxifix: there('taxi','C','domiste'),
-    night:  [[['night','C']],ALL('night')],
-    boul:   [[['boul','C']],ALL('boul')],
+    night:  VIAM('night'),
+    boul:   VIAM('boul'),
     boulfix: chain('boul','C','domiste','boul'),
     horecafix: chain('horeca','C','domiste','horeca'),
     discofix: chain('disco','C','domiste','disco'),

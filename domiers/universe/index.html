@@ -280,15 +280,14 @@ ul.points li::before{content:"";flex:none;width:12px;height:12px;border-radius:5
 .alien .al-go{display:block;margin-top:10px;padding:8px 14px;border-radius:10px;border:0;background:#6ee08a;color:#08160f;font:700 15px var(--body);cursor:pointer}
 .alien.red{margin-left:26px}.alien.red .al-tip{left:-60px;top:72px;width:470px;max-height:62vh;overflow:auto;font-size:14px;background:rgb(26,10,10);border-color:#ff5a4f;box-shadow:0 0 26px rgba(255,90,79,.35);color:#fff0ee}.alien.red .al-tip p{margin:0 0 9px}.alien.red .al-tip .al-h{color:#ffb0a8}.alien.red .al-tip .al-co{margin:0;font-size:12px;letter-spacing:.06em;color:#ffb0a8}.alien.red:hover svg{filter:drop-shadow(0 0 20px rgba(255,90,79,.85))}.alien.red svg{filter:drop-shadow(0 0 12px rgba(255,90,79,.55));animation-delay:-2.5s}.alien.red .al-lbl{color:#ffb0a8}
 .alien .al-tip .al-h{display:block;color:#9ff0b4;margin-bottom:4px}
-.hub .alien.bh{position:absolute;left:4px;top:6px;width:110px;height:110px;margin:0;z-index:5;display:block}
+.hub .alien.bh{position:absolute;left:1478px;top:6px;width:110px;height:110px;margin:0;z-index:5;display:block}
 .hub .alien.bh img{width:110px;height:110px;display:block;animation:bhspin 18s linear infinite;filter:drop-shadow(0 0 10px rgba(160,110,255,.45));transition:filter .3s}
 .hub .alien.bh:hover img,.hub .alien.bh.open img{filter:drop-shadow(0 0 22px rgba(190,140,255,.9));animation-duration:6s}
 @keyframes bhspin{to{transform:rotate(-360deg)}}
-.hub .alien.bh .al-tip{left:100px;top:40px;width:300px;background:rgb(14,8,26);border-color:#a87cf5;box-shadow:0 0 26px rgba(168,124,245,.45);color:#f1eaff}.hub .alien.bh .al-tip .al-h{color:#c9a7ff}
+.hub .alien.bh .al-tip{left:auto;right:100px;top:40px;width:300px;background:rgb(14,8,26);border-color:#a87cf5;box-shadow:0 0 26px rgba(168,124,245,.45);color:#f1eaff}.hub .alien.bh .al-tip .al-h{color:#c9a7ff}
 .hub .alien.bh:hover,.hub .alien.bh.open{z-index:60}
-.hub .htxt h2{padding-left:78px}
 @media (prefers-reduced-motion: reduce){.hub .alien.bh img{animation:none}}
-.hub .alien.fsf{position:absolute;left:660px;top:10px;width:170px;height:150px;margin:0;z-index:4;display:block;animation:fsfsway 7s ease-in-out infinite;transform-origin:50% 60%}
+.hub .alien.fsf{position:absolute;left:430px;top:360px;width:170px;height:150px;margin:0;z-index:4;display:block;animation:fsfsway 7s ease-in-out infinite;transform-origin:50% 60%}
 @keyframes fsfsway{0%,100%{transform:translateY(0) rotate(-1.2deg)}50%{transform:translateY(-3px) rotate(1.2deg)}}
 .hub .alien.fsf:hover,.hub .alien.fsf:focus,.hub .alien.fsf.open{z-index:60;animation:none}
 .hub .alien.fsf .fsf-hole{position:absolute;left:22px;top:12px;width:126px;height:126px;border-radius:50%;background:radial-gradient(circle at 50% 45%,#1d3a6e 0%,#0b1838 45%,#03060f 78%),radial-gradient(1px 1px at 30% 30%,#fff,transparent),radial-gradient(1px 1px at 70% 62%,#fff,transparent);background-blend-mode:screen;box-shadow:inset 0 10px 22px rgba(0,0,0,.95),inset 0 -4px 10px rgba(120,170,255,.25),0 0 0 5px #3a4452,0 0 0 7px #8a96a6,0 0 0 9px #2a313b,0 8px 24px rgba(0,0,0,.7)}
@@ -296,7 +295,7 @@ ul.points li::before{content:"";flex:none;width:12px;height:12px;border-radius:5
 .hub .alien.fsf .fsf-hole::after{background:linear-gradient(180deg,rgba(0,0,0,.55),transparent 38%);}
 .hub .alien.fsf img{position:absolute;left:5px;top:34px;width:160px;height:auto;display:block;filter:drop-shadow(0 6px 8px rgba(0,0,0,.65));transition:filter .3s,transform .3s}
 .hub .alien.fsf:hover img,.hub .alien.fsf.open img{filter:drop-shadow(0 0 16px rgba(255,190,110,.8));transform:scale(1.08)}
-.hub .alien.fsf .al-tip{left:0;top:100%;width:440px;font-size:15px;margin-top:4px;background:rgb(30,14,40);border-color:#ff9a4d;box-shadow:0 0 26px rgba(255,154,77,.4);color:#fff3e6}
+.hub .alien.fsf .al-tip{left:calc(100% + 6px);top:-230px;max-height:78vh;overflow:auto;width:440px;font-size:15px;margin-top:4px;background:rgb(30,14,40);border-color:#ff9a4d;box-shadow:0 0 26px rgba(255,154,77,.4);color:#fff3e6}
 .hub .alien.fsf .al-tip .al-h{color:#ffc58f}.hub .alien.fsf .fsf-pr{margin:10px 0 0;padding-top:8px;border-top:1px solid rgba(255,154,77,.35)}.hub .alien.fsf .fsf-btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.hub .alien.fsf .fsf-btns .al-go{margin:0}.hub .alien.fsf .fsf-app{background:#2a1838;color:#ffc58f;border:1px solid #ff9a4d}.hub .alien.fsf .al-go{display:inline-block;text-decoration:none;background:#ff9a4d;color:#1e0e28}
 html.lite .hub .alien.fsf{animation:none}html.lite .hub .alien.fsf img{filter:none}
 .hub .htxt{z-index:5}
@@ -307,8 +306,8 @@ html.lite .hub .alien.fsf{animation:none}html.lite .hub .alien.fsf img{filter:no
 @media (prefers-reduced-motion: reduce){.alien svg,.alien .al-ufo{animation:none}}
 .hub .what{font-size:19px;line-height:1.45;color:#e9cf8f;margin:12px 0 0;opacity:.95}
 .hub .motto{font-family:var(--display);font-style:italic;font-size:28px;line-height:1.25;color:var(--gold);margin:14px 0 0;letter-spacing:.01em}
-.hub .hsys{left:240px} /* sistema solare DOMIER più a destra */
-.hub .msys{left:30px;top:542px;transform:scale(.8);transform-origin:0 0} /* mini sistema «Rejoignez» più a destra */
+.hub .hsys{left:320px} /* sistema solare DOMIER più a destra */
+.hub .msys{left:150px;top:542px;transform:scale(.8);transform-origin:0 0} /* mini sistema «Rejoignez» più a destra */
 .hsys{position:absolute;left:0;top:0;width:1600px;height:900px;opacity:0;transform:scale(.85);transition:opacity 1.2s ease,transform 1.6s cubic-bezier(.2,.75,.2,1)}
 .hub.on .hsys{opacity:1;transform:none}
 .hsys svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
@@ -2252,7 +2251,7 @@ document.querySelectorAll('.slide').forEach(makeSky);
   try{const r=JSON.parse(sessionStorage.getItem('dResume')||'null');if(r){sessionStorage.removeItem('dResume');const lb=document.querySelector('.controls .lang[data-l="'+r.l+'"]');if(lb)lb.click();enter(false);if(r.st&&r.st.name&&r.st.name!=='start')setTimeout(()=>window.DOMIER.go(r.st.name,r.st.pos),50);}}catch(e){}
 })();
 </script>
-<script>/* «Rejoignez l'univers» toujours sous le texte blanc, même si Safari met une ligne de plus */(()=>{const h=document.querySelector('.hub .htxt'),m=document.querySelector('.hub .msys');if(!h||!m)return;const place=()=>{const need=h.offsetTop+h.offsetHeight+34;m.style.top=Math.min(600,Math.max(470,need))+'px';};place();if(window.ResizeObserver)new ResizeObserver(place).observe(h);addEventListener('load',place);document.fonts&&document.fonts.ready.then(place);})();</script>
+<script>/* «Rejoignez l'univers» toujours sous le texte blanc, même si Safari met une ligne de plus */(()=>{const h=document.querySelector('.hub .htxt'),m=document.querySelector('.hub .msys');if(!h||!m)return;const place=()=>{const need=h.offsetTop+h.offsetHeight+34;m.style.top=Math.min(600,Math.max(530,need))+'px';};place();if(window.ResizeObserver)new ResizeObserver(place).observe(h);addEventListener('load',place);document.fonts&&document.fonts.ready.then(place);})();</script>
 <script>document.querySelectorAll('.fsf-go').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();const u=a.href.split('&lang=')[0]+'&lang='+(document.documentElement.dataset.lang||'fr');a.closest('.alien').classList.remove('open');if(window.domierForm)window.domierForm(u);else location.href=u;}));</script>
 <script>document.querySelectorAll('.alien').forEach(a=>{a.addEventListener('click',e=>{e.stopPropagation();const g=e.target.closest('[data-play]');if(g&&window.DOMIER){a.classList.remove('open');window.DOMIER.play(g.dataset.play);return;}a.classList.toggle('open');});document.addEventListener('click',()=>a.classList.remove('open'));});</script>
 <script>/* Clip : la barre se cache après 3 s, un toucher la fait revenir */(()=>{const c=document.querySelector('.controls');let t=0,on=false;

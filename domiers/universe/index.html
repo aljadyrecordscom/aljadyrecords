@@ -665,6 +665,7 @@ html.lite .hub .alien.fsf{animation:none}html.lite .hub .alien.fsf img{filter:no
 .pn-svg path{fill:none;stroke-width:3;stroke-dasharray:900;stroke-dashoffset:900}
 .slide.on .pn-svg path{animation:pndraw 1s ease forwards}
 @keyframes pndraw{to{stroke-dashoffset:0}}
+.slide:not(.on) .pn-ic,.slide:not(.on) .pn-big,.slide:not(.on) .pn-lab,.slide:not(.on) .pn-back{transition-delay:0s!important;transition-duration:.25s!important}
 .pn-back{position:absolute;left:0;right:0;bottom:70px;text-align:center;font-size:24px;color:var(--gold-soft);opacity:0;transition:opacity .6s}
 .slide.on .pn-back{opacity:1;transition-delay:5.4s}
 /* pipeline */
@@ -804,7 +805,7 @@ html.lite .hub .alien.fsf{animation:none}html.lite .hub .alien.fsf img{filter:no
 .controls button{min-width:44px;height:44px;border-radius:10px;border:1px solid var(--line);background:#141b22;color:var(--text);font:600 15px var(--body);cursor:pointer;padding:0 12px}
 .controls button:hover{border-color:var(--gold)}
 .controls button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
-body.clipm .controls{position:fixed;left:0;right:0;bottom:0;z-index:50;transition:background .35s,border-color .35s}body.clipm .controls>*{transition:opacity .35s}body.clipm .controls.idle{background:transparent;border-color:transparent}body.clipm .controls.idle>*:not(#home){opacity:0;pointer-events:none}body{padding-bottom:env(safe-area-inset-bottom)}
+body.clipm .controls{position:fixed;left:0;right:0;bottom:0;z-index:50;background:linear-gradient(180deg,rgba(5,8,11,0) 0%,rgba(5,8,11,.55) 45%,rgba(5,8,11,.85) 100%);border-top-color:transparent;padding-top:26px;transition:opacity .35s,background .35s,border-color .35s}body.clipm .controls.idle{opacity:1}body.clipm .controls>*{transition:opacity .35s}body.clipm .controls.idle{background:transparent;border-color:transparent}body.clipm .controls.idle>*:not(#home){opacity:0;pointer-events:none}body{padding-bottom:env(safe-area-inset-bottom)}
 @media (max-width:900px),(max-height:520px){.controls{gap:6px;padding:6px 8px}.controls button,#home{min-width:34px;width:auto;height:34px;padding:0 7px;font-size:13px;border-radius:9px}#home{width:34px;padding:0;font-size:18px;line-height:34px;flex:0 0 34px;border-radius:50%}.controls .np{font-size:12px}}
 @media (max-width:560px){.controls{gap:4px;padding:6px}.controls .np{display:none}.controls button{min-width:32px;padding:0 5px}}
 .segs{flex:1;display:flex;gap:6px}

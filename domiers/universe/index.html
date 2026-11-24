@@ -827,6 +827,23 @@ body.clipm .controls{position:fixed;left:0;right:0;bottom:0;z-index:50;backgroun
 .gate p.gsig b{font-weight:400;font-size:1.55em;color:var(--gold);margin-left:.1em}
 .gate .go{font:700 clamp(16px,2.2vw,22px) var(--display);letter-spacing:.08em;color:var(--night);background:var(--gold);border:0;border-radius:40px;padding:16px 34px;cursor:pointer;animation:pulse 2s infinite}
 @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(212,172,85,.5)}70%{box-shadow:0 0 0 18px rgba(212,172,85,0)}100%{box-shadow:0 0 0 0 rgba(212,172,85,0)}}
+.gate .edb{display:flex;align-items:center;gap:12px;margin:22px auto 0;background:none;border:0;color:var(--gold-soft);font:600 15px var(--body);cursor:pointer}
+.gate .edp{width:50px;height:50px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 35% 30%,#fff2c6,#d4ac55 55%,#7a5a1c);box-shadow:0 0 18px rgba(233,207,143,.45);animation:edspin 9s linear infinite}
+.gate .edp svg{width:24px;height:24px;fill:none;stroke:#2a1d05;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.gate .edb:hover .edp{box-shadow:0 0 28px rgba(233,207,143,.8)}
+@keyframes edspin{50%{transform:translateY(-3px)}}
+.edict{position:fixed;inset:0;z-index:70;display:grid;place-items:center;background:rgba(4,6,9,.78);padding:16px}
+.edict[hidden]{display:none}
+.ed-scroll{position:relative;max-width:720px;width:100%;max-height:88vh;overflow:auto;-webkit-overflow-scrolling:touch;background:linear-gradient(#f6ead0,#ecd9ad);color:#2b2014;border-radius:14px;padding:34px 34px 28px;box-shadow:0 0 0 2px #b8913f inset,0 20px 60px rgba(0,0,0,.6);font:16px/1.6 Georgia,serif;text-align:left}
+.ed-scroll h2{margin:0;font:700 30px var(--display);text-align:center;color:#3b2a10}
+.ed-scroll h3{margin:22px 0 6px;font:700 17px var(--display);color:#7a5a1c}
+.ed-scroll p{margin:0 0 10px}
+.ed-sub{text-align:center;font-style:italic;color:#6b5530}
+.ed-story{font-style:italic;border-left:3px solid #b8913f;padding-left:12px}
+.ed-src{font-size:12px;color:#6b5530}
+.ed-end{margin-top:20px!important;text-align:center;font-size:18px}
+.ed-sig{text-align:center;font:700 18px var(--display);letter-spacing:.2em;color:#7a5a1c}
+.ed-x{position:sticky;top:0;float:right;margin:-16px -14px 0 0;width:40px;height:40px;border-radius:50%;border:0;background:#3b2a10;color:#f6ead0;font-size:18px;cursor:pointer}
 .gate .mute{display:block;margin:18px auto 0;background:none;border:0;color:var(--muted);font:600 14px var(--body);text-decoration:underline;cursor:pointer}
 .gate .langs{margin-top:22px;display:flex;gap:8px;justify-content:center}
 .gate .langs button{background:none;border:1px solid var(--line);color:var(--muted);border-radius:8px;padding:6px 12px;font:700 13px var(--body);cursor:pointer}
@@ -880,9 +897,65 @@ html.lite .alien svg{filter:none!important}
   <h1>ALJADY R. INTERVENTIONS</h1>
   <p class="gsig"><span lang="fr">Bande originale de</span><span lang="en">Original soundtrack by</span><span lang="it">Colonna sonora originale di</span> <b>LucaTaraz</b></p>
   <button class="go" id="goMusic"><span lang="fr">Entrer avec la musique</span><span lang="en">Enter with music</span><span lang="it">Entra con la musica</span></button>
+  <button class="edb" id="edOpen" type="button"><span class="edp" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 4h11a2 2 0 0 1 2 2v1h-3M7 4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7M7 4a2 2 0 0 1 2 2v12a2 2 0 0 0 2 2M10 9h6M10 12h6M10 15h4"/></svg></span><span lang="fr">Lire l’édit</span><span lang="en">Read the edict</span><span lang="it">Leggi l’editto</span></button>
   <button class="mute" id="goSilent"><span lang="fr">Entrer sans son</span><span lang="en">Enter without sound</span><span lang="it">Entra senza suono</span></button>
   <div class="langs"><button class="lang" data-l="fr" aria-pressed="true">FR</button><button class="lang" data-l="en" aria-pressed="false">EN</button><button class="lang" data-l="it" aria-pressed="false">IT</button></div>
 </div></div>
+<div class="edict" id="edict" hidden role="dialog" aria-modal="true" aria-label="Édit DOMIER"><div class="ed-scroll"><button class="ed-x" id="edX" type="button" aria-label="Fermer">✕</button><div lang="fr"><h2>L’Édit DOMIER</h2><p class="ed-sub">Une invitation à réfléchir</p>
+<p><b>Ce que nous voyons.</b> Chaque jour, quelque chose se casse : un tuyau, une serrure, un trajet qui n’arrive pas. Et chaque fois, quelqu’un cherche un numéro, attend, espère. Ce n’est pas la bonne volonté qui manque : c’est le <b>lien</b> entre celui qui a un problème et celui qui sait le résoudre.</p>
+<p><b>Ce que nous proposons.</b> Un seul lieu où ce lien existe, 24 h/24 : comme des pompiers, pour les petits dégâts du quotidien. Un modèle pensé pour se reproduire, ville après ville, comme une franchise : la même centrale, les mêmes règles, des équipes locales.</p>
+<h3>Les quatre piliers</h3>
+<p><b>Confiance.</b> Un geste, et quelqu’un arrive et reste jusqu’à ce que ce soit réglé. Vos données restent chiffrées, et à vous.</p>
+<p><b>Le réseau.</b> Hôtels, logements, commerces, professionnels : des mondes séparés qui, reliés, deviennent un système. Chacun reste maître du sien.</p>
+<p><b>L’échange.</b> Celui qui demande trouve, celui qui sait faire travaille. La valeur circule au lieu de rester dans une seule poche.</p>
+<p><b>L’opportunité.</b> Trois entreprises d’électriciens dans le réseau : la demande du citoyen leur arrive, la première qui répond intervient. Le travail ne se prend pas, il se partage. Le boulanger, le petit commerçant, l’organisateur d’une soirée : en deux clics et dès 3,99 € HT, ils font savoir qu’ils existent, à ceux qui sont juste à côté.</p>
+<p class="ed-story">Un soir, à Dubaï, dans un hôtel, il y avait un bar dansant au rez-de-chaussée. Je ne l’ai jamais su. Si, depuis mon lit, dans la paume de ma main, j’avais vu la soirée en bas ou en face, je me serais senti moins seul. C’est aussi pour ça que DOMIER existe.</p>
+<h3>Notre autocritique</h3>
+<p>Nous le disons avant qu’on nous le dise. <b>Nous commençons :</b> l’application est construite et testée, nos premiers clients restent à venir. <b>Nous faisons beaucoup :</b> c’est vrai, c’est pourquoi nous commençons par peu, et bien. <b>Nous ne remplaçons personne :</b> le 112 reste pour la vie en danger, et nous sommes les premiers à le rappeler ; les agences pour l’emploi restent des agences ; WhatsApp reste un message. Nous sommes ce qui se passe après le message.</p>
+<h3>Nos limites, choisies</h3>
+<p>Nous ne promettons pas de gains garantis. Nous ne prêtons pas de personnes. Nous ne faisons pas travailler qui n’est pas en règle. Nous n’inventons pas de chiffres. La loi n’est pas notre obstacle : c’est notre périmètre.</p>
+<h3>Deux chiffres pour mesurer le terrain</h3>
+<p>Le Luxembourg compte 690 959 habitants au 1<sup>er</sup> janvier 2026, plus 237 200 travailleurs frontaliers : près d’un million de personnes qui vivent, travaillent et ont besoin de quelque chose ici. Les hôtels et hébergements similaires ont totalisé 2 019 907 nuitées en 2025, dont près de 57 % à Luxembourg-ville. Ce ne sont pas nos clients : c’est le terrain où nous voulons les mériter.</p>
+<p class="ed-src">Sources : STATEC (population 2026, « Luxembourg en chiffres » 2026), données du gouvernement sur les nuitées 2025 relayées par Paperjam.</p>
+<h3>Notre ambition, honnête</h3>
+<p><b>Aujourd’hui, le Luxembourg</b>, en commençant par Luxembourg-ville. <b>Demain, la Grande Région</b> : la France, la Belgique et l’Allemagne frontalières. <b>Et un jour, Dubaï.</b> Un pas après l’autre, comme un message : un niveau à la fois.</p>
+<p class="ed-end">Seuls, nous sommes des cailloux dans le vide. Ensemble, nous sommes un système.<br><b>Personne ne reste seul avec son problème.</b></p><p class="ed-sig">DOMIER</p></div><div lang="en"><h2>The DOMIER Edict</h2><p class="ed-sub">An invitation to reflect</p>
+<p><b>What we see.</b> Every day something breaks: a pipe, a lock, a ride that never comes. And every time someone looks for a number, waits, hopes. Good will is not what is missing: it is the <b>link</b> between the person with a problem and the person who can solve it.</p>
+<p><b>What we offer.</b> One place where that link exists, 24/7: like firefighters, for the small damage of everyday life. A model built to be repeated, city after city, like a franchise: the same central, the same rules, local teams.</p>
+<h3>The four pillars</h3>
+<p><b>Trust.</b> One gesture, and someone comes and stays until it is fixed. Your data stays encrypted, and yours.</p>
+<p><b>The network.</b> Hotels, homes, shops, professionals: separate worlds that, once connected, become a system. Each stays master of its own.</p>
+<p><b>The exchange.</b> Whoever asks finds; whoever knows how works. Value flows instead of staying in one pocket.</p>
+<p><b>The opportunity.</b> Three electrician companies in the network: a citizen’s request reaches them all, and the first to answer takes the job. Work is not taken away, it is shared. The baker, the small shop, the organiser of an evening: in two clicks and from €3.99 excl. VAT, they let the people right next door know they exist.</p>
+<p class="ed-story">One evening in Dubai, in a hotel, there was a dance bar on the ground floor. I never knew. If, from my bed, in the palm of my hand, I had seen the party downstairs or across the street, I would have felt less alone. That is also why DOMIER exists.</p>
+<h3>Our self-criticism</h3>
+<p>We say it before anyone says it to us. <b>We are starting:</b> the app is built and tested, our first clients are still to come. <b>We do a lot:</b> true, which is why we begin with a few things, done well. <b>We replace no one:</b> 112 stays for lives in danger, and we are the first to say so; employment agencies stay agencies; WhatsApp stays a message. We are what happens after the message.</p>
+<h3>Our limits, chosen</h3>
+<p>We do not promise guaranteed earnings. We do not lend people. We do not let anyone work who is not legally allowed to. We do not invent figures. The law is not our obstacle: it is our perimeter.</p>
+<h3>Two figures to measure the field</h3>
+<p>Luxembourg has 690,959 inhabitants on 1 January 2026, plus 237,200 cross-border workers: almost a million people who live, work and need something here. Hotels and similar accommodation recorded 2,019,907 nights in 2025, almost 57% of them in Luxembourg City. They are not our clients: they are the field where we want to earn them.</p>
+<p class="ed-src">Sources: STATEC (population 2026, “Luxembourg in figures” 2026), government data on 2025 overnight stays reported by Paperjam.</p>
+<h3>Our ambition, honest</h3>
+<p><b>Today, Luxembourg</b>, starting with Luxembourg City. <b>Tomorrow, the Greater Region</b>: the border areas of France, Belgium and Germany. <b>And one day, Dubai.</b> One step at a time, like a message: one level at a time.</p>
+<p class="ed-end">Alone, we are stones in the void. Together, we are a system.<br><b>No one is left alone with their problem.</b></p><p class="ed-sig">DOMIER</p></div><div lang="it"><h2>L’Editto DOMIER</h2><p class="ed-sub">Un invito a riflettere</p>
+<p><b>Ciò che vediamo.</b> Ogni giorno qualcosa si rompe: un tubo, una serratura, un passaggio che non arriva. E ogni volta qualcuno cerca un numero, aspetta, spera. Non manca la buona volontà: manca il <b>legame</b> tra chi ha un problema e chi sa risolverlo.</p>
+<p><b>Ciò che proponiamo.</b> Un luogo solo dove questo legame esiste, 24 ore su 24: come dei pompieri, per i piccoli danni di ogni giorno. Un modello pensato per ripetersi, città dopo città, come un franchising: la stessa centrale, le stesse regole, squadre locali.</p>
+<h3>I quattro pilastri</h3>
+<p><b>Fiducia.</b> Un gesto, e qualcuno arriva e resta finché il problema è risolto. I tuoi dati restano cifrati, e tuoi.</p>
+<p><b>La rete.</b> Hotel, case, commerci, professionisti: mondi separati che, collegati, diventano un sistema. Ognuno resta padrone del suo.</p>
+<p><b>Lo scambio.</b> Chi chiede trova, chi sa fare lavora. Il valore circola invece di fermarsi in una sola tasca.</p>
+<p><b>L’opportunità.</b> Tre ditte di elettricisti nella rete: la richiesta del cittadino arriva a tutte, la prima che risponde interviene. Il lavoro non si toglie, si distribuisce. Il panettiere, il piccolo commerciante, chi organizza una serata: con due clic e da 3,99 € HT fanno sapere che esistono a chi è proprio lì accanto.</p>
+<p class="ed-story">Una sera, a Dubai, in un hotel, al piano terra c’era un bar con la discoteca. Non l’ho mai saputo. Se dal mio letto, nel palmo della mano, avessi visto la serata di sotto o di fronte, mi sarei sentito meno solo. Anche per questo esiste DOMIER.</p>
+<h3>La nostra autocritica</h3>
+<p>Lo diciamo prima che ce lo dicano. <b>Siamo all’inizio:</b> l’app è costruita e provata, i primi clienti devono ancora arrivare. <b>Facciamo tante cose:</b> è vero, per questo cominciamo da poche, fatte bene. <b>Non sostituiamo nessuno:</b> il 112 resta per la vita in pericolo, e siamo i primi a ricordarlo; le agenzie per l’impiego restano agenzie; WhatsApp resta un messaggio. Noi siamo ciò che succede dopo il messaggio.</p>
+<h3>I nostri limiti, scelti</h3>
+<p>Non promettiamo guadagni garantiti. Non prestiamo persone. Non facciamo lavorare chi non è in regola. Non inventiamo numeri. La legge non è il nostro ostacolo: è il nostro perimetro.</p>
+<h3>Due numeri per misurare il campo</h3>
+<p>Il Lussemburgo conta 690 959 abitanti al 1° gennaio 2026, più 237 200 lavoratori frontalieri: quasi un milione di persone che vivono, lavorano e hanno bisogno di qualcosa qui. Alberghi e strutture simili hanno totalizzato 2 019 907 notti nel 2025, quasi il 57% a Luxembourg-ville. Non sono i nostri clienti: sono il campo in cui vogliamo meritarli.</p>
+<p class="ed-src">Fonti: STATEC (popolazione 2026, «Luxembourg en chiffres» 2026), dati del governo sulle notti 2025 riportati da Paperjam.</p>
+<h3>La nostra ambizione, onesta</h3>
+<p><b>Oggi il Lussemburgo</b>, cominciando da Luxembourg-ville. <b>Domani la Grande Regione</b>: Francia, Belgio e Germania di confine. <b>E un giorno Dubai.</b> Un passo alla volta, come un messaggio: un livello alla volta.</p>
+<p class="ed-end">Da soli siamo sassi nel vuoto. Insieme siamo un sistema.<br><b>Nessuno resta solo con il suo problema.</b></p><p class="ed-sig">DOMIER</p></div></div></div>
 <div class="viewport" id="vp">
 <div class="stage" id="stage" aria-live="polite">
   <!-- 1 -->
@@ -2250,6 +2323,7 @@ document.querySelectorAll('.slide').forEach(makeSky);
   const pb=document.getElementById('play'); if(pb.textContent.indexOf('❚')>-1) pb.click();
   function enter(withMusic){gate.classList.add('hide');window.DOMIER&&window.DOMIER.play('start'); if(pb.textContent.indexOf('▶')>-1) pb.click();
     if(withMusic)setOn(true); else {on=false;snd.textContent='🔇';load(0);} }
+  (function(){var e=document.getElementById('edict'),o=document.getElementById('edOpen'),x=document.getElementById('edX');function cl(){e.hidden=true;o.focus();}o.addEventListener('click',function(ev){ev.stopPropagation();e.hidden=false;e.querySelector('.ed-scroll').scrollTop=0;x.focus();});x.addEventListener('click',function(ev){ev.stopPropagation();cl();});e.addEventListener('click',function(ev){if(ev.target===e)cl();});document.addEventListener('keydown',function(ev){if(ev.key==='Escape'&&!e.hidden)cl();});})();
   document.getElementById('goMusic').onclick=()=>enter(true);
   document.getElementById('goSilent').onclick=()=>enter(false);
   // ⚡/✨ : après le rechargement on revient où on était (sans la page d'entrée)

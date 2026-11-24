@@ -863,6 +863,16 @@ body.clipm .controls{position:fixed;left:0;right:0;bottom:0;z-index:50;backgroun
   display:flex;align-items:center;gap:12px;padding:14px 22px;border-radius:40px;background:rgba(7,10,13,.92);border:1px solid var(--gold);color:var(--gold-soft);text-decoration:none;font:700 clamp(14px,1.8vw,19px) var(--body);box-shadow:0 20px 50px rgba(0,0,0,.6)}
 @media (max-width:700px){.np{max-width:120px}}
 html.lite .hub .hsys *,html.lite .hub .msys *{filter:none!important}
+/* 📱 telefono in verticale : l'accueil (hub) su una tela verticale 900×1950, testi grandi, sistema DOMIER intero */
+html.pt .stage{width:900px;height:1950px}
+html.pt .hub .htxt{left:50px;top:50px;width:800px}
+html.pt .hub .htxt h2{font-size:84px}html.pt .hub .motto{font-size:40px!important}html.pt .hub .htxt p:not(.motto):not(.hint){font-size:31px;line-height:1.4}html.pt .hub .hint{font-size:30px}html.pt .hub .what{font-size:30px}
+html.pt .hub .hsys{left:-420px;top:700px}
+html.pt .hub .msys{left:70px;top:1560px!important;transform:scale(1.05);transform-origin:0 0}
+html.pt .hub .alien.fsf{left:600px;top:1610px;transform:scale(1.4);transform-origin:50% 50%}
+html.pt .hub .alien.bh{left:770px;top:1380px}
+@media (max-width:600px){.legalp.withm{left:6px!important;right:6px!important;width:auto!important;top:auto!important;bottom:6px!important;transform:none!important;height:74vh!important}body:has(.legalp:not([hidden])) .almenu{display:none}}
+
 html.lite .alien svg{filter:none!important}
 
 .almenu{position:fixed;right:12px;bottom:74px;gap:4px;z-index:55;display:flex;flex-direction:column;align-items:flex-end;gap:10px;padding:10px 12px;border-radius:16px;background:rgba(8,12,16,.82);border:1px solid rgba(233,207,143,.25);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);opacity:0;transform:translateY(24px);transition:opacity .35s ease,transform .45s cubic-bezier(.2,.8,.2,1)}
@@ -2292,11 +2302,11 @@ document.querySelectorAll('.slide').forEach(makeSky);
   const LISTS={start:['intro'],film:['casco','tri','panne','chat','pipeline','qui','etapes','pay','trust','licence','scale','join','closing'],owner:['owner'],filmpro:['ring','chat','owner','tenant','network'],tenant:['tenant','tenant2'],ads:['annonceurs'],guests:['voyageurs'],hotelc:['hotelc'],domistes:['casco','domapp'],hub:['hub']};
   const AFTER={start:'hub',owner:'hub',filmpro:'hub',tenant:'hub',ads:'hub',guests:'hub',hotelc:'hub',domistes:'hub'};
   let name='start', list=[], pos=0, cur=null, playing=true, t0=0, elapsed=0, bars=[];
-  function fit(){const s=Math.min(vp.clientWidth/1600, vp.clientHeight/900)*(vp.clientWidth<1000&&matchMedia('(pointer:coarse)').matches?1.05:1);stage.style.transform='scale('+s+')';stage.style.margin=((s-1)*450)+'px '+((s-1)*800)+'px';}
-  addEventListener('resize',fit);fit();
+  function fit(){const P=vp.clientHeight>vp.clientWidth&&vp.clientWidth<820&&cur&&cur.dataset.id==='hub';document.documentElement.classList.toggle('pt',!!P);const W=P?900:1600,H=P?1950:900;const s=Math.min(vp.clientWidth/W, vp.clientHeight/H);stage.style.transform='scale('+s+')';stage.style.margin=((s-1)*H/2)+'px '+((s-1)*W/2)+'px';}
+  addEventListener('resize',fit);setTimeout(fit,0);
   function show(s){
     if(cur&&cur!==s){const p=cur;p.classList.remove('on');p.classList.add('off');setTimeout(()=>p.classList.remove('off'),900);}
-    cur=s; s.classList.remove('off'); void s.offsetWidth; s.classList.add('on'); elapsed=0; t0=performance.now();
+    cur=s; fit(); s.classList.remove('off'); void s.offsetWidth; s.classList.add('on'); elapsed=0; t0=performance.now();
     bars.forEach((b,n)=>b.style.width=n<pos?'100%':'0');
     home.hidden=(s.dataset.id==='hub'||s.dataset.id==='intro');
     if(window.dClip) window.dClip(!home.hidden);
